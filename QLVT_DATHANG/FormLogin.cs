@@ -127,8 +127,7 @@ namespace QLVT_DATHANG
             bool loginResult = HandleLogin();
             if (!loginResult)
                 return;
-
-            Hide();
+ 
             Program.FormMain.Show();
             Program.FormMain.MaNV.Text = "Employee ID: " + Program.EmployeeId.ToString();
             Program.FormMain.HoTen.Text = "Full name: " + Program.FullName.ToString();

@@ -83,7 +83,7 @@ namespace QLVT_DATHANG
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormMain = new FormMain();
-            Application.Run(new FormLogin());
+            Application.Run(FormMain);
         }
     }
 }

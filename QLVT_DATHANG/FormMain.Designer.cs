@@ -88,6 +88,7 @@
             // 
             this.btnLogin.Caption = "Đăng nhập";
             this.btnLogin.Id = 1;
+            this.btnLogin.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.security_key;
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogin_ItemClick);
             // 
@@ -101,13 +102,19 @@
             // 
             this.btnCreateLogin.Caption = "Tạo tài khoản";
             this.btnCreateLogin.Id = 3;
+            this.btnCreateLogin.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.actions_addcircled;
             this.btnCreateLogin.Name = "btnCreateLogin";
+            this.btnCreateLogin.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing;
+            this.btnCreateLogin.VisibleInSearchMenu = false;
             // 
             // btnLogout
             // 
             this.btnLogout.Caption = "Đăng xuất";
             this.btnLogout.Id = 4;
+            this.btnLogout.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.security_warningcircled2;
             this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing;
+            this.btnLogout.VisibleInSearchMenu = false;
             // 
             // barButtonItem4
             // 
@@ -238,8 +245,7 @@
             // FormMain
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(798, 759);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);

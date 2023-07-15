@@ -22,6 +22,7 @@ namespace QLVT_DATHANG
             foreach (var form in this.MdiChildren)
             {
                 if (form.GetType() == formType)
+                    form.Show();
                     return form;
             }
             return null;
@@ -50,6 +51,12 @@ namespace QLVT_DATHANG
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadLoginForm();
+            
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            
         }
+         
     }
 }
