@@ -13,7 +13,7 @@ namespace QLVT_DATHANG
     internal static class Program
     {
         public static FormMain FormMain;
-        public static BindingSource BSSubscriptionList = new BindingSource();
+        public static BindingSource bds_subscriptionList = new BindingSource();
 
         public static SqlConnection Connection = new SqlConnection();
         public static string ServerName;
@@ -23,7 +23,7 @@ namespace QLVT_DATHANG
         public static string ConnectionString;
 
         public static SqlDataReader Reader;
-        public static string Branch;
+        public static int SubsIndex;
         public static string EmployeeId;
         public static string FullName;
         public static string Role;

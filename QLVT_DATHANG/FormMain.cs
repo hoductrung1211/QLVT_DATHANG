@@ -21,8 +21,7 @@ namespace QLVT_DATHANG
         {
             foreach (var form in this.MdiChildren)
             {
-                if (form.GetType() == formType)
-                    form.Show();
+                if (form.GetType() == formType) 
                     return form;
             }
             return null;
@@ -57,6 +56,47 @@ namespace QLVT_DATHANG
             MinimizeBox = false;
             
         }
-         
+
+        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            var formMain = Program.FormMain;
+            formMain.page_business.Visible = 
+                formMain.page_cat.Visible = 
+                formMain.page_report.Visible = false;
+
+            formMain.btn_logout.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing;
+            formMain.btn_login.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+
+            WindowState = FormWindowState.Normal;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+
+            foreach (var item in formMain.MdiChildren)
+            {
+                item.Close();
+            }
+
+            LoadLoginForm();
+        }
+
+        private void LoadEmployeeForm()
+        {
+            var form = CheckExists(typeof(FormEmployee));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                var fEmployee = new FormEmployee();
+                fEmployee.MdiParent = this;
+                fEmployee.Show();
+            }
+        }
+
+        private void btn_employee_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadEmployeeForm();
+        }
     }
 }

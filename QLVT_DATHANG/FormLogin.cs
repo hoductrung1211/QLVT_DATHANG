@@ -51,7 +51,7 @@ namespace QLVT_DATHANG
             adapter.Fill(dataTable);
             PublisherConnection.Close();
 
-            Program.BSSubscriptionList.DataSource = dataTable;
+            Program.bds_subscriptionList.DataSource = dataTable;
 
             cb_branch.DataSource = dataTable;
             cb_branch.DisplayMember = "TenCN";
@@ -68,6 +68,8 @@ namespace QLVT_DATHANG
         private void FormLogin_Load(object sender, EventArgs e)
         {
             LoadSubscriptionsToCombobox();
+            txb_username.Text = "LT";
+            txb_password.Text = "123456";
         }
 
         // 3. Event when Branch Value changes in Combobox
@@ -88,12 +90,17 @@ namespace QLVT_DATHANG
         {
             Program.UserId = txb_username.Text;
             Program.Password = txb_password.Text;
-
+            // SubsIndex
+            // Index of subscription in list
+            // Used to set index of combobox in Employee Form
+            Program.SubsIndex = cb_branch.SelectedIndex; 
+            
             // Open connection
             if (!Program.LoginToServer()) // Stop program when Logging in failed!
                 return false;
 
             // When Uid & password are correct!
+
             var cmdExecSP = $"EXEC {SPLogin} '{Program.UserId}'";
             Program.Reader = Program.ExecSqlDataReader(cmdExecSP);
             if (Program.Reader == null)
@@ -127,8 +134,18 @@ namespace QLVT_DATHANG
             bool loginResult = HandleLogin();
             if (!loginResult)
                 return;
- 
+
+            Close();
+
+            Program.FormMain.page_cat.Visible = true;
+
+            Program.FormMain.btn_login.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing; // False
+            Program.FormMain.btn_logout.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime; // True
+
+            Program.FormMain.MaximizeBox = true;
+            Program.FormMain.WindowState = FormWindowState.Maximized;
             Program.FormMain.Show();
+            
             Program.FormMain.MaNV.Text = "Employee ID: " + Program.EmployeeId.ToString();
             Program.FormMain.HoTen.Text = "Full name: " + Program.FullName.ToString();
             Program.FormMain.Nhom.Text = "Role: " + Program.Role.ToString();
