@@ -44,11 +44,15 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb_branch = new System.Windows.Forms.ComboBox();
+            this.gb_info = new System.Windows.Forms.GroupBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.diaChiTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.bds_NhanVien = new System.Windows.Forms.BindingSource(this.components);
-            this.DSEmployee = new QLVT_DATHANG.DSEmployee();
+            this.ds_Employee = new QLVT_DATHANG.DSEmployee();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txt_cmnd = new DevExpress.XtraEditors.TextEdit();
@@ -61,6 +65,9 @@
             this.dte_birthday = new DevExpress.XtraEditors.DateEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.trangThaiXoaCheckBox = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txt_branchId = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,8 +77,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_id = new System.Windows.Forms.TextBox();
-            this.cb_branch = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.NhanVienTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.NhanVienTableAdapter();
             this.TableAdapterManager = new QLVT_DATHANG.DSEmployeeTableAdapters.TableAdapterManager();
             this.gc_NhanVien = new DevExpress.XtraGrid.GridControl();
@@ -91,16 +96,16 @@
             this.phieuNhapTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.PhieuNhapTableAdapter();
             this.bds_DatHang = new System.Windows.Forms.BindingSource(this.components);
             this.datHangTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.DatHangTableAdapter();
-            this.gb_info = new System.Windows.Forms.GroupBox();
-            this.panel7 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.gb_info.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diaChiTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_NhanVien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DSEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_Employee)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cmnd.Properties)).BeginInit();
             this.panel4.SuspendLayout();
@@ -110,6 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dte_birthday.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_birthday.Properties.CalendarTimeProperties)).BeginInit();
             this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_branchId.Properties)).BeginInit();
             this.panel3.SuspendLayout();
@@ -120,8 +126,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).BeginInit();
-            this.gb_info.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // barmngr_employee
@@ -203,6 +207,7 @@
             this.btn_save.Id = 3;
             this.btn_save.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.save;
             this.btn_save.Name = "btn_save";
+            this.btn_save.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_save_ItemClick);
             // 
             // btn_undo
             // 
@@ -271,8 +276,50 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 30);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1930, 242);
+            this.panelControl1.Size = new System.Drawing.Size(1930, 251);
             this.panelControl1.TabIndex = 4;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.cb_branch);
+            this.panel7.Location = new System.Drawing.Point(21, 6);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(449, 40);
+            this.panel7.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(55, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chi nhánh";
+            // 
+            // cb_branch
+            // 
+            this.cb_branch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_branch.FormattingEnabled = true;
+            this.cb_branch.Location = new System.Drawing.Point(157, 4);
+            this.cb_branch.Name = "cb_branch";
+            this.cb_branch.Size = new System.Drawing.Size(280, 29);
+            this.cb_branch.TabIndex = 1;
+            this.cb_branch.SelectedIndexChanged += new System.EventHandler(this.cb_branch_SelectedIndexChanged);
+            // 
+            // gb_info
+            // 
+            this.gb_info.Controls.Add(this.panel9);
+            this.gb_info.Controls.Add(this.panel10);
+            this.gb_info.Enabled = false;
+            this.gb_info.Location = new System.Drawing.Point(12, 52);
+            this.gb_info.Name = "gb_info";
+            this.gb_info.Size = new System.Drawing.Size(1885, 179);
+            this.gb_info.TabIndex = 11;
+            this.gb_info.TabStop = false;
+            this.gb_info.Text = "Bảng thông tin";
             // 
             // panel9
             // 
@@ -303,17 +350,17 @@
             this.diaChiTextEdit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.diaChiTextEdit.Properties.Appearance.Options.UseFont = true;
             this.diaChiTextEdit.Size = new System.Drawing.Size(280, 28);
-            this.diaChiTextEdit.TabIndex = 10;
+            this.diaChiTextEdit.TabIndex = 7;
             // 
             // bds_NhanVien
             // 
             this.bds_NhanVien.DataMember = "NhanVien";
-            this.bds_NhanVien.DataSource = this.DSEmployee;
+            this.bds_NhanVien.DataSource = this.ds_Employee;
             // 
-            // DSEmployee
+            // ds_Employee
             // 
-            this.DSEmployee.DataSetName = "DSEmployee";
-            this.DSEmployee.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.ds_Employee.DataSetName = "DSEmployee";
+            this.ds_Employee.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label9
             // 
@@ -343,7 +390,7 @@
             this.txt_cmnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_cmnd.Properties.Appearance.Options.UseFont = true;
             this.txt_cmnd.Size = new System.Drawing.Size(280, 28);
-            this.txt_cmnd.TabIndex = 10;
+            this.txt_cmnd.TabIndex = 5;
             // 
             // label7
             // 
@@ -374,7 +421,7 @@
             this.txt_lastname.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_lastname.Properties.Appearance.Options.UseFont = true;
             this.txt_lastname.Size = new System.Drawing.Size(174, 28);
-            this.txt_lastname.TabIndex = 2;
+            this.txt_lastname.TabIndex = 3;
             // 
             // label5
             // 
@@ -395,7 +442,7 @@
             this.txt_firstname.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_firstname.Properties.Appearance.Options.UseFont = true;
             this.txt_firstname.Size = new System.Drawing.Size(100, 28);
-            this.txt_firstname.TabIndex = 5;
+            this.txt_firstname.TabIndex = 4;
             // 
             // panel2
             // 
@@ -420,7 +467,7 @@
             this.dte_birthday.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dte_birthday.Size = new System.Drawing.Size(280, 28);
-            this.dte_birthday.TabIndex = 2;
+            this.dte_birthday.TabIndex = 6;
             // 
             // label3
             // 
@@ -434,13 +481,44 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.panel11);
             this.panel10.Controls.Add(this.panel5);
             this.panel10.Controls.Add(this.panel3);
             this.panel10.Controls.Add(this.panel1);
             this.panel10.Location = new System.Drawing.Point(6, 27);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1386, 69);
+            this.panel10.Size = new System.Drawing.Size(1812, 69);
             this.panel10.TabIndex = 11;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.trangThaiXoaCheckBox);
+            this.panel11.Controls.Add(this.label8);
+            this.panel11.Location = new System.Drawing.Point(1341, 3);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(440, 48);
+            this.panel11.TabIndex = 11;
+            // 
+            // trangThaiXoaCheckBox
+            // 
+            this.trangThaiXoaCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bds_NhanVien, "TrangThaiXoa", true));
+            this.trangThaiXoaCheckBox.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trangThaiXoaCheckBox.Location = new System.Drawing.Point(157, 12);
+            this.trangThaiXoaCheckBox.Name = "trangThaiXoaCheckBox";
+            this.trangThaiXoaCheckBox.Size = new System.Drawing.Size(104, 24);
+            this.trangThaiXoaCheckBox.TabIndex = 10;
+            this.trangThaiXoaCheckBox.Text = "Đã xóa";
+            this.trangThaiXoaCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(34, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(117, 21);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Trạng thái xóa";
             // 
             // panel5
             // 
@@ -533,27 +611,7 @@
             this.txt_id.Location = new System.Drawing.Point(157, 10);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 3;
-            // 
-            // cb_branch
-            // 
-            this.cb_branch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_branch.FormattingEnabled = true;
-            this.cb_branch.Location = new System.Drawing.Point(157, 4);
-            this.cb_branch.Name = "cb_branch";
-            this.cb_branch.Size = new System.Drawing.Size(280, 29);
-            this.cb_branch.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(55, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chi nhánh";
+            this.txt_id.TabIndex = 2;
             // 
             // NhanVienTableAdapter
             // 
@@ -572,11 +630,11 @@
             // 
             this.gc_NhanVien.DataSource = this.bds_NhanVien;
             this.gc_NhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_NhanVien.Location = new System.Drawing.Point(0, 272);
+            this.gc_NhanVien.Location = new System.Drawing.Point(0, 281);
             this.gc_NhanVien.MainView = this.gridView1;
             this.gc_NhanVien.MenuManager = this.barmngr_employee;
             this.gc_NhanVien.Name = "gc_NhanVien";
-            this.gc_NhanVien.Size = new System.Drawing.Size(1930, 336);
+            this.gc_NhanVien.Size = new System.Drawing.Size(1930, 327);
             this.gc_NhanVien.TabIndex = 6;
             this.gc_NhanVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -708,27 +766,6 @@
             // 
             this.datHangTableAdapter.ClearBeforeFill = true;
             // 
-            // gb_info
-            // 
-            this.gb_info.Controls.Add(this.panel9);
-            this.gb_info.Controls.Add(this.panel10);
-            this.gb_info.Enabled = false;
-            this.gb_info.Location = new System.Drawing.Point(12, 52);
-            this.gb_info.Name = "gb_info";
-            this.gb_info.Size = new System.Drawing.Size(1885, 179);
-            this.gb_info.TabIndex = 11;
-            this.gb_info.TabStop = false;
-            this.gb_info.Text = "Bảng thông tin";
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label1);
-            this.panel7.Controls.Add(this.cb_branch);
-            this.panel7.Location = new System.Drawing.Point(21, 6);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(449, 40);
-            this.panel7.TabIndex = 12;
-            // 
             // FormEmployee
             // 
             this.Appearance.Options.UseFont = true;
@@ -747,12 +784,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.gb_info.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diaChiTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_NhanVien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DSEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ds_Employee)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_cmnd.Properties)).EndInit();
@@ -765,6 +805,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dte_birthday.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_birthday.Properties)).EndInit();
             this.panel10.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_branchId.Properties)).EndInit();
@@ -778,9 +820,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuNhap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).EndInit();
-            this.gb_info.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -806,7 +845,7 @@
         private System.Windows.Forms.ComboBox cb_branch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource bds_NhanVien;
-        private DSEmployee DSEmployee;
+        private DSEmployee ds_Employee;
         private DSEmployeeTableAdapters.NhanVienTableAdapter NhanVienTableAdapter;
         private DSEmployeeTableAdapters.TableAdapterManager TableAdapterManager;
         private DevExpress.XtraGrid.GridControl gc_NhanVien;
@@ -852,5 +891,8 @@
         private DSEmployeeTableAdapters.DatHangTableAdapter datHangTableAdapter;
         private System.Windows.Forms.GroupBox gb_info;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.CheckBox trangThaiXoaCheckBox;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -39,6 +39,10 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_cat = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -71,10 +75,14 @@
             this.barButtonItem5,
             this.barButtonItem6,
             this.barButtonItem7,
-            this.barButtonItem8});
+            this.barButtonItem8,
+            this.barButtonItem1,
+            this.barButtonItem2,
+            this.barButtonItem3,
+            this.barButtonItem4});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.ribbonControl1.MaxItemId = 10;
+            this.ribbonControl1.MaxItemId = 14;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 605;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -151,6 +159,34 @@
             this.barButtonItem8.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.printallpages;
             this.barButtonItem8.Name = "barButtonItem8";
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Vật tư";
+            this.barButtonItem1.Id = 10;
+            this.barButtonItem1.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_product;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Kho";
+            this.barButtonItem2.Id = 11;
+            this.barButtonItem2.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_order;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "Đơn đặt hàng";
+            this.barButtonItem3.Id = 12;
+            this.barButtonItem3.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.shipment;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "Phiếu nhập / xuất";
+            this.barButtonItem4.Id = 13;
+            this.barButtonItem4.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
             // page_system
             // 
             this.page_system.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -176,6 +212,10 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_employee);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem1);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // page_business
@@ -291,6 +331,10 @@
         public DevExpress.XtraBars.Ribbon.RibbonPage page_cat;
         public DevExpress.XtraBars.Ribbon.RibbonPage page_business;
         public DevExpress.XtraBars.Ribbon.RibbonPage page_report;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
     }
 }
 

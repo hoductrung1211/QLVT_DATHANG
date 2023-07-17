@@ -143,6 +143,36 @@ namespace QLVT_DATHANG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage bo_order {
+            get {
+                object obj = ResourceManager.GetObject("bo_order", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage bo_product {
+            get {
+                object obj = ResourceManager.GetObject("bo_product", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage bo_vendor {
+            get {
+                object obj = ResourceManager.GetObject("bo_vendor", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage customerprofilereport {
             get {
                 object obj = ResourceManager.GetObject("customerprofilereport", resourceCulture);
@@ -166,6 +196,26 @@ namespace QLVT_DATHANG.Properties {
         internal static DevExpress.Utils.Svg.SvgImage employeesummary {
             get {
                 object obj = ResourceManager.GetObject("employeesummary", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage employeetasklist {
+            get {
+                object obj = ResourceManager.GetObject("employeetasklist", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage employeetasklist1 {
+            get {
+                object obj = ResourceManager.GetObject("employeetasklist1", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }
@@ -226,6 +276,16 @@ namespace QLVT_DATHANG.Properties {
         internal static DevExpress.Utils.Svg.SvgImage security_warningcircled2 {
             get {
                 object obj = ResourceManager.GetObject("security_warningcircled2", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage shipment {
+            get {
+                object obj = ResourceManager.GetObject("shipment", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }

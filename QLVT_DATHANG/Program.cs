@@ -16,11 +16,16 @@ namespace QLVT_DATHANG
         public static BindingSource bds_subscriptionList = new BindingSource();
 
         public static SqlConnection Connection = new SqlConnection();
-        public static string ServerName;
+        public static string Server;
         public static string Database = "QLVT_DATHANG";
-        public static string UserId; // Login
+        public static string UserId; // Server Login
         public static string Password;
         public static string ConnectionString;
+
+        public static string RemoteUserId = "HTKN";
+        public static string RemotePassword = "123456";
+        public static string ConnectionUserId;
+        public static string ConnectionPassword;
 
         public static SqlDataReader Reader;
         public static int SubsIndex;
@@ -35,10 +40,10 @@ namespace QLVT_DATHANG
 
             try
             {
-                var serverString = $"Server={ServerName};";
+                var serverString = $"Server={Server};";
                 var dbString = $"Database={Database};";
-                var uidString = $"Uid={UserId};";
-                var passwordString = $"Password={Password};";
+                var uidString = $"Uid={ConnectionUserId};";
+                var passwordString = $"Password={ConnectionPassword};";
                 ConnectionString = serverString + dbString + uidString + passwordString;
 
                 Connection.ConnectionString = ConnectionString;

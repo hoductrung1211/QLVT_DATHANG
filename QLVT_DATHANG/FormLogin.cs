@@ -15,8 +15,7 @@ namespace QLVT_DATHANG
 {
     public partial class FormLogin : DevExpress.XtraEditors.XtraForm
     {
-        private SqlConnection PublisherConnection = new SqlConnection();
-        private readonly string PublisherConnString = "Server=localhost; Database=QLVT_DATHANG; Integrated Security=True";
+        private readonly SqlConnection PublisherConnection = new SqlConnection("Server=localhost; Database=QLVT_DATHANG; Integrated Security=True");
         private readonly string SubscriptionsViewName = "V_DS_PhanManh";
         private readonly string SPLogin = "dbo.SP_DANGNHAP";
 
@@ -27,7 +26,6 @@ namespace QLVT_DATHANG
                 PublisherConnection.Close();
             try
             {
-                PublisherConnection.ConnectionString = PublisherConnString;
                 PublisherConnection.Open();
                 return true;
             }
@@ -39,14 +37,10 @@ namespace QLVT_DATHANG
         }
         private void LoadSubscriptionsToCombobox()
         {
-            // Stop program when throwing connecting to server error 
             if (!ConnectToPublisher())
                 return;
 
             var dataTable = new DataTable();
-            if (PublisherConnection.State == ConnectionState.Closed)
-                PublisherConnection.Open();
-
             var adapter = new SqlDataAdapter($"SELECT TOP 2 * FROM {SubscriptionsViewName}", PublisherConnection);
             adapter.Fill(dataTable);
             PublisherConnection.Close();
@@ -77,7 +71,7 @@ namespace QLVT_DATHANG
         {
             try
             {
-                Program.ServerName = cb_branch.SelectedValue.ToString();
+                Program.Server = cb_branch.SelectedValue.ToString();
             }
             catch
             {
@@ -88,9 +82,10 @@ namespace QLVT_DATHANG
         // 4. Handle Login
         private bool HandleLogin()
         {
-            Program.UserId = txb_username.Text;
-            Program.Password = txb_password.Text;
-            // SubsIndex
+            // It's set here because here we can access form controls
+            Program.UserId = Program.ConnectionUserId = txb_username.Text;
+            Program.Password = Program.ConnectionPassword = txb_password.Text;
+            
             // Index of subscription in list
             // Used to set index of combobox in Employee Form
             Program.SubsIndex = cb_branch.SelectedIndex; 
