@@ -91,20 +91,15 @@ namespace QLVT_DATHANG
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RowIndex = bds_NhanVien.Position;
-            // Group box now can can be editable
             gb_info.Enabled = true;
-
             NewRow = bds_NhanVien.AddNew();
+            gc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
 
-            // IsAdding = true;
             txt_branchId.Text = BranchId;
             dte_birthday.EditValue = "";
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
-
-            gc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
-
             // Grid View is View, Interface
             // Grid Control is Data
         }
@@ -191,26 +186,26 @@ namespace QLVT_DATHANG
 
         private void btn_save_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (txt_id.ToString().Trim() == "")
+            if (txt_id.Text.Trim() == "")
             {
                 MessageBox.Show("Cannot blank Employee ID!", "", MessageBoxButtons.OK);
                 txt_id.Focus();
                 return;
             }
-            if (txt_lastname.ToString().Trim() == "")
+            if (txt_lastname.Text.Trim() == "")
             {
                 MessageBox.Show("Cannot blank Employee last name!", "", MessageBoxButtons.OK);
                 txt_lastname.Focus();
                 return;
             }
-            if (txt_firstname.ToString().Trim() == "")
+            if (txt_firstname.Text.Trim() == "")
             {
                 MessageBox.Show("Cannot blank Employee first name!", "", MessageBoxButtons.OK);
                 txt_firstname.Focus();
                 return;
             }
             // Please add BirthDate
-            // Salary in a domain
+            // Please add Salary Value Constraint in a domain
 
             // Employee ID cannot be the same in all subs
 

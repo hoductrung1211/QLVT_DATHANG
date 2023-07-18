@@ -39,10 +39,10 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_product = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_warehouse = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_order = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_invoice = new DevExpress.XtraBars.BarButtonItem();
             this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_cat = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -76,10 +76,10 @@
             this.barButtonItem6,
             this.barButtonItem7,
             this.barButtonItem8,
-            this.barButtonItem1,
-            this.barButtonItem2,
-            this.barButtonItem3,
-            this.barButtonItem4});
+            this.btn_product,
+            this.btn_warehouse,
+            this.btn_order,
+            this.btn_invoice});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonControl1.MaxItemId = 14;
@@ -159,33 +159,34 @@
             this.barButtonItem8.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.printallpages;
             this.barButtonItem8.Name = "barButtonItem8";
             // 
-            // barButtonItem1
+            // btn_product
             // 
-            this.barButtonItem1.Caption = "Vật tư";
-            this.barButtonItem1.Id = 10;
-            this.barButtonItem1.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_product;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.btn_product.Caption = "Vật tư";
+            this.btn_product.Id = 10;
+            this.btn_product.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_product;
+            this.btn_product.Name = "btn_product";
+            this.btn_product.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_product_ItemClick);
             // 
-            // barButtonItem2
+            // btn_warehouse
             // 
-            this.barButtonItem2.Caption = "Kho";
-            this.barButtonItem2.Id = 11;
-            this.barButtonItem2.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_order;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.btn_warehouse.Caption = "Kho";
+            this.btn_warehouse.Id = 11;
+            this.btn_warehouse.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_order;
+            this.btn_warehouse.Name = "btn_warehouse";
             // 
-            // barButtonItem3
+            // btn_order
             // 
-            this.barButtonItem3.Caption = "Đơn đặt hàng";
-            this.barButtonItem3.Id = 12;
-            this.barButtonItem3.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.shipment;
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.btn_order.Caption = "Đơn đặt hàng";
+            this.btn_order.Id = 12;
+            this.btn_order.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.shipment;
+            this.btn_order.Name = "btn_order";
             // 
-            // barButtonItem4
+            // btn_invoice
             // 
-            this.barButtonItem4.Caption = "Phiếu nhập / xuất";
-            this.barButtonItem4.Id = 13;
-            this.barButtonItem4.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
-            this.barButtonItem4.Name = "barButtonItem4";
+            this.btn_invoice.Caption = "Phiếu nhập / xuất";
+            this.btn_invoice.Id = 13;
+            this.btn_invoice.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
+            this.btn_invoice.Name = "btn_invoice";
             // 
             // page_system
             // 
@@ -212,10 +213,10 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_employee);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem2);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_product);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_warehouse);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_order);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_invoice);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // page_business
@@ -331,10 +332,10 @@
         public DevExpress.XtraBars.Ribbon.RibbonPage page_cat;
         public DevExpress.XtraBars.Ribbon.RibbonPage page_business;
         public DevExpress.XtraBars.Ribbon.RibbonPage page_report;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem btn_product;
+        private DevExpress.XtraBars.BarButtonItem btn_warehouse;
+        private DevExpress.XtraBars.BarButtonItem btn_order;
+        private DevExpress.XtraBars.BarButtonItem btn_invoice;
     }
 }
 

@@ -88,15 +88,42 @@ namespace QLVT_DATHANG
                 form.Activate();
             else
             {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
                 var fEmployee = new FormEmployee();
                 fEmployee.MdiParent = this;
                 fEmployee.Show();
             }
         }
 
+        private void LoadProductForm()
+        {
+            var form = CheckExists(typeof(FormProduct));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormProduct();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
+
+        }
+
         private void btn_employee_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadEmployeeForm();
+        }
+
+        private void btn_product_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadProductForm();
         }
     }
 }
