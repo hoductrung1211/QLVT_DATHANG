@@ -15,8 +15,7 @@ namespace QLVT_DATHANG
 {
     public partial class FormLogin : DevExpress.XtraEditors.XtraForm
     {
-        private SqlConnection PublisherConnection = new SqlConnection();
-        private readonly string PublisherConnString = "Server=localhost; Database=QLVT_DATHANG; Integrated Security=True";
+        private readonly SqlConnection PublisherConnection = new SqlConnection("Server=localhost; Database=QLVT_DATHANG; Integrated Security=True");
         private readonly string SubscriptionsViewName = "V_DS_PhanManh";
         private readonly string SPLogin = "dbo.SP_DANGNHAP";
 
@@ -27,7 +26,6 @@ namespace QLVT_DATHANG
                 PublisherConnection.Close();
             try
             {
-                PublisherConnection.ConnectionString = PublisherConnString;
                 PublisherConnection.Open();
                 return true;
             }
@@ -39,19 +37,15 @@ namespace QLVT_DATHANG
         }
         private void LoadSubscriptionsToCombobox()
         {
-            // Stop program when throwing connecting to server error 
             if (!ConnectToPublisher())
                 return;
 
             var dataTable = new DataTable();
-            if (PublisherConnection.State == ConnectionState.Closed)
-                PublisherConnection.Open();
-
             var adapter = new SqlDataAdapter($"SELECT TOP 2 * FROM {SubscriptionsViewName}", PublisherConnection);
             adapter.Fill(dataTable);
             PublisherConnection.Close();
 
-            Program.BSSubscriptionList.DataSource = dataTable;
+            Program.bds_subscriptionList.DataSource = dataTable;
 
             cb_branch.DataSource = dataTable;
             cb_branch.DisplayMember = "TenCN";
@@ -68,6 +62,8 @@ namespace QLVT_DATHANG
         private void FormLogin_Load(object sender, EventArgs e)
         {
             LoadSubscriptionsToCombobox();
+            txb_username.Text = "LT";
+            txb_password.Text = "123456";
         }
 
         // 3. Event when Branch Value changes in Combobox
@@ -75,7 +71,7 @@ namespace QLVT_DATHANG
         {
             try
             {
-                Program.ServerName = cb_branch.SelectedValue.ToString();
+                Program.Server = cb_branch.SelectedValue.ToString();
             }
             catch
             {
@@ -86,14 +82,20 @@ namespace QLVT_DATHANG
         // 4. Handle Login
         private bool HandleLogin()
         {
-            Program.UserId = txb_username.Text;
-            Program.Password = txb_password.Text;
-
+            // It's set here because here we can access form controls
+            Program.UserId = Program.ConnectionUserId = txb_username.Text;
+            Program.Password = Program.ConnectionPassword = txb_password.Text;
+            
+            // Index of subscription in list
+            // Used to set index of combobox in Employee Form
+            Program.SubsIndex = cb_branch.SelectedIndex; 
+            
             // Open connection
             if (!Program.LoginToServer()) // Stop program when Logging in failed!
                 return false;
 
             // When Uid & password are correct!
+
             var cmdExecSP = $"EXEC {SPLogin} '{Program.UserId}'";
             Program.Reader = Program.ExecSqlDataReader(cmdExecSP);
             if (Program.Reader == null)
@@ -127,8 +129,18 @@ namespace QLVT_DATHANG
             bool loginResult = HandleLogin();
             if (!loginResult)
                 return;
- 
+
+            Close();
+
+            Program.FormMain.page_cat.Visible = true;
+
+            Program.FormMain.btn_login.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing; // False
+            Program.FormMain.btn_logout.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime; // True
+
+            Program.FormMain.MaximizeBox = true;
+            Program.FormMain.WindowState = FormWindowState.Maximized;
             Program.FormMain.Show();
+            
             Program.FormMain.MaNV.Text = "Employee ID: " + Program.EmployeeId.ToString();
             Program.FormMain.HoTen.Text = "Full name: " + Program.FullName.ToString();
             Program.FormMain.Nhom.Text = "Role: " + Program.Role.ToString();

@@ -21,8 +21,7 @@ namespace QLVT_DATHANG
         {
             foreach (var form in this.MdiChildren)
             {
-                if (form.GetType() == formType)
-                    form.Show();
+                if (form.GetType() == formType) 
                     return form;
             }
             return null;
@@ -57,6 +56,97 @@ namespace QLVT_DATHANG
             MinimizeBox = false;
             
         }
-         
+
+        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            var formMain = Program.FormMain;
+            formMain.page_business.Visible = 
+                formMain.page_cat.Visible = 
+                formMain.page_report.Visible = false;
+
+            formMain.btn_logout.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInCustomizing;
+            formMain.btn_login.Visibility = DevExpress.XtraBars.BarItemVisibility.OnlyInRuntime;
+
+            WindowState = FormWindowState.Normal;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+
+            foreach (var item in formMain.MdiChildren)
+            {
+                item.Close();
+            }
+
+            LoadLoginForm();
+        }
+
+        private void LoadEmployeeForm()
+        {
+            var form = CheckExists(typeof(FormEmployee));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fEmployee = new FormEmployee();
+                fEmployee.MdiParent = this;
+                fEmployee.Show();
+            }
+        }
+
+        private void LoadProductForm()
+        {
+            var form = CheckExists(typeof(FormProduct));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormProduct();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
+
+        }
+
+        private void LoadWarehouseForm()
+        {
+            var form = CheckExists(typeof(FormWarehouse));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormWarehouse();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
+
+        }
+
+        private void btn_employee_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadEmployeeForm();
+        }
+
+        private void btn_product_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadProductForm();
+        }
+
+        private void btn_warehouse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadWarehouseForm();
+        }
     }
 }
