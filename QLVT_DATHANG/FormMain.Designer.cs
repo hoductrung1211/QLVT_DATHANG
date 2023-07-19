@@ -173,6 +173,7 @@
             this.btn_warehouse.Id = 11;
             this.btn_warehouse.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_order;
             this.btn_warehouse.Name = "btn_warehouse";
+            this.btn_warehouse.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_warehouse_ItemClick);
             // 
             // btn_order
             // 

@@ -77,7 +77,7 @@ namespace QLVT_DATHANG
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            int productId = 0;
+            string productId = "";
 
             if (bds_CTDDH.Count > 0 || bds_CTPN.Count > 0 || bds_CTPX.Count > 0)
             {
@@ -98,8 +98,7 @@ namespace QLVT_DATHANG
             {
                 try
                 {
-                    var idData = ((DataRowView)bds_VatTu[bds_VatTu.Position])["MaVT"].ToString();
-                    productId = Convert.ToInt32(idData);
+                    productId = ((DataRowView)bds_VatTu[bds_VatTu.Position])["MaVT"].ToString();
                     bds_VatTu.RemoveCurrent();
 
                     tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;

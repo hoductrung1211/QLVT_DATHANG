@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:CTDDH" ZOrder="7" X="348" Y="70" Height="204" Width="218" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
     <Shape ID="DesignTable:CTPN" ZOrder="6" X="348" Y="344" Height="204" Width="205" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
     <Shape ID="DesignTable:CTPX" ZOrder="5" X="348" Y="618" Height="204" Width="203" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
-    <Shape ID="DesignTable:VatTu" ZOrder="4" X="70" Y="70" Height="204" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
+    <Shape ID="DesignTable:VatTu" ZOrder="4" X="70" Y="70" Height="181" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_CTDDH_VatTu" ZOrder="3" LineWidth="11">
@@ -28,7 +28,7 @@
       <RoutePoints>
         <Point>
           <X>261</X>
-          <Y>274</Y>
+          <Y>251</Y>
         </Point>
         <Point>
           <X>261</X>
@@ -44,7 +44,7 @@
       <RoutePoints>
         <Point>
           <X>253</X>
-          <Y>274</Y>
+          <Y>251</Y>
         </Point>
         <Point>
           <X>253</X>

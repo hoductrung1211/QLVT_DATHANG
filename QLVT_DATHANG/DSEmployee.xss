@@ -7,23 +7,11 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="0" ViewPortY="8" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:DatHang" ZOrder="6" X="864" Y="132" Height="227" Width="230" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:NhanVien" ZOrder="8" X="451" Y="170" Height="319" Width="237" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
+    <Shape ID="DesignTable:NhanVien" ZOrder="8" X="451" Y="170" Height="296" Width="237" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
     <Shape ID="DesignTable:PhieuNhap" ZOrder="5" X="864" Y="429" Height="227" Width="245" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:PhieuXuat" ZOrder="7" X="54" Y="280" Height="227" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
+    <Shape ID="DesignTable:PhieuXuat" ZOrder="7" X="54" Y="280" Height="204" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_PX_NhanVien" ZOrder="4" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>451</X>
-          <Y>384</Y>
-        </Point>
-        <Point>
-          <X>294</X>
-          <Y>384</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_DatHang_NhanVien" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -40,7 +28,7 @@
       <RoutePoints>
         <Point>
           <X>592</X>
-          <Y>489</Y>
+          <Y>466</Y>
         </Point>
         <Point>
           <X>592</X>
@@ -61,6 +49,18 @@
         <Point>
           <X>979</X>
           <Y>429</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_PX_NhanVien" ZOrder="4" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>451</X>
+          <Y>384</Y>
+        </Point>
+        <Point>
+          <X>294</X>
+          <Y>384</Y>
         </Point>
       </RoutePoints>
     </Connector>

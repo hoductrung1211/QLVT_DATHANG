@@ -4,5 +4,8 @@
 
     partial class DSProduct
     {
+        partial class VatTuDataTable
+        {
+        }
     }
 }

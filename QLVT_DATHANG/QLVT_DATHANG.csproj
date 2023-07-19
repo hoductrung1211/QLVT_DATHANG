@@ -72,6 +72,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSProduct.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DSWarehouse.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSWarehouse.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FormEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +127,9 @@
     <EmbeddedResource Include="FormProduct.resx">
       <DependentUpon>FormProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -155,6 +163,17 @@
     </None>
     <None Include="DSProduct.xss">
       <DependentUpon>DSProduct.xsd</DependentUpon>
+    </None>
+    <None Include="DSWarehouse.xsc">
+      <DependentUpon>DSWarehouse.xsd</DependentUpon>
+    </None>
+    <None Include="DSWarehouse.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSWarehouse.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSWarehouse.xss">
+      <DependentUpon>DSWarehouse.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
