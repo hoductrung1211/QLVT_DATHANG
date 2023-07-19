@@ -77,7 +77,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_id = new System.Windows.Forms.TextBox();
             this.NhanVienTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.NhanVienTableAdapter();
             this.TableAdapterManager = new QLVT_DATHANG.DSEmployeeTableAdapters.TableAdapterManager();
             this.gc_NhanVien = new DevExpress.XtraGrid.GridControl();
@@ -97,6 +96,7 @@
             this.phieuNhapTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.PhieuNhapTableAdapter();
             this.bds_DatHang = new System.Windows.Forms.BindingSource(this.components);
             this.datHangTableAdapter = new QLVT_DATHANG.DSEmployeeTableAdapters.DatHangTableAdapter();
+            this.txt_id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -597,8 +597,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txt_id);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 48);
@@ -613,15 +613,6 @@
             this.label2.Size = new System.Drawing.Size(110, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã Nhân viên";
-            // 
-            // txt_id
-            // 
-            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_NhanVien, "MaNV", true));
-            this.txt_id.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_id.Location = new System.Drawing.Point(157, 10);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 2;
             // 
             // NhanVienTableAdapter
             // 
@@ -776,6 +767,15 @@
             // 
             this.datHangTableAdapter.ClearBeforeFill = true;
             // 
+            // txt_id
+            // 
+            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_NhanVien, "MaNV", true));
+            this.txt_id.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_id.Location = new System.Drawing.Point(157, 10);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(280, 28);
+            this.txt_id.TabIndex = 13;
+            // 
             // FormEmployee
             // 
             this.Appearance.Options.UseFont = true;
@@ -873,7 +873,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraEditors.TextEdit txt_salary;
         private System.Windows.Forms.Label label4;
@@ -905,5 +904,6 @@
         private System.Windows.Forms.CheckBox trangThaiXoaCheckBox;
         private System.Windows.Forms.Label label8;
         private DevExpress.XtraBars.BarButtonItem btn_exit;
+        private System.Windows.Forms.TextBox txt_id;
     }
 }

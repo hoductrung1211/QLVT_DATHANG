@@ -184,6 +184,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SP\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\security_key.svg" />

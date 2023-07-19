@@ -1,0 +1,65 @@
+﻿
+GO
+create proc [dbo].[SP_AutoCreateIdNV]
+as
+begin
+	return (SELECT TOP 1 NV.MaNV FROM LINK2.QLVT_DATHANG.dbo.NhanVien NV ORDER BY NV.MaNV DESC) + 1
+end
+
+GO
+create proc [dbo].[SP_IsOrderExists]
+@MADDH nchar(8)
+as
+begin
+	if exists (select 1 from dbo.DatHang DDH where DDH.MaSoDDH = @MADDH)
+		return 1;
+	else if exists (select 1 from LINK1.QLVT_DATHANG.dbo.DatHang DDH where DDH.MaSoDDH = @MADDH)
+		return 1;
+
+	return 0;
+end
+
+GO
+create PROC [dbo].[SP_IsWarehouseExists]
+@MAKHO nchar(4)
+AS
+BEGIN
+	IF EXISTS(SELECT 1 from LINK2.QLVT_DATHANG.dbo.Kho KHO where KHO.MaKho = @MAKHO)
+		return 1;
+	return 0;
+END
+
+GO
+create PROCEDURE [dbo].[SP_UpdateQuantityProduct]
+	@CHEDO NVARCHAR(6),
+	@MAVT NCHAR(4),
+	@SOLUONG INT
+AS
+BEGIN
+	declare @isProductExists nchar(4)
+	exec @isProductExists = QLVT_DATHANG.dbo.SP_IsProductExists @MAVT
+	if (@isProductExists = 0)
+		begin
+			RAISERROR(N'Mã Vật Tư không tồn tại', 16, 1, @MAVT);
+			return 0;
+		end
+	else
+		begin
+			if( @CHEDO = 'EXPORT')
+				begin
+					UPDATE DBO.VatTu
+					SET SoLuongTon = SoLuongTon - @SOLUONG
+					WHERE MaVT = @MAVT
+					return 1;
+				end
+
+			if ( @CHEDO = 'IMPORT')
+				begin
+					UPDATE DBO.VatTu
+					SET SoLuongTon = SoLuongTon + @SOLUONG
+					WHERE MaVT = @MAVT
+					return 1;
+				end
+		end
+	return 0;
+end

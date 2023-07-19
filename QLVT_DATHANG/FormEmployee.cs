@@ -108,7 +108,7 @@ namespace QLVT_DATHANG
         { // Have to functions: Cancel Adding, Cancel Editing
 
             bds_NhanVien.CancelEdit();
-            if (NewRow != null)
+            if (NewRow != null && bds_NhanVien.Contains(NewRow))
                 bds_NhanVien.Remove(NewRow);
 
             if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
@@ -222,6 +222,7 @@ namespace QLVT_DATHANG
                 MessageBox.Show("Error when adding Employee!" + ex.Message, "Error", MessageBoxButtons.OK);
                 return;
             }
+            NewRow = null;
 
             gc_NhanVien.Enabled = true;
             gb_info.Enabled = false;
