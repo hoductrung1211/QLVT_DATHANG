@@ -317,7 +317,7 @@
             this.gpc_info.Controls.Add(this.panel10);
             this.gpc_info.Location = new System.Drawing.Point(12, 52);
             this.gpc_info.Name = "gpc_info";
-            this.gpc_info.Size = new System.Drawing.Size(1906, 182);
+            this.gpc_info.Size = new System.Drawing.Size(1829, 182);
             this.gpc_info.TabIndex = 14;
             this.gpc_info.Text = "Bảng thông tin";
             // 
@@ -695,6 +695,7 @@
             this.colMaNV.FieldName = "MaNV";
             this.colMaNV.MinWidth = 25;
             this.colMaNV.Name = "colMaNV";
+            this.colMaNV.OptionsColumn.AllowEdit = false;
             this.colMaNV.Visible = true;
             this.colMaNV.VisibleIndex = 0;
             this.colMaNV.Width = 94;
@@ -704,6 +705,7 @@
             this.colHo.FieldName = "Ho";
             this.colHo.MinWidth = 25;
             this.colHo.Name = "colHo";
+            this.colHo.OptionsColumn.AllowEdit = false;
             this.colHo.Visible = true;
             this.colHo.VisibleIndex = 1;
             this.colHo.Width = 94;
@@ -713,6 +715,7 @@
             this.colTen.FieldName = "Ten";
             this.colTen.MinWidth = 25;
             this.colTen.Name = "colTen";
+            this.colTen.OptionsColumn.AllowEdit = false;
             this.colTen.Visible = true;
             this.colTen.VisibleIndex = 2;
             this.colTen.Width = 94;
@@ -722,6 +725,7 @@
             this.colCMND.FieldName = "CMND";
             this.colCMND.MinWidth = 25;
             this.colCMND.Name = "colCMND";
+            this.colCMND.OptionsColumn.AllowEdit = false;
             this.colCMND.Visible = true;
             this.colCMND.VisibleIndex = 3;
             this.colCMND.Width = 94;
@@ -731,15 +735,19 @@
             this.colDiaChi.FieldName = "DiaChi";
             this.colDiaChi.MinWidth = 25;
             this.colDiaChi.Name = "colDiaChi";
+            this.colDiaChi.OptionsColumn.AllowEdit = false;
             this.colDiaChi.Visible = true;
             this.colDiaChi.VisibleIndex = 4;
             this.colDiaChi.Width = 94;
             // 
             // colNgaySinh
             // 
+            this.colNgaySinh.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.colNgaySinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colNgaySinh.FieldName = "NgaySinh";
             this.colNgaySinh.MinWidth = 25;
             this.colNgaySinh.Name = "colNgaySinh";
+            this.colNgaySinh.OptionsColumn.AllowEdit = false;
             this.colNgaySinh.Visible = true;
             this.colNgaySinh.VisibleIndex = 5;
             this.colNgaySinh.Width = 94;
@@ -751,6 +759,7 @@
             this.colLuong.FieldName = "Luong";
             this.colLuong.MinWidth = 25;
             this.colLuong.Name = "colLuong";
+            this.colLuong.OptionsColumn.AllowEdit = false;
             this.colLuong.Visible = true;
             this.colLuong.VisibleIndex = 6;
             this.colLuong.Width = 94;
@@ -762,6 +771,7 @@
             this.colMaCN.FieldName = "MaCN";
             this.colMaCN.MinWidth = 25;
             this.colMaCN.Name = "colMaCN";
+            this.colMaCN.OptionsColumn.AllowEdit = false;
             this.colMaCN.Visible = true;
             this.colMaCN.VisibleIndex = 7;
             this.colMaCN.Width = 94;
@@ -771,6 +781,7 @@
             this.colTrangThaiXoa.FieldName = "TrangThaiXoa";
             this.colTrangThaiXoa.MinWidth = 25;
             this.colTrangThaiXoa.Name = "colTrangThaiXoa";
+            this.colTrangThaiXoa.OptionsColumn.AllowEdit = false;
             this.colTrangThaiXoa.Visible = true;
             this.colTrangThaiXoa.VisibleIndex = 8;
             this.colTrangThaiXoa.Width = 94;

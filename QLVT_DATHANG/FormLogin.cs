@@ -62,6 +62,7 @@ namespace QLVT_DATHANG
         private void FormLogin_Load(object sender, EventArgs e)
         {
             LoadSubscriptionsToCombobox();
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
             txb_username.Text = "LT";
             txb_password.Text = "123456";
         }

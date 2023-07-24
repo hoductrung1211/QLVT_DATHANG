@@ -47,6 +47,29 @@ namespace QLVT_DATHANG
                 BranchId = reader[0].ToString();
             }
         }
+        private void TurnOnEditingState()
+        {
+            RowIndex = bds_Kho.Position;
+            gpc_info.Enabled = true;
+            gdc_Kho.Enabled = false;
+
+            txt_branchId.Text = BranchId;
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
+
+            txt_branchId.Enabled = false;
+        }
+        private void TurnOffEditingState()
+        {
+
+            gdc_Kho.Enabled = true;
+            gpc_info.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+
+            IsAdding = false;
+        }
         private void FormWarehouse2_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
@@ -62,39 +85,37 @@ namespace QLVT_DATHANG
 
             GetBranchId();
 
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_branch.DataSource = Program.bds_subscriptionList;
+            cb_branch.DisplayMember = "TenCN";
+            cb_branch.ValueMember = "TenServer";
+            cb_branch.SelectedIndex = Program.SubsIndex;
+
+            gpc_info.Enabled = false;
+
             if (Program.Role == "CongTy")
             {
-                btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
+               btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
             }
             else
             {
-                btn_undo.Enabled = btn_save.Enabled = false;
+                cb_branch.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
                 btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
             }
-
         }
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_Kho.Position;
-            gpc_info.Enabled = true;
+            TurnOnEditingState();
             NewRow = bds_Kho.AddNew();
             IsAdding = true;
-            gdc_Kho.Enabled = false;
 
             txt_branchId.Text = BranchId;
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_Kho.Position;
-            gpc_info.Enabled = true;
-            gdc_Kho.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            TurnOnEditingState();
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -169,13 +190,7 @@ namespace QLVT_DATHANG
                 return;
             }
 
-            gdc_Kho.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
-
-            IsAdding = false;
+            TurnOffEditingState();
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -191,11 +206,7 @@ namespace QLVT_DATHANG
             if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
                 bds_Kho.Position = RowIndex;
 
-            gdc_Kho.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -46,48 +46,48 @@
             this.btn_exit = new DevExpress.XtraBars.BarButtonItem();
             this.gpc_info = new DevExpress.XtraEditors.GroupControl();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.spe_count = new DevExpress.XtraEditors.SpinEdit();
+            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
+            this.DS = new QLVT_DATHANG.DS();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.txt_id = new DevExpress.XtraEditors.TextEdit();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.txt_unit = new DevExpress.XtraEditors.TextEdit();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.DS = new QLVT_DATHANG.DS();
-            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
+            this.txt_name = new DevExpress.XtraEditors.TextEdit();
             this.tbla_VatTu = new QLVT_DATHANG.DSTableAdapters.VatTuTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANG.DSTableAdapters.TableAdapterManager();
+            this.tbla_CTDDH = new QLVT_DATHANG.DSTableAdapters.CTDDHTableAdapter();
+            this.tbla_CTPN = new QLVT_DATHANG.DSTableAdapters.CTPNTableAdapter();
+            this.tbla_CTPX = new QLVT_DATHANG.DSTableAdapters.CTPXTableAdapter();
             this.gdc_VatTu = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoLuongTon = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.txt_id = new DevExpress.XtraEditors.TextEdit();
-            this.txt_name = new DevExpress.XtraEditors.TextEdit();
-            this.txt_unit = new DevExpress.XtraEditors.TextEdit();
-            this.spe_count = new DevExpress.XtraEditors.SpinEdit();
             this.bds_CTPX = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_CTPX = new QLVT_DATHANG.DSTableAdapters.CTPXTableAdapter();
             this.bds_CTPN = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_CTPN = new QLVT_DATHANG.DSTableAdapters.CTPNTableAdapter();
             this.bds_CTDDH = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_CTDDH = new QLVT_DATHANG.DSTableAdapters.CTDDHTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).BeginInit();
             this.gpc_info.SuspendLayout();
             this.panel11.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spe_count.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_unit.Properties)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdc_VatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_unit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spe_count.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTDDH)).BeginInit();
@@ -264,6 +264,34 @@
             this.panel11.Size = new System.Drawing.Size(440, 48);
             this.panel11.TabIndex = 11;
             // 
+            // spe_count
+            // 
+            this.spe_count.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "SoLuongTon", true));
+            this.spe_count.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spe_count.Location = new System.Drawing.Point(157, 10);
+            this.spe_count.MenuManager = this.barmngr_employee;
+            this.spe_count.Name = "spe_count";
+            this.spe_count.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spe_count.Properties.Appearance.Options.UseFont = true;
+            this.spe_count.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spe_count.Size = new System.Drawing.Size(280, 28);
+            this.spe_count.TabIndex = 15;
+            // 
+            // bds_VatTu
+            // 
+            this.bds_VatTu.DataMember = "VatTu";
+            this.bds_VatTu.DataSource = this.DS;
+            // 
+            // DS
+            // 
+            this.DS.DataSetName = "DS";
+            this.DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -293,6 +321,17 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã Vật tư";
             // 
+            // txt_id
+            // 
+            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "MaVT", true));
+            this.txt_id.Location = new System.Drawing.Point(157, 10);
+            this.txt_id.MenuManager = this.barmngr_employee;
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_id.Properties.Appearance.Options.UseFont = true;
+            this.txt_id.Size = new System.Drawing.Size(280, 28);
+            this.txt_id.TabIndex = 12;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label4);
@@ -311,6 +350,17 @@
             this.label4.Size = new System.Drawing.Size(90, 21);
             this.label4.TabIndex = 0;
             this.label4.Text = "Đơn vị tính";
+            // 
+            // txt_unit
+            // 
+            this.txt_unit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "DVT", true));
+            this.txt_unit.Location = new System.Drawing.Point(157, 10);
+            this.txt_unit.MenuManager = this.barmngr_employee;
+            this.txt_unit.Name = "txt_unit";
+            this.txt_unit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_unit.Properties.Appearance.Options.UseFont = true;
+            this.txt_unit.Size = new System.Drawing.Size(280, 28);
+            this.txt_unit.TabIndex = 14;
             // 
             // panel5
             // 
@@ -331,15 +381,16 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Tên Vật tư";
             // 
-            // DS
+            // txt_name
             // 
-            this.DS.DataSetName = "DS";
-            this.DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bds_VatTu
-            // 
-            this.bds_VatTu.DataMember = "VatTu";
-            this.bds_VatTu.DataSource = this.DS;
+            this.txt_name.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "TenVT", true));
+            this.txt_name.Location = new System.Drawing.Point(157, 10);
+            this.txt_name.MenuManager = this.barmngr_employee;
+            this.txt_name.Name = "txt_name";
+            this.txt_name.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_name.Properties.Appearance.Options.UseFont = true;
+            this.txt_name.Size = new System.Drawing.Size(280, 28);
+            this.txt_name.TabIndex = 13;
             // 
             // tbla_VatTu
             // 
@@ -360,10 +411,23 @@
             this.tableAdapterManager.UpdateOrder = QLVT_DATHANG.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VatTuTableAdapter = this.tbla_VatTu;
             // 
+            // tbla_CTDDH
+            // 
+            this.tbla_CTDDH.ClearBeforeFill = true;
+            // 
+            // tbla_CTPN
+            // 
+            this.tbla_CTPN.ClearBeforeFill = true;
+            // 
+            // tbla_CTPX
+            // 
+            this.tbla_CTPX.ClearBeforeFill = true;
+            // 
             // gdc_VatTu
             // 
             this.gdc_VatTu.DataSource = this.bds_VatTu;
             this.gdc_VatTu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gdc_VatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gdc_VatTu.Location = new System.Drawing.Point(0, 122);
             this.gdc_VatTu.MainView = this.gridView1;
             this.gdc_VatTu.MenuManager = this.barmngr_employee;
@@ -388,6 +452,7 @@
             this.colMaVT.FieldName = "MaVT";
             this.colMaVT.MinWidth = 25;
             this.colMaVT.Name = "colMaVT";
+            this.colMaVT.OptionsColumn.AllowEdit = false;
             this.colMaVT.Visible = true;
             this.colMaVT.VisibleIndex = 0;
             this.colMaVT.Width = 94;
@@ -397,6 +462,7 @@
             this.colTenVT.FieldName = "TenVT";
             this.colTenVT.MinWidth = 25;
             this.colTenVT.Name = "colTenVT";
+            this.colTenVT.OptionsColumn.AllowEdit = false;
             this.colTenVT.Visible = true;
             this.colTenVT.VisibleIndex = 1;
             this.colTenVT.Width = 94;
@@ -406,6 +472,7 @@
             this.colDVT.FieldName = "DVT";
             this.colDVT.MinWidth = 25;
             this.colDVT.Name = "colDVT";
+            this.colDVT.OptionsColumn.AllowEdit = false;
             this.colDVT.Visible = true;
             this.colDVT.VisibleIndex = 2;
             this.colDVT.Width = 94;
@@ -415,89 +482,27 @@
             this.colSoLuongTon.FieldName = "SoLuongTon";
             this.colSoLuongTon.MinWidth = 25;
             this.colSoLuongTon.Name = "colSoLuongTon";
+            this.colSoLuongTon.OptionsColumn.AllowEdit = false;
             this.colSoLuongTon.Visible = true;
             this.colSoLuongTon.VisibleIndex = 3;
             this.colSoLuongTon.Width = 94;
-            // 
-            // txt_id
-            // 
-            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "MaVT", true));
-            this.txt_id.Location = new System.Drawing.Point(157, 10);
-            this.txt_id.MenuManager = this.barmngr_employee;
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_id.Properties.Appearance.Options.UseFont = true;
-            this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 12;
-            // 
-            // txt_name
-            // 
-            this.txt_name.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "TenVT", true));
-            this.txt_name.Location = new System.Drawing.Point(157, 10);
-            this.txt_name.MenuManager = this.barmngr_employee;
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_name.Properties.Appearance.Options.UseFont = true;
-            this.txt_name.Size = new System.Drawing.Size(280, 28);
-            this.txt_name.TabIndex = 13;
-            // 
-            // txt_unit
-            // 
-            this.txt_unit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "DVT", true));
-            this.txt_unit.Location = new System.Drawing.Point(157, 10);
-            this.txt_unit.MenuManager = this.barmngr_employee;
-            this.txt_unit.Name = "txt_unit";
-            this.txt_unit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_unit.Properties.Appearance.Options.UseFont = true;
-            this.txt_unit.Size = new System.Drawing.Size(280, 28);
-            this.txt_unit.TabIndex = 14;
-            // 
-            // spe_count
-            // 
-            this.spe_count.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_VatTu, "SoLuongTon", true));
-            this.spe_count.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spe_count.Location = new System.Drawing.Point(157, 10);
-            this.spe_count.MenuManager = this.barmngr_employee;
-            this.spe_count.Name = "spe_count";
-            this.spe_count.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spe_count.Properties.Appearance.Options.UseFont = true;
-            this.spe_count.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spe_count.Size = new System.Drawing.Size(280, 28);
-            this.spe_count.TabIndex = 15;
             // 
             // bds_CTPX
             // 
             this.bds_CTPX.DataMember = "FK_CTPX_VatTu";
             this.bds_CTPX.DataSource = this.bds_VatTu;
             // 
-            // tbla_CTPX
-            // 
-            this.tbla_CTPX.ClearBeforeFill = true;
-            // 
             // bds_CTPN
             // 
             this.bds_CTPN.DataMember = "FK_CTPN_VatTu";
             this.bds_CTPN.DataSource = this.bds_VatTu;
-            // 
-            // tbla_CTPN
-            // 
-            this.tbla_CTPN.ClearBeforeFill = true;
             // 
             // bds_CTDDH
             // 
             this.bds_CTDDH.DataMember = "FK_CTDDH_VatTu";
             this.bds_CTDDH.DataSource = this.bds_VatTu;
             // 
-            // tbla_CTDDH
-            // 
-            this.tbla_CTDDH.ClearBeforeFill = true;
-            // 
-            // FormProduct2
+            // FormProduct
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -510,8 +515,8 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "FormProduct2";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FormProduct";
             this.Text = "Vật tư";
             this.Load += new System.EventHandler(this.FormProduct2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).EndInit();
@@ -519,20 +524,20 @@
             this.gpc_info.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spe_count.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_unit.Properties)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdc_VatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_unit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spe_count.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTDDH)).EndInit();

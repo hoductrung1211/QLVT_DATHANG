@@ -490,6 +490,7 @@
             this.colMaKho.FieldName = "MaKho";
             this.colMaKho.MinWidth = 25;
             this.colMaKho.Name = "colMaKho";
+            this.colMaKho.OptionsColumn.AllowEdit = false;
             this.colMaKho.Visible = true;
             this.colMaKho.VisibleIndex = 0;
             this.colMaKho.Width = 94;
@@ -499,6 +500,7 @@
             this.colTenKho.FieldName = "TenKho";
             this.colTenKho.MinWidth = 25;
             this.colTenKho.Name = "colTenKho";
+            this.colTenKho.OptionsColumn.AllowEdit = false;
             this.colTenKho.Visible = true;
             this.colTenKho.VisibleIndex = 1;
             this.colTenKho.Width = 94;
@@ -508,6 +510,7 @@
             this.colDiaChi.FieldName = "DiaChi";
             this.colDiaChi.MinWidth = 25;
             this.colDiaChi.Name = "colDiaChi";
+            this.colDiaChi.OptionsColumn.AllowEdit = false;
             this.colDiaChi.Visible = true;
             this.colDiaChi.VisibleIndex = 2;
             this.colDiaChi.Width = 94;
@@ -517,6 +520,7 @@
             this.colMaCN.FieldName = "MaCN";
             this.colMaCN.MinWidth = 25;
             this.colMaCN.Name = "colMaCN";
+            this.colMaCN.OptionsColumn.AllowEdit = false;
             this.colMaCN.Visible = true;
             this.colMaCN.VisibleIndex = 3;
             this.colMaCN.Width = 94;

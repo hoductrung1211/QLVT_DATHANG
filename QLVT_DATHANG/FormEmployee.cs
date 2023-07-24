@@ -46,7 +46,26 @@ namespace QLVT_DATHANG
             }
         }
          
+        private void TurnOnEditingState()
+        {
+            RowIndex = bds_NhanVien.Position;
+            gpc_info.Enabled = true;
+            gdc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
 
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
+            // Grid View is View, Interface
+            // Grid Control is Data
+        }
+        private void TurnOffEditingState()
+        {
+            gdc_NhanVien.Enabled = true;
+            gpc_info.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+            IsAdding = false;
+        }
         private void FormEmployee2_Load(object sender, EventArgs e)
         {
             // 1. The reason we disable enforece constraints because there is not only
@@ -71,12 +90,19 @@ namespace QLVT_DATHANG
             GetBranchId();
 
             // 4. Load subs into combobox
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_branch.DataSource = Program.bds_subscriptionList;
             cb_branch.DisplayMember = "TenCN";
             cb_branch.ValueMember = "TenServer";
             cb_branch.SelectedIndex = Program.SubsIndex;
 
-            //gdc_NhanVien.
+            dte_birthday.Properties.EditMask = "dd/MM/yyyy";
+            dte_birthday.Properties.UseMaskAsDisplayFormat = true;
+
+            colNgaySinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime; 
+            colNgaySinh.DisplayFormat.FormatString = "dd/MM/yyyy";
+
+            gpc_info.Enabled = false;
 
             // 5. Decentralization
             if (Program.Role == "CongTy")
@@ -87,35 +113,28 @@ namespace QLVT_DATHANG
             else
             {
                 cb_branch.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
-                gpc_info.Enabled = btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
+                btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
             }
         }
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_NhanVien.Position;
-            gpc_info.Enabled = true;
+            TurnOnEditingState();
             NewRow = bds_NhanVien.AddNew();
             IsAdding = true;
-            gdc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
 
             txt_branchId.Text = BranchId;
             dte_birthday.EditValue = "";
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
-            // Grid View is View, Interface
-            // Grid Control is Data
+            txt_branchId.Enabled = false;
+            cb_deleted.Checked = false;
+            cb_deleted.Enabled = false;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_NhanVien.Position;
-            gpc_info.Enabled = true;
-            gdc_NhanVien.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            TurnOnEditingState(); 
+            cb_deleted.Enabled = true;
+            txt_id.Enabled = false;
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -197,12 +216,7 @@ namespace QLVT_DATHANG
                 return;
             }
 
-            gdc_NhanVien.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
-            IsAdding = false;
+            TurnOffEditingState();
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -220,11 +234,7 @@ namespace QLVT_DATHANG
             if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
                 bds_NhanVien.Position = RowIndex;
 
-            gdc_NhanVien.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
