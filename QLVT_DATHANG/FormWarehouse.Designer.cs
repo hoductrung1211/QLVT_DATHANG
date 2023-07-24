@@ -37,60 +37,67 @@
             this.btn_save = new DevExpress.XtraBars.BarButtonItem();
             this.btn_undo = new DevExpress.XtraBars.BarButtonItem();
             this.btn_reload = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_exit = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btn_list = new DevExpress.XtraBars.BarButtonItem();
-            this.gb_info = new DevExpress.XtraEditors.GroupControl();
+            this.btn_exit = new DevExpress.XtraBars.BarButtonItem();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.gpc_info = new DevExpress.XtraEditors.GroupControl();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.txt_branchId = new DevExpress.XtraEditors.TextEdit();
-            this.bds_kho = new System.Windows.Forms.BindingSource(this.components);
-            this.ds_warehouse = new QLVT_DATHANG.DSWarehouse();
+            this.bds_Kho = new System.Windows.Forms.BindingSource(this.components);
+            this.DS = new QLVT_DATHANG.DS();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_address = new DevExpress.XtraEditors.TextEdit();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.txt_name = new DevExpress.XtraEditors.TextEdit();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txt_id = new DevExpress.XtraEditors.TextEdit();
-            this.tbla_kho = new QLVT_DATHANG.DSWarehouseTableAdapters.KhoTableAdapter();
-            this.tableAdapterManager = new QLVT_DATHANG.DSWarehouseTableAdapters.TableAdapterManager();
-            this.gc_kho = new DevExpress.XtraGrid.GridControl();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb_branch = new System.Windows.Forms.ComboBox();
+            this.tbla_Kho = new QLVT_DATHANG.DSTableAdapters.KhoTableAdapter();
+            this.tableAdapterManager = new QLVT_DATHANG.DSTableAdapters.TableAdapterManager();
+            this.tbla_DatHang = new QLVT_DATHANG.DSTableAdapters.DatHangTableAdapter();
+            this.tbla_PhieuNhap = new QLVT_DATHANG.DSTableAdapters.PhieuNhapTableAdapter();
+            this.tbla_PhieuXuat = new QLVT_DATHANG.DSTableAdapters.PhieuXuatTableAdapter();
+            this.gdc_Kho = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaKho = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTenKho = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiaChi = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaCN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bds_phieuXuat = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_phieuXuat = new QLVT_DATHANG.DSWarehouseTableAdapters.PhieuXuatTableAdapter();
-            this.bds_phieuNhap = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_phieuNhap = new QLVT_DATHANG.DSWarehouseTableAdapters.PhieuNhapTableAdapter();
-            this.bds_datHang = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_datHang = new QLVT_DATHANG.DSWarehouseTableAdapters.DatHangTableAdapter();
+            this.bds_PhieuXuat = new System.Windows.Forms.BindingSource(this.components);
+            this.bds_PhieuNhap = new System.Windows.Forms.BindingSource(this.components);
+            this.bds_DatHang = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gb_info)).BeginInit();
-            this.gb_info.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).BeginInit();
+            this.gpc_info.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_branchId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_kho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds_warehouse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_address.Properties)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_name.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gc_kho)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdc_Kho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_phieuXuat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_phieuNhap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_datHang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuNhap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).BeginInit();
             this.SuspendLayout();
             // 
             // barmngr_employee
@@ -128,8 +135,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_save, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_undo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_exit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -183,13 +189,6 @@
             this.btn_reload.Name = "btn_reload";
             this.btn_reload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_reload_ItemClick);
             // 
-            // btn_exit
-            // 
-            this.btn_exit.Caption = "Thoát";
-            this.btn_exit.Id = 7;
-            this.btn_exit.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.reviewingpane1;
-            this.btn_exit.Name = "btn_exit";
-            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -208,15 +207,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barmngr_employee;
-            this.barDockControlTop.Size = new System.Drawing.Size(1869, 30);
+            this.barDockControlTop.Size = new System.Drawing.Size(1877, 30);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 484);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 539);
             this.barDockControlBottom.Manager = this.barmngr_employee;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1869, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1877, 20);
             // 
             // barDockControlLeft
             // 
@@ -224,15 +223,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barmngr_employee;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 454);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 509);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1869, 30);
+            this.barDockControlRight.Location = new System.Drawing.Point(1877, 30);
             this.barDockControlRight.Manager = this.barmngr_employee;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 454);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 509);
             // 
             // btn_list
             // 
@@ -242,27 +241,64 @@
             this.btn_list.Name = "btn_list";
             this.btn_list.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
-            // gb_info
+            // btn_exit
             // 
-            this.gb_info.Controls.Add(this.panel4);
-            this.gb_info.Controls.Add(this.panel3);
-            this.gb_info.Controls.Add(this.panel2);
-            this.gb_info.Controls.Add(this.panel1);
-            this.gb_info.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gb_info.Location = new System.Drawing.Point(0, 30);
-            this.gb_info.Name = "gb_info";
-            this.gb_info.Size = new System.Drawing.Size(1869, 208);
-            this.gb_info.TabIndex = 4;
-            this.gb_info.Text = "Thông tin Nhà kho";
+            this.btn_exit.Caption = "Thoát";
+            this.btn_exit.Id = 7;
+            this.btn_exit.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.reviewingpane1;
+            this.btn_exit.Name = "btn_exit";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.gpc_info);
+            this.panelControl1.Controls.Add(this.panel7);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 30);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1877, 176);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // gpc_info
+            // 
+            this.gpc_info.Controls.Add(this.panel4);
+            this.gpc_info.Controls.Add(this.panel3);
+            this.gpc_info.Controls.Add(this.panel2);
+            this.gpc_info.Controls.Add(this.panel1);
+            this.gpc_info.Location = new System.Drawing.Point(5, 51);
+            this.gpc_info.Name = "gpc_info";
+            this.gpc_info.Size = new System.Drawing.Size(1835, 105);
+            this.gpc_info.TabIndex = 15;
+            this.gpc_info.Text = "Thông tin Nhà kho";
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.txt_branchId);
+            this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(1350, 31);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(440, 60);
             this.panel4.TabIndex = 11;
+            // 
+            // txt_branchId
+            // 
+            this.txt_branchId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_Kho, "MaCN", true));
+            this.txt_branchId.Location = new System.Drawing.Point(157, 16);
+            this.txt_branchId.MenuManager = this.barmngr_employee;
+            this.txt_branchId.Name = "txt_branchId";
+            this.txt_branchId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_branchId.Properties.Appearance.Options.UseFont = true;
+            this.txt_branchId.Size = new System.Drawing.Size(280, 28);
+            this.txt_branchId.TabIndex = 19;
+            // 
+            // bds_Kho
+            // 
+            this.bds_Kho.DataMember = "Kho";
+            this.bds_Kho.DataSource = this.DS;
+            // 
+            // DS
+            // 
+            this.DS.DataSetName = "DS";
+            this.DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label4
             // 
@@ -273,28 +309,6 @@
             this.label4.Size = new System.Drawing.Size(110, 21);
             this.label4.TabIndex = 0;
             this.label4.Text = "Mã Chi nhánh";
-            // 
-            // txt_branchId
-            // 
-            this.txt_branchId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_kho, "MaCN", true));
-            this.txt_branchId.Location = new System.Drawing.Point(157, 16);
-            this.txt_branchId.MenuManager = this.barmngr_employee;
-            this.txt_branchId.Name = "txt_branchId";
-            this.txt_branchId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_branchId.Properties.Appearance.Options.UseFont = true;
-            this.txt_branchId.Properties.ReadOnly = true;
-            this.txt_branchId.Size = new System.Drawing.Size(280, 28);
-            this.txt_branchId.TabIndex = 7;
-            // 
-            // bds_kho
-            // 
-            this.bds_kho.DataMember = "Kho";
-            this.bds_kho.DataSource = this.ds_warehouse;
-            // 
-            // ds_warehouse
-            // 
-            this.ds_warehouse.DataSetName = "DSWarehouse";
-            this.ds_warehouse.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel3
             // 
@@ -317,99 +331,148 @@
             // 
             // txt_address
             // 
-            this.txt_address.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_kho, "DiaChi", true));
+            this.txt_address.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_Kho, "DiaChi", true));
             this.txt_address.Location = new System.Drawing.Point(157, 16);
             this.txt_address.MenuManager = this.barmngr_employee;
             this.txt_address.Name = "txt_address";
             this.txt_address.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_address.Properties.Appearance.Options.UseFont = true;
             this.txt_address.Size = new System.Drawing.Size(280, 28);
-            this.txt_address.TabIndex = 5;
+            this.txt_address.TabIndex = 18;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txt_name);
             this.panel2.Location = new System.Drawing.Point(458, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(440, 60);
             this.panel2.TabIndex = 9;
             // 
-            // label1
+            // label2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(82, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên kho";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(82, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Tên kho";
             // 
             // txt_name
             // 
-            this.txt_name.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_kho, "TenKho", true));
+            this.txt_name.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_Kho, "TenKho", true));
             this.txt_name.Location = new System.Drawing.Point(157, 16);
             this.txt_name.MenuManager = this.barmngr_employee;
             this.txt_name.Name = "txt_name";
             this.txt_name.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name.Properties.Appearance.Options.UseFont = true;
             this.txt_name.Size = new System.Drawing.Size(280, 28);
-            this.txt_name.TabIndex = 3;
+            this.txt_name.TabIndex = 17;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txt_id);
             this.panel1.Location = new System.Drawing.Point(12, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 60);
             this.panel1.TabIndex = 8;
             // 
-            // label2
+            // label5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(86, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã Kho";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(86, 19);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 21);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Mã Kho";
             // 
             // txt_id
             // 
-            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_kho, "MaKho", true));
+            this.txt_id.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_Kho, "MaKho", true));
             this.txt_id.Location = new System.Drawing.Point(157, 16);
             this.txt_id.MenuManager = this.barmngr_employee;
             this.txt_id.Name = "txt_id";
             this.txt_id.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Properties.Appearance.Options.UseFont = true;
             this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 1;
+            this.txt_id.TabIndex = 16;
             // 
-            // tbla_kho
+            // panel7
             // 
-            this.tbla_kho.ClearBeforeFill = true;
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.cb_branch);
+            this.panel7.Location = new System.Drawing.Point(5, 5);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(449, 40);
+            this.panel7.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(55, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chi nhánh";
+            // 
+            // cb_branch
+            // 
+            this.cb_branch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_branch.FormattingEnabled = true;
+            this.cb_branch.Location = new System.Drawing.Point(157, 4);
+            this.cb_branch.Name = "cb_branch";
+            this.cb_branch.Size = new System.Drawing.Size(280, 29);
+            this.cb_branch.TabIndex = 1;
+            this.cb_branch.SelectedIndexChanged += new System.EventHandler(this.cb_branch_SelectedIndexChanged);
+            // 
+            // tbla_Kho
+            // 
+            this.tbla_Kho.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.DatHangTableAdapter = null;
-            this.tableAdapterManager.KhoTableAdapter = this.tbla_kho;
-            this.tableAdapterManager.PhieuNhapTableAdapter = null;
-            this.tableAdapterManager.PhieuXuatTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = QLVT_DATHANG.DSWarehouseTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.ChiNhanhTableAdapter = null;
+            this.tableAdapterManager.CTDDHTableAdapter = null;
+            this.tableAdapterManager.CTPNTableAdapter = null;
+            this.tableAdapterManager.CTPXTableAdapter = null;
+            this.tableAdapterManager.DatHangTableAdapter = this.tbla_DatHang;
+            this.tableAdapterManager.KhoTableAdapter = this.tbla_Kho;
+            this.tableAdapterManager.NhanVienTableAdapter = null;
+            this.tableAdapterManager.PhieuNhapTableAdapter = this.tbla_PhieuNhap;
+            this.tableAdapterManager.PhieuXuatTableAdapter = this.tbla_PhieuXuat;
+            this.tableAdapterManager.UpdateOrder = QLVT_DATHANG.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.VatTuTableAdapter = null;
             // 
-            // gc_kho
+            // tbla_DatHang
             // 
-            this.gc_kho.DataSource = this.bds_kho;
-            this.gc_kho.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_kho.Location = new System.Drawing.Point(0, 238);
-            this.gc_kho.MainView = this.gridView1;
-            this.gc_kho.MenuManager = this.barmngr_employee;
-            this.gc_kho.Name = "gc_kho";
-            this.gc_kho.Size = new System.Drawing.Size(1869, 246);
-            this.gc_kho.TabIndex = 14;
-            this.gc_kho.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.tbla_DatHang.ClearBeforeFill = true;
+            // 
+            // tbla_PhieuNhap
+            // 
+            this.tbla_PhieuNhap.ClearBeforeFill = true;
+            // 
+            // tbla_PhieuXuat
+            // 
+            this.tbla_PhieuXuat.ClearBeforeFill = true;
+            // 
+            // gdc_Kho
+            // 
+            this.gdc_Kho.DataSource = this.bds_Kho;
+            this.gdc_Kho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gdc_Kho.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gdc_Kho.Location = new System.Drawing.Point(0, 206);
+            this.gdc_Kho.MainView = this.gridView1;
+            this.gdc_Kho.MenuManager = this.barmngr_employee;
+            this.gdc_Kho.Name = "gdc_Kho";
+            this.gdc_Kho.Size = new System.Drawing.Size(1877, 333);
+            this.gdc_Kho.TabIndex = 6;
+            this.gdc_Kho.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
@@ -419,7 +482,7 @@
             this.colTenKho,
             this.colDiaChi,
             this.colMaCN});
-            this.gridView1.GridControl = this.gc_kho;
+            this.gridView1.GridControl = this.gdc_Kho;
             this.gridView1.Name = "gridView1";
             // 
             // colMaKho
@@ -458,55 +521,48 @@
             this.colMaCN.VisibleIndex = 3;
             this.colMaCN.Width = 94;
             // 
-            // bds_phieuXuat
+            // bds_PhieuXuat
             // 
-            this.bds_phieuXuat.DataMember = "FK_PhieuXuat_Kho";
-            this.bds_phieuXuat.DataSource = this.bds_kho;
+            this.bds_PhieuXuat.DataMember = "FK_PhieuXuat_Kho";
+            this.bds_PhieuXuat.DataSource = this.bds_Kho;
             // 
-            // tbla_phieuXuat
+            // bds_PhieuNhap
             // 
-            this.tbla_phieuXuat.ClearBeforeFill = true;
+            this.bds_PhieuNhap.DataMember = "FK_PhieuNhap_Kho";
+            this.bds_PhieuNhap.DataSource = this.bds_Kho;
             // 
-            // bds_phieuNhap
+            // bds_DatHang
             // 
-            this.bds_phieuNhap.DataMember = "FK_PhieuNhap_Kho";
-            this.bds_phieuNhap.DataSource = this.bds_kho;
-            // 
-            // tbla_phieuNhap
-            // 
-            this.tbla_phieuNhap.ClearBeforeFill = true;
-            // 
-            // bds_datHang
-            // 
-            this.bds_datHang.DataMember = "FK_DatHang_Kho";
-            this.bds_datHang.DataSource = this.bds_kho;
-            // 
-            // tbla_datHang
-            // 
-            this.tbla_datHang.ClearBeforeFill = true;
+            this.bds_DatHang.DataMember = "FK_DatHang_Kho";
+            this.bds_DatHang.DataSource = this.bds_Kho;
             // 
             // FormWarehouse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.Appearance.Options.UseFont = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1869, 504);
-            this.Controls.Add(this.gc_kho);
-            this.Controls.Add(this.gb_info);
+            this.ClientSize = new System.Drawing.Size(1877, 559);
+            this.Controls.Add(this.gdc_Kho);
+            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormWarehouse";
-            this.Text = "FormWarehouse";
-            this.Load += new System.EventHandler(this.FormWarehouse_Load);
+            this.Text = "Nhà kho";
+            this.Load += new System.EventHandler(this.FormWarehouse2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gb_info)).EndInit();
-            this.gb_info.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).EndInit();
+            this.gpc_info.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_branchId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_kho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ds_warehouse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_address.Properties)).EndInit();
@@ -516,11 +572,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_id.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gc_kho)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdc_Kho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_phieuXuat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_phieuNhap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_datHang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuNhap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,35 +600,39 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private DevExpress.XtraEditors.GroupControl gb_info;
         private DevExpress.XtraBars.BarButtonItem btn_list;
-        private DSWarehouse ds_warehouse;
-        private DSWarehouseTableAdapters.KhoTableAdapter tbla_kho;
-        private DSWarehouseTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraEditors.TextEdit txt_branchId;
-        private System.Windows.Forms.BindingSource bds_kho;
-        private DevExpress.XtraEditors.TextEdit txt_address;
-        private DevExpress.XtraEditors.TextEdit txt_name;
-        private DevExpress.XtraEditors.TextEdit txt_id;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cb_branch;
+        private DevExpress.XtraEditors.GroupControl gpc_info;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private DevExpress.XtraGrid.GridControl gc_kho;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.BindingSource bds_Kho;
+        private DS DS;
+        private DSTableAdapters.KhoTableAdapter tbla_Kho;
+        private DSTableAdapters.TableAdapterManager tableAdapterManager;
+        private DevExpress.XtraGrid.GridControl gdc_Kho;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colMaKho;
         private DevExpress.XtraGrid.Columns.GridColumn colTenKho;
         private DevExpress.XtraGrid.Columns.GridColumn colDiaChi;
         private DevExpress.XtraGrid.Columns.GridColumn colMaCN;
-        private System.Windows.Forms.BindingSource bds_phieuXuat;
-        private DSWarehouseTableAdapters.PhieuXuatTableAdapter tbla_phieuXuat;
-        private System.Windows.Forms.BindingSource bds_phieuNhap;
-        private DSWarehouseTableAdapters.PhieuNhapTableAdapter tbla_phieuNhap;
-        private System.Windows.Forms.BindingSource bds_datHang;
-        private DSWarehouseTableAdapters.DatHangTableAdapter tbla_datHang;
+        private DSTableAdapters.PhieuXuatTableAdapter tbla_PhieuXuat;
+        private System.Windows.Forms.BindingSource bds_PhieuXuat;
+        private DSTableAdapters.PhieuNhapTableAdapter tbla_PhieuNhap;
+        private System.Windows.Forms.BindingSource bds_PhieuNhap;
+        private DSTableAdapters.DatHangTableAdapter tbla_DatHang;
+        private System.Windows.Forms.BindingSource bds_DatHang;
+        private DevExpress.XtraEditors.TextEdit txt_id;
+        private DevExpress.XtraEditors.TextEdit txt_branchId;
+        private DevExpress.XtraEditors.TextEdit txt_address;
+        private DevExpress.XtraEditors.TextEdit txt_name;
     }
 }

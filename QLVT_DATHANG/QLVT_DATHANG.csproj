@@ -56,26 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DSEmployee.cs">
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
+    <Compile Include="DS.cs">
+      <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DSEmployee.Designer.cs">
+    <Compile Include="DS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DSProduct.cs">
-      <DependentUpon>DSProduct.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DSProduct.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSProduct.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DSWarehouse.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSWarehouse.xsd</DependentUpon>
+      <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
     <Compile Include="FormEmployee.cs">
       <SubType>Form</SubType>
@@ -142,38 +129,16 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
-    <None Include="DSEmployee.xsc">
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
+    <None Include="DS.xsc">
+      <DependentUpon>DS.xsd</DependentUpon>
     </None>
-    <None Include="DSEmployee.xsd">
+    <None Include="DS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSEmployee.Designer.cs</LastGenOutput>
+      <LastGenOutput>DS.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DSEmployee.xss">
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
-    </None>
-    <None Include="DSProduct.xsc">
-      <DependentUpon>DSProduct.xsd</DependentUpon>
-    </None>
-    <None Include="DSProduct.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSProduct.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DSProduct.xss">
-      <DependentUpon>DSProduct.xsd</DependentUpon>
-    </None>
-    <None Include="DSWarehouse.xsc">
-      <DependentUpon>DSWarehouse.xsd</DependentUpon>
-    </None>
-    <None Include="DSWarehouse.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSWarehouse.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DSWarehouse.xss">
-      <DependentUpon>DSWarehouse.xsd</DependentUpon>
+    <None Include="DS.xss">
+      <DependentUpon>DS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

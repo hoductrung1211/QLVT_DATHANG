@@ -16,7 +16,7 @@ namespace QLVT_DATHANG
         public string BranchId = ""; // When combox index changes, record branch ID
         public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         public object NewRow;
-
+        public bool IsAdding = false;
         public FormEmployee()
         {
             InitializeComponent();
@@ -26,9 +26,9 @@ namespace QLVT_DATHANG
         {
             this.Validate();
             this.bds_NhanVien.EndEdit();
-            this.TableAdapterManager.UpdateAll(this.ds_Employee);
-        }
+            this.tableAdapterManager.UpdateAll(this.DS);
 
+        }
         private void GetBranchId()
         {
             if (bds_NhanVien.Count > 0)
@@ -45,24 +45,25 @@ namespace QLVT_DATHANG
                 BranchId = reader[0].ToString();
             }
         }
+         
 
-        private void FormEmployee_Load(object sender, EventArgs e)
+        private void FormEmployee2_Load(object sender, EventArgs e)
         {
             // 1. The reason we disable enforece constraints because there is not only
             // Employee Table but also others Tables are foreign tables (constraints)
-            ds_Employee.EnforceConstraints = false;
+            DS.EnforceConstraints = false;
 
             // 2. Connection String in App.config just to generate Dataset
             // This connection string is the real one. 
             // We have logged in which loginname, we'll use that loginname
-            NhanVienTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                this.NhanVienTableAdapter.Fill(this.ds_Employee.NhanVien);
-            datHangTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                this.datHangTableAdapter.Fill(this.ds_Employee.DatHang);
-            phieuXuatTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                this.phieuXuatTableAdapter.Fill(this.ds_Employee.PhieuXuat);
-            phieuNhapTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                this.phieuNhapTableAdapter.Fill(this.ds_Employee.PhieuNhap);
+            tbla_NhanVien.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_NhanVien.Fill(this.DS.NhanVien);
+            tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_DatHang.Fill(this.DS.DatHang);
+            tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuNhap.Fill(this.DS.PhieuNhap);
+            tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
 
             // 3. We have to store Branch ID (which we logged in)
             // NOTE: This may occur an error, YOU HAVE TO FIND OUT AND FIX IT!!!
@@ -75,25 +76,28 @@ namespace QLVT_DATHANG
             cb_branch.ValueMember = "TenServer";
             cb_branch.SelectedIndex = Program.SubsIndex;
 
+            //gdc_NhanVien.
+
             // 5. Decentralization
             if (Program.Role == "CongTy")
             {
                 cb_branch.Enabled = true;
-                btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
+                gpc_info.Enabled = btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
             }
             else
             {
                 cb_branch.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
-                btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
+                gpc_info.Enabled = btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
             }
         }
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RowIndex = bds_NhanVien.Position;
-            gb_info.Enabled = true;
+            gpc_info.Enabled = true;
             NewRow = bds_NhanVien.AddNew();
-            gc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
+            IsAdding = true;
+            gdc_NhanVien.Enabled = false; // Prevent when adding, click to a row, row fill to gb_info
 
             txt_branchId.Text = BranchId;
             dte_birthday.EditValue = "";
@@ -104,44 +108,14 @@ namespace QLVT_DATHANG
             // Grid Control is Data
         }
 
-        private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        { // Have to functions: Cancel Adding, Cancel Editing
-
-            bds_NhanVien.CancelEdit();
-            if (NewRow != null)
-                bds_NhanVien.Remove(NewRow);
-
-            if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
-                bds_NhanVien.Position = RowIndex;
-
-            gc_NhanVien.Enabled = true;
-            gb_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
-        }
-
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RowIndex = bds_NhanVien.Position;
-            gb_info.Enabled = true;
-            gc_NhanVien.Enabled = false;
+            gpc_info.Enabled = true;
+            gdc_NhanVien.Enabled = false;
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
-        }
-
-        private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            try
-            {
-                // Refill to Table NhanVien
-                NhanVienTableAdapter.Fill(ds_Employee.NhanVien);
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Error when reloading: " + ex.Message, "", MessageBoxButtons.OK);
-                return;
-            }
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -150,7 +124,7 @@ namespace QLVT_DATHANG
             // A row can not be deleted if it's referenced to another Table (it's a FK)
             int EmployeeId = 0;
 
-            if (bds_DatHang.Count > 0 || bds_PhieuNhap.Count > 0 || bds_PhieuXuat.Count > 0) 
+            if (bds_DatHang.Count > 0 || bds_PhieuNhap.Count > 0 || bds_PhieuXuat.Count > 0)
             {
                 MessageBox.Show(
                     "This employee cannot be deleted because this employee has created Import Order or Import Invoice or Export Invoice!",
@@ -167,13 +141,13 @@ namespace QLVT_DATHANG
                     EmployeeId = int.Parse(idData); // Store employeeID to roll back to this Employee position
                     bds_NhanVien.RemoveCurrent();
 
-                    NhanVienTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                    NhanVienTableAdapter.Update(ds_Employee.NhanVien);
+                    tbla_NhanVien.Connection.ConnectionString = Program.ConnectionString;
+                    tbla_NhanVien.Update(DS.NhanVien);
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
                     MessageBox.Show("Error when deleting this employee. Please delete again" + ex.Message, "", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
-                    NhanVienTableAdapter.Fill(ds_Employee.NhanVien);
+                    tbla_NhanVien.Fill(DS.NhanVien);
                     bds_NhanVien.Position = bds_NhanVien.Find("MaNV", EmployeeId); // Jump to Employee position
                     return;
                 }
@@ -214,20 +188,57 @@ namespace QLVT_DATHANG
                 bds_NhanVien.EndEdit();
                 bds_NhanVien.ResetCurrentItem();
 
-                NhanVienTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                NhanVienTableAdapter.Update(ds_Employee.NhanVien);
+                tbla_NhanVien.Connection.ConnectionString = Program.ConnectionString;
+                tbla_NhanVien.Update(DS.NhanVien);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Error when adding Employee!" + ex.Message, "Error", MessageBoxButtons.OK);
                 return;
             }
 
-            gc_NhanVien.Enabled = true;
-            gb_info.Enabled = false;
+            gdc_NhanVien.Enabled = true;
+            gpc_info.Enabled = false;
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
+            IsAdding = false;
+        }
+
+        private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            bds_NhanVien.CancelEdit();
+            if (IsAdding)
+            {
+                var res = bds_NhanVien.Contains(NewRow);
+                if (res)
+                    bds_NhanVien.Remove(NewRow);
+                IsAdding = false;
+            }
+                
+
+            if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
+                bds_NhanVien.Position = RowIndex;
+
+            gdc_NhanVien.Enabled = true;
+            gpc_info.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+        }
+
+        private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                // Refill to Table NhanVien
+                tbla_NhanVien.Fill(DS.NhanVien);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error when reloading: " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         private void cb_branch_SelectedIndexChanged(object sender, EventArgs e)
@@ -255,15 +266,15 @@ namespace QLVT_DATHANG
                 return;
             }
 
-            NhanVienTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                NhanVienTableAdapter.Fill(ds_Employee.NhanVien);
-            datHangTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                datHangTableAdapter.Fill(ds_Employee.DatHang);
-            phieuNhapTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                phieuNhapTableAdapter.Fill(ds_Employee.PhieuNhap);
-            phieuXuatTableAdapter.Connection.ConnectionString = Program.ConnectionString;
-                phieuXuatTableAdapter.Fill(ds_Employee.PhieuXuat);
-            
+            tbla_NhanVien.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_NhanVien.Fill(this.DS.NhanVien);
+            tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_DatHang.Fill(this.DS.DatHang);
+            tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuNhap.Fill(this.DS.PhieuNhap);
+            tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
+
             GetBranchId(); // Duplication. Because Role Branch can edit data.
             // Role Company cannot edit data and branchid is just used to add data.
             // The reason it's here that is some subjects not only change branch but also update data.

@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using QLVT_DATHANG.DSEmployeeTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +15,7 @@ namespace QLVT_DATHANG
     {
         public static int RowIndex = 0;
         public static object NewRow;
+        public bool IsAdding = false;
         public FormProduct()
         {
             InitializeComponent();
@@ -25,23 +25,23 @@ namespace QLVT_DATHANG
         {
             this.Validate();
             this.bds_VatTu.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.ds_product);
+            this.tableAdapterManager.UpdateAll(this.DS);
 
         }
 
-        private void FormProduct_Load(object sender, EventArgs e)
+        private void FormProduct2_Load(object sender, EventArgs e)
         {
-            ds_product.EnforceConstraints = false;
+            DS.EnforceConstraints = false;
             tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_VatTu.Fill(this.ds_product.VatTu);
-            tbla_CTDHH.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTDHH.Fill(this.ds_product.CTDDH);
+            this.tbla_VatTu.Fill(this.DS.VatTu);
+            tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_CTDDH.Fill(this.DS.CTDDH);
             tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTPN.Fill(this.ds_product.CTPN);
+            this.tbla_CTPN.Fill(this.DS.CTPN);
             tbla_CTPX.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTPX.Fill(this.ds_product.CTPX);
+            this.tbla_CTPX.Fill(this.DS.CTPX);
 
-            gb_info.Enabled = false;
+            gpc_info.Enabled = false;
 
             if (Program.Role == "CongTy")
             {
@@ -57,9 +57,10 @@ namespace QLVT_DATHANG
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RowIndex = bds_VatTu.Position;
-            gb_info.Enabled = true;
+            gpc_info.Enabled = true;
             NewRow = bds_VatTu.AddNew();
-            gc_VatTu.Enabled = false; // Have to add new before unabling grid control
+            IsAdding = true;
+            gdc_VatTu.Enabled = false; // Have to add new before unabling grid control
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
@@ -68,8 +69,8 @@ namespace QLVT_DATHANG
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             RowIndex = bds_VatTu.Position;
-            gb_info.Enabled = true;
-            gc_VatTu.Enabled = false;
+            gpc_info.Enabled = true;
+            gdc_VatTu.Enabled = false;
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
@@ -90,11 +91,11 @@ namespace QLVT_DATHANG
             }
 
             var deletingConfirm = MessageBox.Show(
-                "Are you sure to delete this product?", 
-                "Deleting Confirm", 
+                "Are you sure to delete this product?",
+                "Deleting Confirm",
                 MessageBoxButtons.OKCancel
                );
-            if (deletingConfirm  == DialogResult.OK)
+            if (deletingConfirm == DialogResult.OK)
             {
                 try
                 {
@@ -102,16 +103,16 @@ namespace QLVT_DATHANG
                     bds_VatTu.RemoveCurrent();
 
                     tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-                    tbla_VatTu.Update(ds_product.VatTu);
+                    tbla_VatTu.Update(DS.VatTu);
                 }
-                catch (Exception ex )
+                catch (Exception ex)
                 {
                     MessageBox.Show(
                             "Error when deleting this product. Please delete again. " + ex.Message,
                             "Error",
                             MessageBoxButtons.OK
                         );
-                    tbla_VatTu.Fill(ds_product.VatTu);
+                    tbla_VatTu.Fill(DS.VatTu);
                     bds_VatTu.Position = bds_VatTu.Find("MaVT", productId);
                     return;
                 }
@@ -154,7 +155,7 @@ namespace QLVT_DATHANG
                 bds_VatTu.ResetCurrentItem();
 
                 tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-                tbla_VatTu.Update(ds_product.VatTu);
+                tbla_VatTu.Update(DS.VatTu);
             }
             catch (Exception ex)
             {
@@ -162,25 +163,31 @@ namespace QLVT_DATHANG
                 return;
             }
 
-            gc_VatTu.Enabled = true;
-            gb_info.Enabled = false;
+            gdc_VatTu.Enabled = true;
+            gpc_info.Enabled = false;
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
+            IsAdding = false;
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bds_VatTu.CancelEdit();
-            
-            if (NewRow != null)
-                bds_VatTu.Remove(NewRow);
+
+            if (IsAdding)
+            {
+                var res = bds_VatTu.Contains(NewRow);
+                if (res)
+                    bds_VatTu.Remove(NewRow);
+                IsAdding = false;
+            }
 
             if (btn_add.Enabled == false)
                 bds_VatTu.Position = RowIndex;
 
-            gc_VatTu.Enabled = true;
-            gb_info.Enabled = false;
+            gdc_VatTu.Enabled = true;
+            gpc_info.Enabled = false;
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
@@ -190,9 +197,9 @@ namespace QLVT_DATHANG
         {
             try
             {
-                tbla_VatTu.Fill(ds_product.VatTu);
+                tbla_VatTu.Fill(DS.VatTu);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error when reloading: " + ex.Message, "Error", MessageBoxButtons.OK);
                 return;
