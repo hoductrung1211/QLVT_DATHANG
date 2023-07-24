@@ -277,7 +277,7 @@
             this.panel4.Location = new System.Drawing.Point(1350, 31);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(440, 60);
-            this.panel4.TabIndex = 11;
+            this.panel4.TabIndex = 4;
             // 
             // txt_branchId
             // 
@@ -288,7 +288,7 @@
             this.txt_branchId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_branchId.Properties.Appearance.Options.UseFont = true;
             this.txt_branchId.Size = new System.Drawing.Size(280, 28);
-            this.txt_branchId.TabIndex = 19;
+            this.txt_branchId.TabIndex = 4;
             // 
             // bds_Kho
             // 
@@ -317,7 +317,7 @@
             this.panel3.Location = new System.Drawing.Point(904, 31);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(440, 60);
-            this.panel3.TabIndex = 10;
+            this.panel3.TabIndex = 3;
             // 
             // label3
             // 
@@ -338,7 +338,7 @@
             this.txt_address.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_address.Properties.Appearance.Options.UseFont = true;
             this.txt_address.Size = new System.Drawing.Size(280, 28);
-            this.txt_address.TabIndex = 18;
+            this.txt_address.TabIndex = 3;
             // 
             // panel2
             // 
@@ -347,7 +347,7 @@
             this.panel2.Location = new System.Drawing.Point(458, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(440, 60);
-            this.panel2.TabIndex = 9;
+            this.panel2.TabIndex = 2;
             // 
             // label2
             // 
@@ -368,7 +368,7 @@
             this.txt_name.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name.Properties.Appearance.Options.UseFont = true;
             this.txt_name.Size = new System.Drawing.Size(280, 28);
-            this.txt_name.TabIndex = 17;
+            this.txt_name.TabIndex = 2;
             // 
             // panel1
             // 
@@ -377,7 +377,7 @@
             this.panel1.Location = new System.Drawing.Point(12, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 60);
-            this.panel1.TabIndex = 8;
+            this.panel1.TabIndex = 1;
             // 
             // label5
             // 
@@ -398,7 +398,7 @@
             this.txt_id.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Properties.Appearance.Options.UseFont = true;
             this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 16;
+            this.txt_id.TabIndex = 1;
             // 
             // panel7
             // 

@@ -124,7 +124,7 @@ namespace QLVT_DATHANG
             IsAdding = true;
 
             txt_branchId.Text = BranchId;
-            dte_birthday.EditValue = "";
+            dte_birthday.EditValue = "01/01/2000";
             txt_branchId.Enabled = false;
             cb_deleted.Checked = false;
             cb_deleted.Enabled = false;

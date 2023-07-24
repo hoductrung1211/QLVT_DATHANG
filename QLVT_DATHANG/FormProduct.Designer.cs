@@ -262,7 +262,7 @@
             this.panel11.Location = new System.Drawing.Point(1348, 34);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(440, 48);
-            this.panel11.TabIndex = 11;
+            this.panel11.TabIndex = 4;
             // 
             // spe_count
             // 
@@ -280,7 +280,7 @@
             this.spe_count.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spe_count.Size = new System.Drawing.Size(280, 28);
-            this.spe_count.TabIndex = 15;
+            this.spe_count.TabIndex = 4;
             // 
             // bds_VatTu
             // 
@@ -309,7 +309,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 34);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(440, 48);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // label2
             // 
@@ -330,7 +330,7 @@
             this.txt_id.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_id.Properties.Appearance.Options.UseFont = true;
             this.txt_id.Size = new System.Drawing.Size(280, 28);
-            this.txt_id.TabIndex = 12;
+            this.txt_id.TabIndex = 1;
             // 
             // panel3
             // 
@@ -360,7 +360,7 @@
             this.txt_unit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_unit.Properties.Appearance.Options.UseFont = true;
             this.txt_unit.Size = new System.Drawing.Size(280, 28);
-            this.txt_unit.TabIndex = 14;
+            this.txt_unit.TabIndex = 3;
             // 
             // panel5
             // 
@@ -369,7 +369,7 @@
             this.panel5.Location = new System.Drawing.Point(456, 34);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(440, 48);
-            this.panel5.TabIndex = 6;
+            this.panel5.TabIndex = 2;
             // 
             // label6
             // 
@@ -390,7 +390,7 @@
             this.txt_name.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_name.Properties.Appearance.Options.UseFont = true;
             this.txt_name.Size = new System.Drawing.Size(280, 28);
-            this.txt_name.TabIndex = 13;
+            this.txt_name.TabIndex = 2;
             // 
             // tbla_VatTu
             // 
@@ -427,7 +427,7 @@
             // 
             this.gdc_VatTu.DataSource = this.bds_VatTu;
             this.gdc_VatTu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gdc_VatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gdc_VatTu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.gdc_VatTu.Location = new System.Drawing.Point(0, 122);
             this.gdc_VatTu.MainView = this.gridView1;
             this.gdc_VatTu.MenuManager = this.barmngr_employee;
