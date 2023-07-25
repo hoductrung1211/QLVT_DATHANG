@@ -13,7 +13,6 @@ namespace QLVT_DATHANG
 {
     public partial class FormEmployee : DevExpress.XtraEditors.XtraForm
     {
-        public string BranchId = ""; // When combox index changes, record branch ID
         public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         public object NewRow;
         public bool IsAdding = false;
@@ -28,22 +27,6 @@ namespace QLVT_DATHANG
             this.bds_NhanVien.EndEdit();
             this.tableAdapterManager.UpdateAll(this.DS);
 
-        }
-        private void GetBranchId()
-        {
-            if (bds_NhanVien.Count > 0)
-                BranchId = ((DataRowView)bds_NhanVien[0])["MaCN"].ToString();
-            else
-            {
-                var reader = Program.ExecSqlDataReader("SELECT MaCN FROM ChiNhanh");
-                if (reader == null)
-                {
-                    MessageBox.Show("Error when trying to get the current branch.", "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                reader.Read();
-                BranchId = reader[0].ToString();
-            }
         }
          
         private void TurnOnEditingState()
@@ -87,7 +70,6 @@ namespace QLVT_DATHANG
             // 3. We have to store Branch ID (which we logged in)
             // NOTE: This may occur an error, YOU HAVE TO FIND OUT AND FIX IT!!!
             // I think when there is no employee, it will cause an error!
-            GetBranchId();
 
             // 4. Load subs into combobox
             cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -123,7 +105,7 @@ namespace QLVT_DATHANG
             NewRow = bds_NhanVien.AddNew();
             IsAdding = true;
 
-            txt_branchId.Text = BranchId;
+            txt_branchId.Text = Program.BranchId;
             dte_birthday.EditValue = "01/01/2000";
             txt_branchId.Enabled = false;
             cb_deleted.Checked = false;
@@ -241,7 +223,6 @@ namespace QLVT_DATHANG
         {
             try
             {
-                // Refill to Table NhanVien
                 tbla_NhanVien.Fill(DS.NhanVien);
             }
             catch (Exception ex)
@@ -285,7 +266,6 @@ namespace QLVT_DATHANG
             tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
             this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
 
-            GetBranchId(); // Duplication. Because Role Branch can edit data.
             // Role Company cannot edit data and branchid is just used to add data.
             // The reason it's here that is some subjects not only change branch but also update data.
         }

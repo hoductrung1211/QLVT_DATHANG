@@ -131,7 +131,23 @@ namespace QLVT_DATHANG
                 fProduct.MdiParent = this;
                 fProduct.Show();
             }
+        }
 
+        private void LoadReceiptForm()
+        {
+            var form = CheckExists(typeof(FormReceipt));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormReceipt();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
         }
 
         private void btn_employee_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -147,6 +163,11 @@ namespace QLVT_DATHANG
         private void btn_warehouse_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadWarehouseForm();
+        }
+
+        private void btn_invoice_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadReceiptForm();
         }
     }
 }

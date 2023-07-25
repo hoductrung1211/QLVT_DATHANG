@@ -29,6 +29,27 @@ namespace QLVT_DATHANG
 
         }
 
+        private void TurnOnEditingState()
+        {
+            RowIndex = bds_VatTu.Position;
+            gpc_info.Enabled = true;
+            gdc_VatTu.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
+        }
+
+        private void TurnOffEditingState()
+        {
+
+            gdc_VatTu.Enabled = true;
+            gpc_info.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+            IsAdding = false;
+        }
+
         private void FormProduct2_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
@@ -56,24 +77,14 @@ namespace QLVT_DATHANG
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_VatTu.Position;
-            gpc_info.Enabled = true;
+            TurnOnEditingState();
             NewRow = bds_VatTu.AddNew();
             IsAdding = true;
-            gdc_VatTu.Enabled = false; // Have to add new before unabling grid control
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_VatTu.Position;
-            gpc_info.Enabled = true;
-            gdc_VatTu.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            TurnOnEditingState();
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -162,13 +173,7 @@ namespace QLVT_DATHANG
                 MessageBox.Show("Error when adding Product!" + ex.Message, "Error", MessageBoxButtons.OK);
                 return;
             }
-
-            gdc_VatTu.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
-            IsAdding = false;
+            TurnOffEditingState();
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -186,11 +191,7 @@ namespace QLVT_DATHANG
             if (btn_add.Enabled == false)
                 bds_VatTu.Position = RowIndex;
 
-            gdc_VatTu.Enabled = true;
-            gpc_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

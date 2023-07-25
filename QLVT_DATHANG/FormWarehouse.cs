@@ -15,7 +15,6 @@ namespace QLVT_DATHANG
 {
     public partial class FormWarehouse : DevExpress.XtraEditors.XtraForm
     {
-        public string BranchId = ""; // When combox index changes, record branch ID
         public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         public object NewRow;
         public bool IsAdding;
@@ -31,29 +30,14 @@ namespace QLVT_DATHANG
             this.tableAdapterManager.UpdateAll(this.DS);
 
         }
-        private void GetBranchId()
-        {
-            if (bds_Kho.Count > 0)
-                BranchId = ((DataRowView)bds_Kho[0])["MaCN"].ToString();
-            else
-            {
-                var reader = Program.ExecSqlDataReader("SELECT MaCN FROM [Kho]");
-                if (reader == null)
-                {
-                    MessageBox.Show("Error when trying to get the current branch.", "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                reader.Read();
-                BranchId = reader[0].ToString();
-            }
-        }
+         
         private void TurnOnEditingState()
         {
             RowIndex = bds_Kho.Position;
             gpc_info.Enabled = true;
             gdc_Kho.Enabled = false;
 
-            txt_branchId.Text = BranchId;
+            txt_branchId.Text = Program.BranchId;
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
 
@@ -83,7 +67,6 @@ namespace QLVT_DATHANG
             tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
             this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
 
-            GetBranchId();
 
             cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_branch.DataSource = Program.bds_subscriptionList;
@@ -110,7 +93,7 @@ namespace QLVT_DATHANG
             NewRow = bds_Kho.AddNew();
             IsAdding = true;
 
-            txt_branchId.Text = BranchId;
+            txt_branchId.Text = Program.BranchId;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -213,7 +196,6 @@ namespace QLVT_DATHANG
         {
             try
             {
-                // Refill to Table NhanVien
                 tbla_Kho.Fill(DS.Kho);
             }
             catch (Exception ex)
@@ -257,7 +239,6 @@ namespace QLVT_DATHANG
             tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
             this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
 
-            GetBranchId(); // Duplication. Because Role Branch can edit data.
             // Role Company cannot edit data and branchid is just used to add data.
             // The reason it's here that is some subjects not only change branch but also update data.
         }

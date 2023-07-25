@@ -32,6 +32,7 @@ namespace QLVT_DATHANG
         public static string EmployeeId;
         public static string FullName;
         public static string Role;
+        public static string BranchId;
 
         public static bool LoginToServer()
         {
@@ -48,6 +49,16 @@ namespace QLVT_DATHANG
 
                 Connection.ConnectionString = ConnectionString;
                 Connection.Open(); // Destination
+
+                var reader = ExecSqlDataReader("SELECT MaCN FROM ChiNhanh");
+                if (reader == null)
+                {
+                    MessageBox.Show("Error when trying to get the current branch.", "Error", MessageBoxButtons.OK);
+                    return false;
+                }
+                reader.Read();
+                BranchId = reader[0].ToString();
+                reader.Close();
 
                 return true;
             }

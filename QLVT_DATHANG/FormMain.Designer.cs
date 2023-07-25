@@ -43,14 +43,14 @@
             this.btn_warehouse = new DevExpress.XtraBars.BarButtonItem();
             this.btn_order = new DevExpress.XtraBars.BarButtonItem();
             this.btn_invoice = new DevExpress.XtraBars.BarButtonItem();
-            this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_cat = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_business = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_report = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MaNV = new System.Windows.Forms.ToolStripStatusLabel();
@@ -86,10 +86,10 @@
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 605;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.page_system,
             this.page_cat,
             this.page_business,
-            this.page_report});
+            this.page_report,
+            this.page_system});
             this.ribbonControl1.Size = new System.Drawing.Size(798, 193);
             // 
             // btn_login
@@ -188,20 +188,7 @@
             this.btn_invoice.Id = 13;
             this.btn_invoice.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
             this.btn_invoice.Name = "btn_invoice";
-            // 
-            // page_system
-            // 
-            this.page_system.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.page_system.Name = "page_system";
-            this.page_system.Text = "Hệ thống";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_login);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_create_login);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_logout);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.btn_invoice.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_invoice_ItemClick);
             // 
             // page_cat
             // 
@@ -246,6 +233,20 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem6);
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem8);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            // 
+            // page_system
+            // 
+            this.page_system.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.page_system.Name = "page_system";
+            this.page_system.Text = "Hệ thống";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_login);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_create_login);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_logout);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // xtraTabbedMdiManager1
             // 
