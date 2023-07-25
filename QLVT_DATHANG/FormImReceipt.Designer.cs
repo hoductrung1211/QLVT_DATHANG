@@ -1,6 +1,6 @@
 ﻿namespace QLVT_DATHANG
 {
-    partial class FormReceipt
+    partial class FormImReceipt
     {
         /// <summary>
         /// Required designer variable.
@@ -442,7 +442,7 @@
             // 
             this.panel8.Controls.Add(this.cbb_whsname);
             this.panel8.Controls.Add(this.label8);
-            this.panel8.Location = new System.Drawing.Point(4, 165);
+            this.panel8.Location = new System.Drawing.Point(3, 219);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(440, 48);
             this.panel8.TabIndex = 4;
@@ -481,7 +481,7 @@
             // 
             this.panel9.Controls.Add(this.txt_whsId);
             this.panel9.Controls.Add(this.label9);
-            this.panel9.Location = new System.Drawing.Point(450, 165);
+            this.panel9.Location = new System.Drawing.Point(449, 219);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(440, 48);
             this.panel9.TabIndex = 4;
@@ -511,7 +511,7 @@
             // 
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.txt_eeId);
-            this.panel6.Location = new System.Drawing.Point(450, 111);
+            this.panel6.Location = new System.Drawing.Point(449, 165);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(440, 48);
             this.panel6.TabIndex = 4;
@@ -541,7 +541,7 @@
             // 
             this.panel2.Controls.Add(this.dte_date);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(449, 3);
+            this.panel2.Location = new System.Drawing.Point(4, 111);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(440, 48);
             this.panel2.TabIndex = 2;
@@ -610,7 +610,7 @@
             // 
             this.panel3.Controls.Add(this.cbb_fullname);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Location = new System.Drawing.Point(4, 111);
+            this.panel3.Location = new System.Drawing.Point(3, 165);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(440, 48);
             this.panel3.TabIndex = 3;
@@ -789,7 +789,7 @@
             // 
             this.tbla_Kho.ClearBeforeFill = true;
             // 
-            // FormReceipt
+            // FormImReceipt
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -803,8 +803,8 @@
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormReceipt";
-            this.Text = "Phiếu Nhập Xuất";
+            this.Name = "FormImReceipt";
+            this.Text = "Phiếu Nhập";
             this.Load += new System.EventHandler(this.FormReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

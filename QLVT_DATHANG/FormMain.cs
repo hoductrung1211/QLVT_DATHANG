@@ -133,9 +133,9 @@ namespace QLVT_DATHANG
             }
         }
 
-        private void LoadReceiptForm()
+        private void LoadImReceiptForm()
         {
-            var form = CheckExists(typeof(FormReceipt));
+            var form = CheckExists(typeof(FormImReceipt));
             if (form != null)
                 form.Activate();
             else
@@ -144,7 +144,41 @@ namespace QLVT_DATHANG
                 {
                     item.Close();
                 }
-                var fProduct = new FormReceipt();
+                var fProduct = new FormImReceipt();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
+        }
+
+        private void LoadExReceiptForm()
+        {
+            var form = CheckExists(typeof(FormExReceipt));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormExReceipt();
+                fProduct.MdiParent = this;
+                fProduct.Show();
+            }
+        }
+
+        private void LoadOrderForm()
+        {
+            var form = CheckExists(typeof(FormOrder));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var fProduct = new FormOrder();
                 fProduct.MdiParent = this;
                 fProduct.Show();
             }
@@ -167,7 +201,17 @@ namespace QLVT_DATHANG
 
         private void btn_invoice_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            LoadReceiptForm();
+            LoadImReceiptForm();
+        }
+
+        private void btn_order_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadOrderForm();
+        }
+
+        private void btn_exReceipt_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadExReceiptForm();
         }
     }
 }

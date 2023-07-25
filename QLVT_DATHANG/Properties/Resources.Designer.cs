@@ -253,6 +253,16 @@ namespace QLVT_DATHANG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage header {
+            get {
+                object obj = ResourceManager.GetObject("header", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage mediumpriority {
             get {
                 object obj = ResourceManager.GetObject("mediumpriority", resourceCulture);
@@ -276,6 +286,16 @@ namespace QLVT_DATHANG.Properties {
         internal static DevExpress.Utils.Svg.SvgImage newproduct {
             get {
                 object obj = ResourceManager.GetObject("newproduct", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage portrait {
+            get {
+                object obj = ResourceManager.GetObject("portrait", resourceCulture);
                 return ((DevExpress.Utils.Svg.SvgImage)(obj));
             }
         }

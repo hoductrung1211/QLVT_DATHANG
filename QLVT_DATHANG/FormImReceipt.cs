@@ -14,13 +14,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace QLVT_DATHANG
 {
-    public partial class FormReceipt : DevExpress.XtraEditors.XtraForm
+    public partial class FormImReceipt : DevExpress.XtraEditors.XtraForm
     {
-        public string BranchId = ""; // When combox index changes, record branch ID
         public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         public object NewRow;
         public bool IsAdding = false;
-        public FormReceipt()
+        public FormImReceipt()
         {
             InitializeComponent();
         }
@@ -32,7 +31,13 @@ namespace QLVT_DATHANG
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
 
+            // Group Control Infor
             gpc_info.Enabled = false;
+            cbb_fullname.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_DDH.DropDownStyle = ComboBoxStyle.DropDownList;
+            dte_date.Properties.EditMask = "dd/MM/yyyy";
+            dte_date.Properties.UseMaskAsDisplayFormat = true;
 
             // Group control Phieu Nhap
             colMaPN.OptionsColumn.AllowEdit = false;
@@ -41,13 +46,14 @@ namespace QLVT_DATHANG
             colMaNV.OptionsColumn.AllowEdit = false;
             colMaKho.OptionsColumn.AllowEdit = false;
 
+            colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
 
             // Grid view CTPN
             colCTPNMaPN.ReadOnly = true;    colCTPNMaPN.HeaderText = "Mã Phiếu Nhập";
             colCTPNMaVT.ReadOnly = true;    colCTPNMaVT.HeaderText = "Mã Vật Tư";
             colCTPNSoLuong.ReadOnly = true; colCTPNSoLuong.HeaderText = "Số Lượng";
             colCTPNDonGia.ReadOnly = true;  colCTPNDonGia.HeaderText = "Đơn Giá";
-
         }
 
         private void TurnOnEditingState()
@@ -136,7 +142,8 @@ namespace QLVT_DATHANG
             // 
             txt_importId.ReadOnly = false;
             dte_date.Enabled = false;
-            dte_date.EditValue = DateTime.Now.ToString("dd/MM/yyyy");
+            dte_date.EditValue = DateTime.Now.ToString();
+            dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -153,19 +160,19 @@ namespace QLVT_DATHANG
         {
             if (txt_importId.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Cannot blank Import ID!", "", MessageBoxButtons.OK);
                 txt_importId.Focus();
                 return;
             }
             if (cbb_fullname.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Name!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Cannot blank Employee!", "", MessageBoxButtons.OK);
                 cbb_fullname.Focus();
                 return;
             }
             if (cbb_whsname.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Unit!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Cannot blank Warehouse!", "", MessageBoxButtons.OK);
                 cbb_whsname.Focus();
                 return;
             } 
