@@ -40,13 +40,16 @@
             this.btn_save = new DevExpress.XtraBars.BarButtonItem();
             this.btn_undo = new DevExpress.XtraBars.BarButtonItem();
             this.btn_reload = new DevExpress.XtraBars.BarButtonItem();
-            this.bar4 = new DevExpress.XtraBars.Bar();
+            this.btn_transferBranch = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btn_exit = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.pn_newBranch = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cb_newBranch = new System.Windows.Forms.ComboBox();
             this.gpc_info = new DevExpress.XtraEditors.GroupControl();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -102,6 +105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.pn_newBranch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).BeginInit();
             this.gpc_info.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -155,8 +159,7 @@
             // barmngr_employee
             // 
             this.barmngr_employee.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar3,
-            this.bar4});
+            this.bar3});
             this.barmngr_employee.DockControls.Add(this.barDockControlTop);
             this.barmngr_employee.DockControls.Add(this.barDockControlBottom);
             this.barmngr_employee.DockControls.Add(this.barDockControlLeft);
@@ -170,10 +173,10 @@
             this.btn_undo,
             this.btn_reload,
             this.btn_list,
-            this.btn_exit});
+            this.btn_exit,
+            this.btn_transferBranch});
             this.barmngr_employee.MainMenu = this.bar3;
-            this.barmngr_employee.MaxItemId = 8;
-            this.barmngr_employee.StatusBar = this.bar4;
+            this.barmngr_employee.MaxItemId = 9;
             // 
             // bar3
             // 
@@ -188,7 +191,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_save, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_undo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_transferBranch, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
@@ -250,17 +254,13 @@
             this.btn_reload.Name = "btn_reload";
             this.btn_reload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_reload_ItemClick);
             // 
-            // bar4
+            // btn_transferBranch
             // 
-            this.bar4.BarName = "Status bar";
-            this.bar4.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar4.DockCol = 0;
-            this.bar4.DockRow = 0;
-            this.bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar4.OptionsBar.AllowQuickCustomization = false;
-            this.bar4.OptionsBar.DrawDragBorder = false;
-            this.bar4.OptionsBar.UseWholeRow = true;
-            this.bar4.Text = "Status bar";
+            this.btn_transferBranch.Caption = "Chuyển chi nhánh";
+            this.btn_transferBranch.Id = 8;
+            this.btn_transferBranch.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.bo_department;
+            this.btn_transferBranch.Name = "btn_transferBranch";
+            this.btn_transferBranch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_transferBranch_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -274,9 +274,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 626);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 646);
             this.barDockControlBottom.Manager = this.barmngr_employee;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1938, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1938, 0);
             // 
             // barDockControlLeft
             // 
@@ -284,7 +284,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barmngr_employee;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 596);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 616);
             // 
             // barDockControlRight
             // 
@@ -292,7 +292,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1938, 30);
             this.barDockControlRight.Manager = this.barmngr_employee;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 596);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 616);
             // 
             // btn_exit
             // 
@@ -303,6 +303,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.pn_newBranch);
             this.panelControl1.Controls.Add(this.gpc_info);
             this.panelControl1.Controls.Add(this.panel7);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -310,6 +311,35 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1938, 254);
             this.panelControl1.TabIndex = 4;
+            // 
+            // pn_newBranch
+            // 
+            this.pn_newBranch.Controls.Add(this.label10);
+            this.pn_newBranch.Controls.Add(this.cb_newBranch);
+            this.pn_newBranch.Location = new System.Drawing.Point(467, 6);
+            this.pn_newBranch.Name = "pn_newBranch";
+            this.pn_newBranch.Size = new System.Drawing.Size(449, 40);
+            this.pn_newBranch.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label10.Location = new System.Drawing.Point(18, 7);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 21);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Chi nhánh mới";
+            // 
+            // cb_newBranch
+            // 
+            this.cb_newBranch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_newBranch.FormattingEnabled = true;
+            this.cb_newBranch.Location = new System.Drawing.Point(157, 4);
+            this.cb_newBranch.Name = "cb_newBranch";
+            this.cb_newBranch.Size = new System.Drawing.Size(280, 29);
+            this.cb_newBranch.TabIndex = 1;
             // 
             // gpc_info
             // 
@@ -569,8 +599,6 @@
             this.txt_salary.Properties.Appearance.Options.UseFont = true;
             this.txt_salary.Properties.DisplayFormat.FormatString = "n0";
             this.txt_salary.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_salary.Properties.EditFormat.FormatString = "n0";
-            this.txt_salary.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_salary.Size = new System.Drawing.Size(280, 28);
             this.txt_salary.TabIndex = 3;
             // 
@@ -670,7 +698,7 @@
             this.gdc_NhanVien.MainView = this.gridView1;
             this.gdc_NhanVien.MenuManager = this.barmngr_employee;
             this.gdc_NhanVien.Name = "gdc_NhanVien";
-            this.gdc_NhanVien.Size = new System.Drawing.Size(1938, 342);
+            this.gdc_NhanVien.Size = new System.Drawing.Size(1938, 362);
             this.gdc_NhanVien.TabIndex = 9;
             this.gdc_NhanVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -833,6 +861,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.pn_newBranch.ResumeLayout(false);
+            this.pn_newBranch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).EndInit();
             this.gpc_info.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
@@ -889,7 +919,6 @@
         private DevExpress.XtraBars.BarButtonItem btn_undo;
         private DevExpress.XtraBars.BarButtonItem btn_reload;
         private DevExpress.XtraBars.BarButtonItem btn_exit;
-        private DevExpress.XtraBars.Bar bar4;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -947,5 +976,9 @@
         private DSTableAdapters.PhieuNhapTableAdapter tbla_PhieuNhap;
         private System.Windows.Forms.BindingSource bds_DatHang;
         private DSTableAdapters.DatHangTableAdapter tbla_DatHang;
+        private System.Windows.Forms.Panel pn_newBranch;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cb_newBranch;
+        private DevExpress.XtraBars.BarButtonItem btn_transferBranch;
     }
 }

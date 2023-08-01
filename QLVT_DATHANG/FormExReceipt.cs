@@ -34,6 +34,7 @@ namespace QLVT_DATHANG
             cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
             dte_date.Properties.EditMask = "dd/MM/yyyy";
             dte_date.Properties.UseMaskAsDisplayFormat = true;
+            dte_date.ReadOnly = true;
 
             // Group control Phieu Xuat
             colMaPX.OptionsColumn.AllowEdit = false;
@@ -43,6 +44,16 @@ namespace QLVT_DATHANG
             colMaKho.OptionsColumn.AllowEdit = false;
             colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
+
+            cbb_product.DropDownStyle = ComboBoxStyle.DropDownList;
+            txt_price.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            txt_price.Properties.DisplayFormat.FormatString = "n0";
+            txt_price.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            txt_price.Properties.EditFormat.FormatString = "n0";
+            txt_quantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            txt_quantity.Properties.DisplayFormat.FormatString = "n0";
+            txt_quantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            txt_quantity.Properties.EditFormat.FormatString = "n0";
 
             // Grid view CTPX
             colCTPXMaPX.ReadOnly = true; colCTPXMaPX.HeaderText = "Mã Phiếu Xuất";  colCTPXMaPX.Width = 220;
@@ -80,7 +91,9 @@ namespace QLVT_DATHANG
 
         private void FormExReceipt_Load(object sender, EventArgs e)
         {
-            
+            // TODO: This line of code loads data into the 'DS.VatTu' table. You can move, or remove it, as needed.
+            this.tbla_VatTu.Fill(this.DS.VatTu);
+
             DS.EnforceConstraints = false;
 
             tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
@@ -136,7 +149,7 @@ namespace QLVT_DATHANG
         {
             // 1. Check wheather this Employee can be deleted
             // A row can not be deleted if it's referenced to another Table (it's a FK)
-            int ExReceiptId = 0;
+            string ExReceiptId = "";
 
             var deleteConfirm = MessageBox.Show("Are you sure to delete this Export Receipt?", "Confirm", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
@@ -144,7 +157,7 @@ namespace QLVT_DATHANG
                 try
                 {
                     var idData = ((DataRowView)bds_PhieuXuat[bds_PhieuXuat.Position])["MaPX"].ToString();
-                    ExReceiptId = int.Parse(idData); // Store Receipt ID to roll back to this Employee position
+                    ExReceiptId = idData; // Store Receipt ID to roll back to this Employee position
                     bds_PhieuXuat.RemoveCurrent();
 
                     tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
@@ -298,5 +311,6 @@ namespace QLVT_DATHANG
             }
             catch { }
         }
+         
     }
 }

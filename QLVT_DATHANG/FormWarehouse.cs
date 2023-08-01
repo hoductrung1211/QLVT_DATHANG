@@ -104,16 +104,29 @@ namespace QLVT_DATHANG
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string warehouseId = "";
-            MessageBox.Show(bds_DatHang.Count + " - " + bds_PhieuNhap.Count + " - " + bds_PhieuXuat.Count);
-            if (bds_DatHang.Count > 0 || bds_PhieuNhap.Count > 0 || bds_PhieuXuat.Count > 0)
+            if (bds_DatHang.Count > 0)
             {
                 MessageBox.Show(
-                    "This employee cannot be deleted because this employee has created Import Order or Import Invoice or Export Invoice!",
-                    "", MessageBoxButtons.OK);
+                    "Kho đã được sử dụng ở Đơn Đặt hàng! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
+                return;
+            }
+            if (bds_PhieuNhap.Count > 0)
+            {
+                MessageBox.Show(
+                    "Kho đã được sử dụng ở Đơn Phiếu Nhập! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
+                return;
+            }
+            if (bds_PhieuXuat.Count > 0)
+            {
+                MessageBox.Show(
+                    "Kho đã được sử dụng ở Đơn Phiếu Xuất! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
                 return;
             }
 
-            var deleteConfirm = MessageBox.Show("Are you sure to delete this employee?", "Confirm", MessageBoxButtons.OKCancel);
+            var deleteConfirm = MessageBox.Show("Kho sẽ bị Xóa Vĩnh viễn! Bạn có muốn xóa?", "Xác nhận Xóa", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
             {
                 try
@@ -126,7 +139,7 @@ namespace QLVT_DATHANG
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
-                    MessageBox.Show("Error when deleting this employee. Please delete again" + ex.Message, "", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
+                    MessageBox.Show("Lỗi khi Xóa Kho! Làm ơn thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
                     tbla_Kho.Fill(DS.Kho);
                     bds_Kho.Position = bds_Kho.Find("MaKho", warehouseId); // Jump to Employee position
                     return;
@@ -142,19 +155,19 @@ namespace QLVT_DATHANG
         {
             if (txt_id.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Mã Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_id.Focus();
                 return;
             }
             if (txt_name.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse Name!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Tên Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_name.Focus();
                 return;
             }
             if (txt_address.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse Address!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Địa chỉ Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_address.Focus();
                 return;
             }
@@ -169,7 +182,7 @@ namespace QLVT_DATHANG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when adding Employee!" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi khi thêm Kho!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
 
@@ -200,7 +213,7 @@ namespace QLVT_DATHANG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when reloading: " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi khi Reload: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -226,7 +239,7 @@ namespace QLVT_DATHANG
 
             if (!Program.LoginToServer())
             {
-                MessageBox.Show("Error when connecting to new branch", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi khi kết nối với Chi nhánh khác", "Lỗi", MessageBoxButtons.OK);
                 return;
             }
 

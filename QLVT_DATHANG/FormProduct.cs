@@ -91,19 +91,37 @@ namespace QLVT_DATHANG
         {
             string productId = "";
 
-            if (bds_CTDDH.Count > 0 || bds_CTPN.Count > 0 || bds_CTPX.Count > 0)
+            if (bds_CTDDH.Count > 0  )
             {
                 MessageBox.Show(
-                    "This product cannot be deleted because it has been used in 'Chi Tiet Don Dat Hang' or 'Phieu Nhap' or 'Phieu Xuat'",
-                    "Deleting Error",
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Đặt hàng. Không thể xóa!",
+                    "Lỗi ràng buộc",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            if ( bds_CTPN.Count > 0 )
+            {
+                MessageBox.Show(
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Phiếu nhập. Không thể xóa!",
+                    "Lỗi ràng buộc",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            if ( bds_CTPX.Count > 0)
+            {
+                MessageBox.Show(
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Phiếu xuất. Không thể xóa!",
+                    "Lỗi ràng buộc",
                     MessageBoxButtons.OK
                 );
                 return;
             }
 
             var deletingConfirm = MessageBox.Show(
-                "Are you sure to delete this product?",
-                "Deleting Confirm",
+                "Thông tin Vật tư này sẽ bị xóa vĩnh viễn. Bạn có muốn xóa?",
+                "Xác nhận xóa vật tư",
                 MessageBoxButtons.OKCancel
                );
             if (deletingConfirm == DialogResult.OK)
@@ -119,8 +137,8 @@ namespace QLVT_DATHANG
                 catch (Exception ex)
                 {
                     MessageBox.Show(
-                            "Error when deleting this product. Please delete again. " + ex.Message,
-                            "Error",
+                            "Xảy ra lỗi trong khi xóa vật tư. Vui lòng thử lại!\t" + ex.Message,
+                            "Lỗi",
                             MessageBoxButtons.OK
                         );
                     tbla_VatTu.Fill(DS.VatTu);
@@ -137,25 +155,25 @@ namespace QLVT_DATHANG
         {
             if (txt_id.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Mã Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_id.Focus();
                 return;
             }
             if (txt_name.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Name!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Tên Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_name.Focus();
                 return;
             }
             if (txt_unit.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Unit!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Đơn vị tính! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_unit.Focus();
                 return;
             }
             if (spe_count.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Count!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Số lượng Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 spe_count.Focus();
                 return;
             }
@@ -170,7 +188,7 @@ namespace QLVT_DATHANG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when adding Product!" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Xuất hiện lỗi khi thêm vật tư! Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
             TurnOffEditingState();
@@ -202,7 +220,7 @@ namespace QLVT_DATHANG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when reloading: " + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Xuất hiện lỗi trong khi reload! Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
         }

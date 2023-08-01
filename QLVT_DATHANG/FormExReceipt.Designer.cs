@@ -47,6 +47,8 @@
             this.bds_PhieuXuat = new System.Windows.Forms.BindingSource(this.components);
             this.tbla_PhieuXuat = new QLVT_DATHANG.DSTableAdapters.PhieuXuatTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANG.DSTableAdapters.TableAdapterManager();
+            this.tbla_CTPX = new QLVT_DATHANG.DSTableAdapters.CTPXTableAdapter();
+            this.tbla_Kho = new QLVT_DATHANG.DSTableAdapters.KhoTableAdapter();
             this.gdc_PhieuXuat = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaPX = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,44 +57,59 @@
             this.colMaNV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaKho = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.gpc_info = new DevExpress.XtraEditors.GroupControl();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbb_fullname = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbb_whsname = new System.Windows.Forms.ComboBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.cb_branch = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.bds_CTPX = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_CTPX = new QLVT_DATHANG.DSTableAdapters.CTPXTableAdapter();
             this.gdv_CTPX = new System.Windows.Forms.DataGridView();
             this.colCTPXMaPX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTPXMaVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTPXSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTPXDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bds_CTPX = new System.Windows.Forms.BindingSource(this.components);
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb_branch = new System.Windows.Forms.ComboBox();
+            this.gpc_info = new DevExpress.XtraEditors.GroupControl();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.txt_price = new DevExpress.XtraEditors.TextEdit();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.bds_Kho = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_Kho = new QLVT_DATHANG.DSTableAdapters.KhoTableAdapter();
-            this.bds_DSNV = new System.Windows.Forms.BindingSource(this.components);
-            this.tbla_DSNV = new QLVT_DATHANG.DSTableAdapters.DS_NVTableAdapter();
-            this.txt_exportId = new DevExpress.XtraEditors.TextEdit();
-            this.dte_date = new DevExpress.XtraEditors.DateEdit();
             this.txt_cusName = new DevExpress.XtraEditors.TextEdit();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txt_quantity = new DevExpress.XtraEditors.TextEdit();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.cbb_whsname = new System.Windows.Forms.ComboBox();
+            this.bds_Kho = new System.Windows.Forms.BindingSource(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.cbb_product = new System.Windows.Forms.ComboBox();
+            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.dateEdit3 = new DevExpress.XtraEditors.DateEdit();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.txt_whsId = new DevExpress.XtraEditors.TextEdit();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.txt_eeId = new DevExpress.XtraEditors.TextEdit();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dte_date = new DevExpress.XtraEditors.DateEdit();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cbb_fullname = new System.Windows.Forms.ComboBox();
+            this.bds_DSNV = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_exportId = new DevExpress.XtraEditors.TextEdit();
+            this.tbla_DSNV = new QLVT_DATHANG.DSTableAdapters.DS_NVTableAdapter();
+            this.tbla_VatTu = new QLVT_DATHANG.DSTableAdapters.VatTuTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).BeginInit();
@@ -100,29 +117,39 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).BeginInit();
             this.gpc_info.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).BeginInit();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_price.Properties)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_cusName.Properties)).BeginInit();
+            this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_quantity.Properties)).BeginInit();
+            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).BeginInit();
+            this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
+            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.CalendarTimeProperties)).BeginInit();
+            this.panel16.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).BeginInit();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_eeId.Properties)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_cusName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_eeId.Properties)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barmngr_employee
@@ -288,10 +315,19 @@
             this.tableAdapterManager.UpdateOrder = QLVT_DATHANG.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VatTuTableAdapter = null;
             // 
+            // tbla_CTPX
+            // 
+            this.tbla_CTPX.ClearBeforeFill = true;
+            // 
+            // tbla_Kho
+            // 
+            this.tbla_Kho.ClearBeforeFill = true;
+            // 
             // gdc_PhieuXuat
             // 
             this.gdc_PhieuXuat.DataSource = this.bds_PhieuXuat;
             this.gdc_PhieuXuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gdc_PhieuXuat.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.gdc_PhieuXuat.Location = new System.Drawing.Point(0, 417);
             this.gdc_PhieuXuat.MainView = this.gridView1;
             this.gdc_PhieuXuat.MenuManager = this.barmngr_employee;
@@ -367,222 +403,6 @@
             this.panelControl1.Size = new System.Drawing.Size(1938, 387);
             this.panelControl1.TabIndex = 18;
             // 
-            // gpc_info
-            // 
-            this.gpc_info.Appearance.BackColor = System.Drawing.Color.White;
-            this.gpc_info.Appearance.Options.UseBackColor = true;
-            this.gpc_info.Controls.Add(this.panel10);
-            this.gpc_info.Location = new System.Drawing.Point(8, 51);
-            this.gpc_info.Name = "gpc_info";
-            this.gpc_info.Size = new System.Drawing.Size(905, 320);
-            this.gpc_info.TabIndex = 14;
-            this.gpc_info.Text = "Bảng thông tin";
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.panel4);
-            this.panel10.Controls.Add(this.panel8);
-            this.panel10.Controls.Add(this.panel9);
-            this.panel10.Controls.Add(this.panel6);
-            this.panel10.Controls.Add(this.panel2);
-            this.panel10.Controls.Add(this.panel3);
-            this.panel10.Controls.Add(this.panel1);
-            this.panel10.Location = new System.Drawing.Point(5, 31);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(893, 287);
-            this.panel10.TabIndex = 12;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txt_exportId);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(440, 48);
-            this.panel1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(31, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã Phiếu Xuất";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.cbb_fullname);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Location = new System.Drawing.Point(3, 165);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(440, 48);
-            this.panel3.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 21);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Họ Tên Nhân Viên";
-            // 
-            // cbb_fullname
-            // 
-            this.cbb_fullname.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bds_PhieuXuat, "MaNV", true));
-            this.cbb_fullname.DataSource = this.bds_DSNV;
-            this.cbb_fullname.DisplayMember = "HoTen";
-            this.cbb_fullname.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbb_fullname.FormattingEnabled = true;
-            this.cbb_fullname.Location = new System.Drawing.Point(156, 10);
-            this.cbb_fullname.Name = "cbb_fullname";
-            this.cbb_fullname.Size = new System.Drawing.Size(280, 29);
-            this.cbb_fullname.TabIndex = 8;
-            this.cbb_fullname.ValueMember = "MaNV";
-            this.cbb_fullname.SelectedIndexChanged += new System.EventHandler(this.cbb_fullname_SelectedIndexChanged);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.dte_date);
-            this.panel2.Location = new System.Drawing.Point(3, 57);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(440, 48);
-            this.panel2.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(97, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 21);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Ngày";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.txt_eeId);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Location = new System.Drawing.Point(449, 165);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(440, 48);
-            this.panel6.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(39, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 21);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Mã Nhân Viên";
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.txt_whsId);
-            this.panel9.Controls.Add(this.label9);
-            this.panel9.Location = new System.Drawing.Point(449, 219);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(440, 48);
-            this.panel9.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(86, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 21);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Mã Kho";
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.cbb_whsname);
-            this.panel8.Controls.Add(this.label8);
-            this.panel8.Location = new System.Drawing.Point(3, 219);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(440, 48);
-            this.panel8.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(79, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 21);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Tên Kho";
-            // 
-            // cbb_whsname
-            // 
-            this.cbb_whsname.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bds_PhieuXuat, "MaKho", true));
-            this.cbb_whsname.DataSource = this.bds_Kho;
-            this.cbb_whsname.DisplayMember = "TenKho";
-            this.cbb_whsname.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbb_whsname.FormattingEnabled = true;
-            this.cbb_whsname.Location = new System.Drawing.Point(157, 10);
-            this.cbb_whsname.Name = "cbb_whsname";
-            this.cbb_whsname.Size = new System.Drawing.Size(280, 29);
-            this.cbb_whsname.TabIndex = 8;
-            this.cbb_whsname.ValueMember = "MaKho";
-            this.cbb_whsname.SelectedIndexChanged += new System.EventHandler(this.cbb_whsname_SelectedIndexChanged);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label1);
-            this.panel7.Controls.Add(this.cb_branch);
-            this.panel7.Location = new System.Drawing.Point(17, 5);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(449, 40);
-            this.panel7.TabIndex = 13;
-            // 
-            // cb_branch
-            // 
-            this.cb_branch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_branch.FormattingEnabled = true;
-            this.cb_branch.Location = new System.Drawing.Point(157, 4);
-            this.cb_branch.Name = "cb_branch";
-            this.cb_branch.Size = new System.Drawing.Size(280, 29);
-            this.cb_branch.TabIndex = 1;
-            this.cb_branch.SelectedIndexChanged += new System.EventHandler(this.cb_branch_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(55, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Chi nhánh";
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.panel7);
-            this.panelControl2.Controls.Add(this.gpc_info);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl2.Location = new System.Drawing.Point(2, 2);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(924, 383);
-            this.panelControl2.TabIndex = 17;
-            // 
-            // bds_CTPX
-            // 
-            this.bds_CTPX.DataMember = "FK_CTPX_PX";
-            this.bds_CTPX.DataSource = this.bds_PhieuXuat;
-            // 
-            // tbla_CTPX
-            // 
-            this.tbla_CTPX.ClearBeforeFill = true;
-            // 
             // gdv_CTPX
             // 
             this.gdv_CTPX.AutoGenerateColumns = false;
@@ -594,11 +414,11 @@
             this.colCTPXDonGia});
             this.gdv_CTPX.DataSource = this.bds_CTPX;
             this.gdv_CTPX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gdv_CTPX.Location = new System.Drawing.Point(926, 2);
+            this.gdv_CTPX.Location = new System.Drawing.Point(942, 2);
             this.gdv_CTPX.Name = "gdv_CTPX";
             this.gdv_CTPX.RowHeadersWidth = 51;
             this.gdv_CTPX.RowTemplate.Height = 24;
-            this.gdv_CTPX.Size = new System.Drawing.Size(1010, 383);
+            this.gdv_CTPX.Size = new System.Drawing.Size(994, 383);
             this.gdv_CTPX.TabIndex = 17;
             // 
             // colCTPXMaPX
@@ -633,6 +453,109 @@
             this.colCTPXDonGia.Name = "colCTPXDonGia";
             this.colCTPXDonGia.Width = 125;
             // 
+            // bds_CTPX
+            // 
+            this.bds_CTPX.DataMember = "FK_CTPX_PX";
+            this.bds_CTPX.DataSource = this.bds_PhieuXuat;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.panel7);
+            this.panelControl2.Controls.Add(this.gpc_info);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelControl2.Location = new System.Drawing.Point(2, 2);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(940, 383);
+            this.panelControl2.TabIndex = 17;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Controls.Add(this.cb_branch);
+            this.panel7.Location = new System.Drawing.Point(17, 5);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(449, 40);
+            this.panel7.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(55, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Chi nhánh";
+            // 
+            // cb_branch
+            // 
+            this.cb_branch.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_branch.FormattingEnabled = true;
+            this.cb_branch.Location = new System.Drawing.Point(157, 4);
+            this.cb_branch.Name = "cb_branch";
+            this.cb_branch.Size = new System.Drawing.Size(280, 29);
+            this.cb_branch.TabIndex = 1;
+            this.cb_branch.SelectedIndexChanged += new System.EventHandler(this.cb_branch_SelectedIndexChanged);
+            // 
+            // gpc_info
+            // 
+            this.gpc_info.Appearance.BackColor = System.Drawing.Color.White;
+            this.gpc_info.Appearance.Options.UseBackColor = true;
+            this.gpc_info.Controls.Add(this.panel10);
+            this.gpc_info.Location = new System.Drawing.Point(8, 51);
+            this.gpc_info.Name = "gpc_info";
+            this.gpc_info.Size = new System.Drawing.Size(920, 320);
+            this.gpc_info.TabIndex = 14;
+            this.gpc_info.Text = "Bảng thông tin";
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.panel4);
+            this.panel10.Controls.Add(this.panel13);
+            this.panel10.Controls.Add(this.panel8);
+            this.panel10.Controls.Add(this.panel14);
+            this.panel10.Controls.Add(this.panel9);
+            this.panel10.Controls.Add(this.panel6);
+            this.panel10.Controls.Add(this.panel2);
+            this.panel10.Controls.Add(this.panel3);
+            this.panel10.Controls.Add(this.panel1);
+            this.panel10.Location = new System.Drawing.Point(5, 31);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(900, 280);
+            this.panel10.TabIndex = 12;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.txt_price);
+            this.panel12.Controls.Add(this.label11);
+            this.panel12.Location = new System.Drawing.Point(450, 111);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(440, 48);
+            this.panel12.TabIndex = 25;
+            // 
+            // txt_price
+            // 
+            this.txt_price.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_CTPX, "DonGia", true));
+            this.txt_price.Location = new System.Drawing.Point(157, 10);
+            this.txt_price.MenuManager = this.barmngr_employee;
+            this.txt_price.Name = "txt_price";
+            this.txt_price.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_price.Properties.Appearance.Options.UseFont = true;
+            this.txt_price.Size = new System.Drawing.Size(280, 28);
+            this.txt_price.TabIndex = 16;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(77, 13);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(67, 21);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Đơn giá";
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label5);
@@ -652,34 +575,267 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Họ tên Khách hàng";
             // 
+            // txt_cusName
+            // 
+            this.txt_cusName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "HoTenKH", true));
+            this.txt_cusName.Location = new System.Drawing.Point(157, 10);
+            this.txt_cusName.MenuManager = this.barmngr_employee;
+            this.txt_cusName.Name = "txt_cusName";
+            this.txt_cusName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_cusName.Properties.Appearance.Options.UseFont = true;
+            this.txt_cusName.Size = new System.Drawing.Size(280, 28);
+            this.txt_cusName.TabIndex = 20;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.label12);
+            this.panel13.Controls.Add(this.txt_quantity);
+            this.panel13.Location = new System.Drawing.Point(450, 57);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(440, 48);
+            this.panel13.TabIndex = 24;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(70, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(74, 21);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Số lượng";
+            // 
+            // txt_quantity
+            // 
+            this.txt_quantity.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_CTPX, "SoLuong", true));
+            this.txt_quantity.Location = new System.Drawing.Point(157, 10);
+            this.txt_quantity.MenuManager = this.barmngr_employee;
+            this.txt_quantity.Name = "txt_quantity";
+            this.txt_quantity.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_quantity.Properties.Appearance.Options.UseFont = true;
+            this.txt_quantity.Size = new System.Drawing.Size(280, 28);
+            this.txt_quantity.TabIndex = 15;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.cbb_whsname);
+            this.panel8.Controls.Add(this.label8);
+            this.panel8.Location = new System.Drawing.Point(3, 219);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(440, 48);
+            this.panel8.TabIndex = 4;
+            // 
+            // cbb_whsname
+            // 
+            this.cbb_whsname.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bds_PhieuXuat, "MaKho", true));
+            this.cbb_whsname.DataSource = this.bds_Kho;
+            this.cbb_whsname.DisplayMember = "TenKho";
+            this.cbb_whsname.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_whsname.FormattingEnabled = true;
+            this.cbb_whsname.Location = new System.Drawing.Point(157, 10);
+            this.cbb_whsname.Name = "cbb_whsname";
+            this.cbb_whsname.Size = new System.Drawing.Size(280, 29);
+            this.cbb_whsname.TabIndex = 8;
+            this.cbb_whsname.ValueMember = "MaKho";
+            this.cbb_whsname.SelectedIndexChanged += new System.EventHandler(this.cbb_whsname_SelectedIndexChanged);
+            // 
             // bds_Kho
             // 
             this.bds_Kho.DataMember = "Kho";
             this.bds_Kho.DataSource = this.DS;
             // 
-            // tbla_Kho
+            // label8
             // 
-            this.tbla_Kho.ClearBeforeFill = true;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(79, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(71, 21);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Tên Kho";
             // 
-            // bds_DSNV
+            // panel14
             // 
-            this.bds_DSNV.DataMember = "DsNV";
-            this.bds_DSNV.DataSource = this.DS;
+            this.panel14.Controls.Add(this.cbb_product);
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Controls.Add(this.panel16);
+            this.panel14.Controls.Add(this.label15);
+            this.panel14.Location = new System.Drawing.Point(449, 3);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(440, 48);
+            this.panel14.TabIndex = 23;
             // 
-            // tbla_DSNV
+            // cbb_product
             // 
-            this.tbla_DSNV.ClearBeforeFill = true;
+            this.cbb_product.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_VatTu, "MaVT", true));
+            this.cbb_product.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bds_CTPX, "MaVT", true));
+            this.cbb_product.DataSource = this.bds_VatTu;
+            this.cbb_product.DisplayMember = "TenVT";
+            this.cbb_product.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_product.FormattingEnabled = true;
+            this.cbb_product.Location = new System.Drawing.Point(158, 10);
+            this.cbb_product.Name = "cbb_product";
+            this.cbb_product.Size = new System.Drawing.Size(280, 29);
+            this.cbb_product.TabIndex = 15;
+            this.cbb_product.ValueMember = "MaVT";
             // 
-            // txt_exportId
+            // bds_VatTu
             // 
-            this.txt_exportId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaPX", true));
-            this.txt_exportId.Location = new System.Drawing.Point(157, 10);
-            this.txt_exportId.MenuManager = this.barmngr_employee;
-            this.txt_exportId.Name = "txt_exportId";
-            this.txt_exportId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_exportId.Properties.Appearance.Options.UseFont = true;
-            this.txt_exportId.Size = new System.Drawing.Size(280, 28);
-            this.txt_exportId.TabIndex = 18;
+            this.bds_VatTu.DataMember = "VatTu";
+            this.bds_VatTu.DataSource = this.DS;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.dateEdit3);
+            this.panel15.Controls.Add(this.label13);
+            this.panel15.Location = new System.Drawing.Point(1, 108);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(440, 48);
+            this.panel15.TabIndex = 18;
+            // 
+            // dateEdit3
+            // 
+            this.dateEdit3.EditValue = null;
+            this.dateEdit3.Location = new System.Drawing.Point(157, 10);
+            this.dateEdit3.MenuManager = this.barmngr_employee;
+            this.dateEdit3.Name = "dateEdit3";
+            this.dateEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEdit3.Properties.Appearance.Options.UseFont = true;
+            this.dateEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit3.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit3.Size = new System.Drawing.Size(280, 28);
+            this.dateEdit3.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(97, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 21);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Ngày";
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.comboBox3);
+            this.panel16.Controls.Add(this.label14);
+            this.panel16.Location = new System.Drawing.Point(1, 54);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(440, 48);
+            this.panel16.TabIndex = 17;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DisplayMember = "MaSoDDH";
+            this.comboBox3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(156, 10);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(280, 29);
+            this.comboBox3.TabIndex = 8;
+            this.comboBox3.ValueMember = "MaSoDDH";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(13, 13);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(138, 21);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Mã Đơn đặt hàng";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(89, 13);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(56, 21);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Vật tư";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.txt_whsId);
+            this.panel9.Controls.Add(this.label9);
+            this.panel9.Location = new System.Drawing.Point(449, 219);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(440, 48);
+            this.panel9.TabIndex = 4;
+            // 
+            // txt_whsId
+            // 
+            this.txt_whsId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaKho", true));
+            this.txt_whsId.Location = new System.Drawing.Point(157, 10);
+            this.txt_whsId.MenuManager = this.barmngr_employee;
+            this.txt_whsId.Name = "txt_whsId";
+            this.txt_whsId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_whsId.Properties.Appearance.Options.UseFont = true;
+            this.txt_whsId.Size = new System.Drawing.Size(280, 28);
+            this.txt_whsId.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(86, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 21);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Mã Kho";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.txt_eeId);
+            this.panel6.Controls.Add(this.label7);
+            this.panel6.Location = new System.Drawing.Point(449, 165);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(440, 48);
+            this.panel6.TabIndex = 4;
+            // 
+            // txt_eeId
+            // 
+            this.txt_eeId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaNV", true));
+            this.txt_eeId.Location = new System.Drawing.Point(157, 10);
+            this.txt_eeId.MenuManager = this.barmngr_employee;
+            this.txt_eeId.Name = "txt_eeId";
+            this.txt_eeId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_eeId.Properties.Appearance.Options.UseFont = true;
+            this.txt_eeId.Size = new System.Drawing.Size(280, 28);
+            this.txt_eeId.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(39, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 21);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Mã Nhân Viên";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.dte_date);
+            this.panel2.Location = new System.Drawing.Point(3, 57);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(440, 48);
+            this.panel2.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(97, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 21);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Ngày";
             // 
             // dte_date
             // 
@@ -697,38 +853,81 @@
             this.dte_date.Size = new System.Drawing.Size(280, 28);
             this.dte_date.TabIndex = 19;
             // 
-            // txt_cusName
+            // panel3
             // 
-            this.txt_cusName.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "HoTenKH", true));
-            this.txt_cusName.Location = new System.Drawing.Point(157, 10);
-            this.txt_cusName.MenuManager = this.barmngr_employee;
-            this.txt_cusName.Name = "txt_cusName";
-            this.txt_cusName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_cusName.Properties.Appearance.Options.UseFont = true;
-            this.txt_cusName.Size = new System.Drawing.Size(280, 28);
-            this.txt_cusName.TabIndex = 20;
+            this.panel3.Controls.Add(this.cbb_fullname);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Location = new System.Drawing.Point(3, 165);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(440, 48);
+            this.panel3.TabIndex = 3;
             // 
-            // txt_whsId
+            // cbb_fullname
             // 
-            this.txt_whsId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaKho", true));
-            this.txt_whsId.Location = new System.Drawing.Point(157, 10);
-            this.txt_whsId.MenuManager = this.barmngr_employee;
-            this.txt_whsId.Name = "txt_whsId";
-            this.txt_whsId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_whsId.Properties.Appearance.Options.UseFont = true;
-            this.txt_whsId.Size = new System.Drawing.Size(280, 28);
-            this.txt_whsId.TabIndex = 21;
+            this.cbb_fullname.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bds_PhieuXuat, "MaNV", true));
+            this.cbb_fullname.DataSource = this.bds_DSNV;
+            this.cbb_fullname.DisplayMember = "HoTen";
+            this.cbb_fullname.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbb_fullname.FormattingEnabled = true;
+            this.cbb_fullname.Location = new System.Drawing.Point(156, 10);
+            this.cbb_fullname.Name = "cbb_fullname";
+            this.cbb_fullname.Size = new System.Drawing.Size(280, 29);
+            this.cbb_fullname.TabIndex = 8;
+            this.cbb_fullname.ValueMember = "MaNV";
+            this.cbb_fullname.SelectedIndexChanged += new System.EventHandler(this.cbb_fullname_SelectedIndexChanged);
             // 
-            // txt_eeId
+            // bds_DSNV
             // 
-            this.txt_eeId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaNV", true));
-            this.txt_eeId.Location = new System.Drawing.Point(157, 10);
-            this.txt_eeId.MenuManager = this.barmngr_employee;
-            this.txt_eeId.Name = "txt_eeId";
-            this.txt_eeId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_eeId.Properties.Appearance.Options.UseFont = true;
-            this.txt_eeId.Size = new System.Drawing.Size(280, 28);
-            this.txt_eeId.TabIndex = 22;
+            this.bds_DSNV.DataMember = "DsNV";
+            this.bds_DSNV.DataSource = this.DS;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(7, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(143, 21);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Họ Tên Nhân Viên";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txt_exportId);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(440, 48);
+            this.panel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(31, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Mã Phiếu Xuất";
+            // 
+            // txt_exportId
+            // 
+            this.txt_exportId.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_PhieuXuat, "MaPX", true));
+            this.txt_exportId.Location = new System.Drawing.Point(157, 10);
+            this.txt_exportId.MenuManager = this.barmngr_employee;
+            this.txt_exportId.Name = "txt_exportId";
+            this.txt_exportId.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_exportId.Properties.Appearance.Options.UseFont = true;
+            this.txt_exportId.Size = new System.Drawing.Size(280, 28);
+            this.txt_exportId.TabIndex = 18;
+            // 
+            // tbla_DSNV
+            // 
+            this.tbla_DSNV.ClearBeforeFill = true;
+            // 
+            // tbla_VatTu
+            // 
+            this.tbla_VatTu.ClearBeforeFill = true;
             // 
             // FormExReceipt
             // 
@@ -743,7 +942,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormExReceipt";
             this.Text = "Phiếu Xuất";
             this.Load += new System.EventHandler(this.FormExReceipt_Load);
@@ -754,37 +953,52 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).EndInit();
             this.gpc_info.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).EndInit();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_price.Properties)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_cusName.Properties)).EndInit();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_quantity.Properties)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).EndInit();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEdit3.Properties)).EndInit();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_eeId.Properties)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_cusName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_eeId.Properties)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -856,5 +1070,22 @@
         private DevExpress.XtraEditors.TextEdit txt_eeId;
         private DevExpress.XtraEditors.DateEdit dte_date;
         private DevExpress.XtraEditors.TextEdit txt_exportId;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private DevExpress.XtraEditors.DateEdit dateEdit3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.BindingSource bds_VatTu;
+        private DSTableAdapters.VatTuTableAdapter tbla_VatTu;
+        private System.Windows.Forms.ComboBox cbb_product;
+        private DevExpress.XtraEditors.TextEdit txt_price;
+        private DevExpress.XtraEditors.TextEdit txt_quantity;
     }
 }

@@ -37,7 +37,6 @@
             this.btn_save = new DevExpress.XtraBars.BarButtonItem();
             this.btn_undo = new DevExpress.XtraBars.BarButtonItem();
             this.btn_reload = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -103,8 +102,7 @@
             // barmngr_employee
             // 
             this.barmngr_employee.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barmngr_employee.DockControls.Add(this.barDockControlTop);
             this.barmngr_employee.DockControls.Add(this.barDockControlBottom);
             this.barmngr_employee.DockControls.Add(this.barDockControlLeft);
@@ -121,7 +119,6 @@
             this.btn_exit});
             this.barmngr_employee.MainMenu = this.bar2;
             this.barmngr_employee.MaxItemId = 8;
-            this.barmngr_employee.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -189,18 +186,6 @@
             this.btn_reload.Name = "btn_reload";
             this.btn_reload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_reload_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -213,9 +198,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 539);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 559);
             this.barDockControlBottom.Manager = this.barmngr_employee;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1877, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1877, 0);
             // 
             // barDockControlLeft
             // 
@@ -223,7 +208,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barmngr_employee;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 509);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 529);
             // 
             // barDockControlRight
             // 
@@ -231,7 +216,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1877, 30);
             this.barDockControlRight.Manager = this.barmngr_employee;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 509);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 529);
             // 
             // btn_list
             // 
@@ -470,7 +455,7 @@
             this.gdc_Kho.MainView = this.gridView1;
             this.gdc_Kho.MenuManager = this.barmngr_employee;
             this.gdc_Kho.Name = "gdc_Kho";
-            this.gdc_Kho.Size = new System.Drawing.Size(1877, 333);
+            this.gdc_Kho.Size = new System.Drawing.Size(1877, 353);
             this.gdc_Kho.TabIndex = 6;
             this.gdc_Kho.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -599,7 +584,6 @@
         private DevExpress.XtraBars.BarButtonItem btn_undo;
         private DevExpress.XtraBars.BarButtonItem btn_reload;
         private DevExpress.XtraBars.BarButtonItem btn_exit;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

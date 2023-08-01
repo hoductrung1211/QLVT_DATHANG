@@ -264,6 +264,18 @@
   <ItemGroup>
     <None Include="Resources\portrait.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\travel_car.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bo_order_item.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\neworder.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bo_department.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

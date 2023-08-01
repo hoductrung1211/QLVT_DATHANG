@@ -37,7 +37,6 @@
             this.btn_save = new DevExpress.XtraBars.BarButtonItem();
             this.btn_undo = new DevExpress.XtraBars.BarButtonItem();
             this.btn_reload = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -96,8 +95,7 @@
             // barmngr_employee
             // 
             this.barmngr_employee.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barmngr_employee.DockControls.Add(this.barDockControlTop);
             this.barmngr_employee.DockControls.Add(this.barDockControlBottom);
             this.barmngr_employee.DockControls.Add(this.barDockControlLeft);
@@ -114,7 +112,6 @@
             this.btn_exit});
             this.barmngr_employee.MainMenu = this.bar2;
             this.barmngr_employee.MaxItemId = 8;
-            this.barmngr_employee.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -182,18 +179,6 @@
             this.btn_reload.Name = "btn_reload";
             this.btn_reload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_reload_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -206,9 +191,9 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 636);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 656);
             this.barDockControlBottom.Manager = this.barmngr_employee;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1940, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1940, 0);
             // 
             // barDockControlLeft
             // 
@@ -216,7 +201,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barmngr_employee;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 606);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 626);
             // 
             // barDockControlRight
             // 
@@ -224,7 +209,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1940, 30);
             this.barDockControlRight.Manager = this.barmngr_employee;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 606);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 626);
             // 
             // btn_list
             // 
@@ -279,6 +264,8 @@
             this.spe_count.Properties.Appearance.Options.UseFont = true;
             this.spe_count.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spe_count.Properties.DisplayFormat.FormatString = "n0";
+            this.spe_count.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spe_count.Size = new System.Drawing.Size(280, 28);
             this.spe_count.TabIndex = 4;
             // 
@@ -432,7 +419,7 @@
             this.gdc_VatTu.MainView = this.gridView1;
             this.gdc_VatTu.MenuManager = this.barmngr_employee;
             this.gdc_VatTu.Name = "gdc_VatTu";
-            this.gdc_VatTu.Size = new System.Drawing.Size(1940, 514);
+            this.gdc_VatTu.Size = new System.Drawing.Size(1940, 534);
             this.gdc_VatTu.TabIndex = 15;
             this.gdc_VatTu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -556,7 +543,6 @@
         private DevExpress.XtraBars.BarButtonItem btn_save;
         private DevExpress.XtraBars.BarButtonItem btn_undo;
         private DevExpress.XtraBars.BarButtonItem btn_reload;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
