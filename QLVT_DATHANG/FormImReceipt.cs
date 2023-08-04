@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -38,17 +39,7 @@ namespace QLVT_DATHANG
             cbb_DDH.DropDownStyle = ComboBoxStyle.DropDownList;
             dte_date.Properties.EditMask = "dd/MM/yyyy";
             dte_date.Properties.UseMaskAsDisplayFormat = true;
-            dte_date.ReadOnly = true;
-
-            cbb_product.DropDownStyle = ComboBoxStyle.DropDownList;
-            txt_price.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_price.Properties.DisplayFormat.FormatString = "n0";
-            txt_price.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_price.Properties.EditFormat.FormatString = "n0";
-            txt_quantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_quantity.Properties.DisplayFormat.FormatString = "n0";
-            txt_quantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_quantity.Properties.EditFormat.FormatString = "n0";
+            dte_date.ReadOnly = true; 
 
             // Group control Phieu Nhap
             colMaPN.OptionsColumn.AllowEdit = false;
@@ -61,10 +52,18 @@ namespace QLVT_DATHANG
             colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
 
             // Grid view CTPN
-            colCTPNMaPN.ReadOnly = true;    colCTPNMaPN.HeaderText = "Mã Phiếu Nhập";
-            colCTPNMaVT.ReadOnly = true;    colCTPNMaVT.HeaderText = "Mã Vật Tư";
-            colCTPNSoLuong.ReadOnly = true; colCTPNSoLuong.HeaderText = "Số Lượng";
-            colCTPNDonGia.ReadOnly = true;  colCTPNDonGia.HeaderText = "Đơn Giá";
+            colCTPNMaPN.HeaderText = "Mã Phiếu Nhập"; colCTPNVatTu.Width = 200;
+            colCTPNVatTu.HeaderText = "Vật tư"; colCTPNVatTu.Width = 280;
+            colCTPNSoLuong.HeaderText = "Số Lượng"; colCTPNSoLuong.Width = 200;
+            colCTPNDonGia.HeaderText = "Đơn Giá"; colCTPNDonGia.Width = 200; 
+            
+            gdv_CTPN.AllowUserToAddRows = false;
+
+            // Context menu strip
+            ms_delete.Visible = false;
+            ms_cancel.Visible = false;
+
+             
         }
 
         private void TurnOnEditingState()
@@ -172,15 +171,19 @@ namespace QLVT_DATHANG
             }
             catch { }
 
-            // 
+            // Group info
             txt_importId.ReadOnly = false;
             dte_date.Enabled = false;
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
 
-            // Special 
+            // Special - Cannot Add if there is no Order 
             if (bds_DDH_Chua_Nhap.Count == 0)
                 btn_add.Enabled = false;
+
+            // Context menu strip
+            ms_delete.Visible = true;
+            ms_cancel.Visible = true;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -260,6 +263,8 @@ namespace QLVT_DATHANG
             }
 
             TurnOffEditingState();
+            ms_cancel.Visible = false;
+            ms_delete.Visible = false;
 
             // Special 
             tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap);
@@ -277,11 +282,12 @@ namespace QLVT_DATHANG
                 if (res)
                     bds_PhieuNhap.Remove(NewRow);
                 IsAdding = false;
+                bds_PhieuNhap.Position = RowIndex;
+
+                ms_cancel.Visible = false;
+                ms_delete.Visible = false;
             }
             cbb_DDH.Enabled = true;
-
-            if (btn_add.Enabled == false) // When adding the Row Position points to the last row
-                bds_PhieuNhap.Position = RowIndex;
 
             TurnOffEditingState();
         }
@@ -338,24 +344,55 @@ namespace QLVT_DATHANG
             this.tbla_DSNV.Fill(this.DS.DsNV);
         }
 
-        private void ms_add_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ms_save_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ms_delete_Click(object sender, EventArgs e)
         {
-
+            if (bds_CTPN.Count > 0)
+            {
+                bds_CTPN.RemoveCurrent();
+            }
         }
 
         private void ms_cancel_Click(object sender, EventArgs e)
         {
+            FillCTPNBasedOnCTDDH();
+        }
 
+        private void FillCTPNBasedOnCTDDH() // It took me 3 hours
+        {
+            var count = bds_CTPN.Count;
+            for (int i = 0; i < count; i++)
+            {
+                bds_CTPN.Position = 0;
+                bds_CTPN.RemoveCurrent(); 
+            } 
+
+            var maSoDDH = cbb_DDH.SelectedValue;
+            Program.Reader = 
+                Program.ExecSqlDataReader($@"
+                    SELECT MaVT, SoLuong, DonGia 
+                    FROM CTDDH 
+                    WHERE MaSoDDH = '{maSoDDH}'"
+                );
+
+            if (Program.Reader.HasRows)
+            { 
+                while (Program.Reader.Read())
+                {
+                    DataRowView newRow = (DataRowView)bds_CTPN.AddNew(); 
+                    newRow[1] = Program.Reader["MaVT"];
+                    newRow[2] = Program.Reader["SoLuong"];
+                    newRow[3] = Program.Reader["DonGia"];
+                    bds_CTPN.EndEdit();
+                }
+            }
+            Program.Reader.Close();
+        }
+        private void cbb_DDH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (IsAdding)
+            {
+                FillCTPNBasedOnCTDDH();
+            }
         }
     }
 }

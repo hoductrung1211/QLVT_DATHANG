@@ -796,8 +796,7 @@
             // FormOrder
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1938, 760);
             this.Controls.Add(this.gdc_DatHang);
             this.Controls.Add(this.panelControl1);

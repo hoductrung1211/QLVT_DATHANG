@@ -25,6 +25,8 @@ namespace QLVT_DATHANG
         private object NewDDHRow;
         private bool IsAdding = false;
         private FormState CurrentState = FormState.Reading;
+        private string SP_CheckDDHHasPhieuNhap = "SP_CheckDDHHasPhieuNhap";
+
         public FormOrder()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace QLVT_DATHANG
 
         private void SetUpUIConstraints()
         {
+            this.AutoScaleMode = AutoScaleMode.None;
             // Bar Manager
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
@@ -230,14 +233,17 @@ namespace QLVT_DATHANG
             {
                 gdv_CTDDH.EndEdit();
                 // bds_CTDDH.EndEdit();
-                var txt = "";
+                
                 // Check CTDDH
-                MessageBox.Show(bds_CTDDH.List.Count.ToString());
-                foreach (DataRowView item in bds_CTDDH)
+                // MessageBox.Show(bds_CTDDH.List.Count.ToString());
+                if (bds_CTDDH.List.Count == 0)
                 {
-                    txt += $"\n--{item[0]}--{item[1]}--{item[2]}--{item[3]}";
-                    // txt += $"\n--{item["MaSoDDH"]}--{item["MaVT"]}--{item["SoLuong"]}--{item["DonGia"]}";
-                    // item["MaSoDDH"] = txt_orderId.Text;
+                    MessageBox.Show("Khi thêm Đơn đặt hàng không được để trống Chi tiết Đơn đặt hàng. Vui lòng nhập lại!", "Lỗi nhập liệu");
+                    return;
+                }
+
+                foreach (DataRowView item in bds_CTDDH)
+                { 
                     if (item["MaVT"].ToString().Trim() == "")
                     {
                         MessageBox.Show("Vật tư trong Chi tiết phiếu nhập không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
@@ -254,9 +260,6 @@ namespace QLVT_DATHANG
                         return;
                     }
                 }
-                 
-                MessageBox.Show(txt);
-                // return;
 
                 // Update on database
                 tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
@@ -425,5 +428,13 @@ namespace QLVT_DATHANG
             bds_DatHang.EndEdit();
             bds_DatHang.ResetCurrentItem();
         }
+
+        private bool CheckDDHHasPhieuNhap()
+        {
+            var currentRow = (DataRowView) bds_DatHang.Current;
+            MessageBox.Show(currentRow["MaSoDDH"].ToString());
+            return true;
+        }
+         
     }
 }

@@ -112,7 +112,7 @@ namespace QLVT_DATHANG
 
             return true;
         }
-        private bool IsExistInNewBranch()
+        private bool IsEEExistInNewBranch()
         {  
             // Command
             var checkCommand = new SqlCommand(SP_CheckEEExist)
@@ -222,7 +222,7 @@ namespace QLVT_DATHANG
 
             try
             {
-                if (!IsExistInNewBranch())
+                if (!IsEEExistInNewBranch())
                     return;
             }
             catch { }

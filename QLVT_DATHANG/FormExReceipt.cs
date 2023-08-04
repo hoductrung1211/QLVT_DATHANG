@@ -43,17 +43,7 @@ namespace QLVT_DATHANG
             colMaNV.OptionsColumn.AllowEdit = false;
             colMaKho.OptionsColumn.AllowEdit = false;
             colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
-
-            cbb_product.DropDownStyle = ComboBoxStyle.DropDownList;
-            txt_price.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_price.Properties.DisplayFormat.FormatString = "n0";
-            txt_price.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_price.Properties.EditFormat.FormatString = "n0";
-            txt_quantity.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_quantity.Properties.DisplayFormat.FormatString = "n0";
-            txt_quantity.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txt_quantity.Properties.EditFormat.FormatString = "n0";
+            colNgay.DisplayFormat.FormatString = "dd/MM/yyyy"; 
 
             // Grid view CTPX
             colCTPXMaPX.ReadOnly = true; colCTPXMaPX.HeaderText = "Mã Phiếu Xuất";  colCTPXMaPX.Width = 220;
