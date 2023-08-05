@@ -54,6 +54,8 @@
             this.cms_CTPN = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_reload = new System.Windows.Forms.ToolStripMenuItem();
             this.bds_CTPN = new System.Windows.Forms.BindingSource(this.components);
             this.bds_PhieuNhap = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -77,6 +79,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cbb_DDH = new System.Windows.Forms.ComboBox();
+            this.bds_DDH_Chua_Nhap = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbb_fullname = new System.Windows.Forms.ComboBox();
@@ -91,7 +94,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_importId = new DevExpress.XtraEditors.TextEdit();
-            this.bds_DDH_Chua_Nhap = new System.Windows.Forms.BindingSource(this.components);
             this.tbla_DDH_Chua_Nhap = new QLVT_DATHANG.DSTableAdapters.DDH_Chua_NhapTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANG.DSTableAdapters.TableAdapterManager();
             this.tbla_PhieuNhap = new QLVT_DATHANG.DSTableAdapters.PhieuNhapTableAdapter();
@@ -131,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties.CalendarTimeProperties)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DDH_Chua_Nhap)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).BeginInit();
             this.panel1.SuspendLayout();
@@ -139,7 +142,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_importId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_DDH_Chua_Nhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdc_PhieuNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -313,6 +315,7 @@
             this.colCTPNMaPN.HeaderText = "MaPN";
             this.colCTPNMaPN.MinimumWidth = 6;
             this.colCTPNMaPN.Name = "colCTPNMaPN";
+            this.colCTPNMaPN.ReadOnly = true;
             this.colCTPNMaPN.Width = 220;
             // 
             // colCTPNVatTu
@@ -358,9 +361,11 @@
             this.cms_CTPN.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cms_CTPN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ms_delete,
-            this.ms_cancel});
+            this.ms_cancel,
+            this.ms_save,
+            this.ms_reload});
             this.cms_CTPN.Name = "cms_CTPN";
-            this.cms_CTPN.Size = new System.Drawing.Size(152, 52);
+            this.cms_CTPN.Size = new System.Drawing.Size(152, 100);
             // 
             // ms_delete
             // 
@@ -375,6 +380,20 @@
             this.ms_cancel.Size = new System.Drawing.Size(151, 24);
             this.ms_cancel.Text = "Hoàn tác";
             this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
+            // 
+            // ms_save
+            // 
+            this.ms_save.Name = "ms_save";
+            this.ms_save.Size = new System.Drawing.Size(151, 24);
+            this.ms_save.Text = "Ghi";
+            this.ms_save.Click += new System.EventHandler(this.ms_save_Click);
+            // 
+            // ms_reload
+            // 
+            this.ms_reload.Name = "ms_reload";
+            this.ms_reload.Size = new System.Drawing.Size(151, 24);
+            this.ms_reload.Text = "Reload";
+            this.ms_reload.Click += new System.EventHandler(this.ms_reload_Click);
             // 
             // bds_CTPN
             // 
@@ -597,7 +616,7 @@
             // cbb_DDH
             // 
             this.cbb_DDH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_PhieuNhap, "MaSoDDH", true));
-            this.cbb_DDH.DataSource = this.bds_PhieuNhap;
+            this.cbb_DDH.DataSource = this.bds_DDH_Chua_Nhap;
             this.cbb_DDH.DisplayMember = "MaSoDDH";
             this.cbb_DDH.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbb_DDH.FormattingEnabled = true;
@@ -607,6 +626,11 @@
             this.cbb_DDH.TabIndex = 8;
             this.cbb_DDH.ValueMember = "MaSoDDH";
             this.cbb_DDH.SelectedIndexChanged += new System.EventHandler(this.cbb_DDH_SelectedIndexChanged);
+            // 
+            // bds_DDH_Chua_Nhap
+            // 
+            this.bds_DDH_Chua_Nhap.DataMember = "DDH_Chua_Nhap";
+            this.bds_DDH_Chua_Nhap.DataSource = this.DS;
             // 
             // label6
             // 
@@ -755,11 +779,7 @@
             this.txt_importId.Properties.Appearance.Options.UseFont = true;
             this.txt_importId.Size = new System.Drawing.Size(280, 28);
             this.txt_importId.TabIndex = 15;
-            // 
-            // bds_DDH_Chua_Nhap
-            // 
-            this.bds_DDH_Chua_Nhap.DataMember = "DDH_Chua_Nhap";
-            this.bds_DDH_Chua_Nhap.DataSource = this.DS;
+            this.txt_importId.Leave += new System.EventHandler(this.txt_importId_Leave);
             // 
             // tbla_DDH_Chua_Nhap
             // 
@@ -918,6 +938,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dte_date.Properties)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_DDH_Chua_Nhap)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).EndInit();
@@ -930,7 +951,6 @@
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_importId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_DDH_Chua_Nhap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gdc_PhieuNhap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -1017,5 +1037,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn colCTPNVatTu;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTPNSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTPNDonGia;
+        private System.Windows.Forms.ToolStripMenuItem ms_save;
+        private System.Windows.Forms.ToolStripMenuItem ms_reload;
     }
 }

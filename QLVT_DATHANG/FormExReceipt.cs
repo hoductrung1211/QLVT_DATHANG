@@ -46,10 +46,14 @@ namespace QLVT_DATHANG
             colNgay.DisplayFormat.FormatString = "dd/MM/yyyy"; 
 
             // Grid view CTPX
-            colCTPXMaPX.ReadOnly = true; colCTPXMaPX.HeaderText = "Mã Phiếu Xuất";  colCTPXMaPX.Width = 220;
-            colCTPXMaVT.ReadOnly = true; colCTPXMaVT.HeaderText = "Mã Vật Tư";      colCTPXMaVT.Width = 220;
-            colCTPXSoLuong.ReadOnly = true; colCTPXSoLuong.HeaderText = "Số Lượng"; colCTPXSoLuong.Width = 220;
-            colCTPXDonGia.ReadOnly = true; colCTPXDonGia.HeaderText = "Đơn Giá";    colCTPXDonGia.Width = 220;
+            //colCTPXMaPX.ReadOnly = true; 
+            colCTPXMaPX.HeaderText = "Mã Phiếu Xuất";  colCTPXMaPX.Width = 220;
+            //colCTPXMaVT.ReadOnly = true; 
+            colCTPXMaVT.HeaderText = "Mã Vật Tư";      colCTPXMaVT.Width = 220;
+            //colCTPXSoLuong.ReadOnly = true; 
+            colCTPXSoLuong.HeaderText = "Số Lượng"; colCTPXSoLuong.Width = 220;
+            //colCTPXDonGia.ReadOnly = true; 
+            colCTPXDonGia.HeaderText = "Đơn Giá";    colCTPXDonGia.Width = 220;
 
             
         }
@@ -301,6 +305,18 @@ namespace QLVT_DATHANG
             }
             catch { }
         }
-         
+
+        private void endEditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bds_CTPX.EndEdit();
+        }
+
+        private void ms_addNew_Click(object sender, EventArgs e)
+        {
+            var newRow = (DataRowView)bds_CTPX.AddNew();
+            newRow[1] = "IP02";
+            newRow[2] = "1";
+            newRow[3] = "2";
+        }
     }
 }

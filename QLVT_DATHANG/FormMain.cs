@@ -50,7 +50,7 @@ namespace QLVT_DATHANG
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadLoginForm();
-            
+
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;

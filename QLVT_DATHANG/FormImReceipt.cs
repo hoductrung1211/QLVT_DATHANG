@@ -17,9 +17,17 @@ namespace QLVT_DATHANG
 {
     public partial class FormImReceipt : DevExpress.XtraEditors.XtraForm
     {
-        public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
-        public object NewRow;
-        public bool IsAdding = false;
+        private int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
+        private object NewRow; 
+        private string SP_CheckMaPNExist = "SP_CheckMaPNExist";
+        private enum FormState
+        {
+            Reading = 0,
+            Adding = 1,
+            Editing = 2,
+        }
+        private FormState State = FormState.Reading;
+        private string SP_DeletePhieuNhap = "SP_DeletePhieuNhap";
         public FormImReceipt()
         {
             InitializeComponent();
@@ -62,7 +70,6 @@ namespace QLVT_DATHANG
             // Context menu strip
             ms_delete.Visible = false;
             ms_cancel.Visible = false;
-
              
         }
 
@@ -82,7 +89,7 @@ namespace QLVT_DATHANG
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
-            IsAdding = false;
+            State = FormState.Reading;
 
             // Special of Import Receipt
             cbb_DDH.DataSource = bds_PhieuNhap;
@@ -133,7 +140,6 @@ namespace QLVT_DATHANG
             // Special 
             if (bds_DDH_Chua_Nhap.Count == 0)
                 btn_add.Enabled = false;
-            
         }
 
         private void cbb_fullname_SelectedIndexChanged(object sender, EventArgs e)
@@ -159,11 +165,15 @@ namespace QLVT_DATHANG
         {
             TurnOnEditingState();
             NewRow = bds_PhieuNhap.AddNew();
-            IsAdding = true;
+            State = FormState.Adding;
 
-            cbb_DDH.DataSource = bds_DDH_Chua_Nhap;
-            cbb_DDH.DisplayMember = "MaSoDDH";
-            cbb_DDH.ValueMember = "MaSoDDH";
+            //cbb_DDH.DataSource = bds_DDH_Chua_Nhap;
+            //cbb_DDH.DisplayMember = "MaSoDDH";
+            //cbb_DDH.ValueMember = "MaSoDDH";
+            cbb_DDH.SelectedIndex = 0;
+            ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
+
+
             try
             {
                 if (cbb_DDH.Items.Count > 0)
@@ -201,16 +211,31 @@ namespace QLVT_DATHANG
             var deleteConfirm = MessageBox.Show("Bạn chắc chắc muốn xóa Phiếu nhập này?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
             {
+                var execDeletePNCommand = new SqlCommand(SP_DeletePhieuNhap)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    Connection = Program.Connection,
+                };
+
+                string maPN = ((DataRowView)bds_PhieuNhap.Current)["MaPN"].ToString();
+                execDeletePNCommand.Parameters.AddWithValue("@MaPN", maPN);
+
                 try
                 {
-                    var idData = ((DataRowView)bds_PhieuNhap[bds_PhieuNhap.Position])["MaPN"].ToString();
-                    ImReceiptId = idData; // Store Receipt ID to roll back to this Employee position
-                    bds_PhieuNhap.RemoveCurrent();
+                    // var idData = ((DataRowView)bds_PhieuNhap[bds_PhieuNhap.Position])["MaPN"].ToString();
+                    // ImReceiptId = idData; // Store Receipt ID to roll back to this Employee position
+                    // bds_PhieuNhap.RemoveCurrent();
 
-                    tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
-                    tbla_PhieuNhap.Update(DS.PhieuNhap);
+                    // tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+                    // tbla_PhieuNhap.Update(DS.PhieuNhap);
+                    if (Program.Connection.State == ConnectionState.Closed)
+                        Program.Connection.Open();
 
-                    
+                    execDeletePNCommand.ExecuteNonQuery();
+                    Program.Connection.Close();
+
+                    // bds_PhieuNhap.RemoveCurrent();
+                    tbla_PhieuNhap.Fill(DS.PhieuNhap);
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
@@ -222,11 +247,53 @@ namespace QLVT_DATHANG
             }
 
             // Special -> Because it's always greater than 0
-            tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap);
+            tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap); 
             btn_add.Enabled = true;
+        }
+        
+        private bool CheckMaPNExist(string MaPN) // true -> Exist / false -> Haven't Existed yet
+        {
+            var checkCommand = new SqlCommand(SP_CheckMaPNExist)
+            {
+                CommandType = CommandType.StoredProcedure,
+                Connection = Program.Connection,
+                Parameters =
+                {
+                    new SqlParameter()
+                    {
+                        ParameterName = "@MaPN",
+                        Value = MaPN
+                    }
+                }
+            };
+
+            var paramCheckExist = checkCommand.Parameters.Add("@Result", SqlDbType.Int);
+            paramCheckExist.Direction = ParameterDirection.ReturnValue;
+
+            try
+            {
+                if (Program.Connection.State == ConnectionState.Closed)
+                    Program.Connection.Open();
+                checkCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Program.Connection.Close();
+                MessageBox.Show(ex.Message);
+                throw ex;
+            }
+            finally
+            {
+                Program.Connection.Close();
+            }
+
+            if ((int)paramCheckExist.Value > 0)
+                return true;
+            return false;
         }
 
         private void btn_save_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        // This is just for Adding
         {
             if (txt_importId.Text.Trim() == "")
             {
@@ -247,26 +314,54 @@ namespace QLVT_DATHANG
                 return;
             } 
             // Have to check this PhieuNhap whether has any CTPNs?
-
+            if (bds_CTPN.Count == 0)
+            {
+                MessageBox.Show("Chi tiết Phiếu nhập trống! Không thể tạo Phiếu Nhập!\nVui lòng thêm Chi tiết Phiếu", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                cbb_whsname.Focus();
+                return;
+            }
+             
+            if (CheckMaPNExist(txt_importId.Text.Trim()))
+            {
+                MessageBox.Show("Mã phiếu nhập đã tồn tại! Vui lòng nhập lại!", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                txt_importId.Focus();
+                return;
+            }
+             
             try
             {
                 bds_PhieuNhap.EndEdit();
                 bds_PhieuNhap.ResetCurrentItem();
-
                 tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
                 tbla_PhieuNhap.Update(DS.PhieuNhap);
-            }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show("Xảy ra lỗi khi thêm Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
-
+            
+            //if (bds_CTPN.Count == 0)
+            //{
+            //    // MessageBox.Show("bds_CTPN is null now");
+            //    // FillCTPNBasedOnCTDDH();
+            //    bds_CTPN.CancelEdit();
+            //}
+            try
+                {
+                    tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
+                    tbla_CTPN.Update(DS.CTPN);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Xảy ra lỗi khi thêm Chi tiết Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
             TurnOffEditingState();
             ms_cancel.Visible = false;
             ms_delete.Visible = false;
 
-            // Special 
+            // Special - Unable Add button when there is no DDH available
             tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap);
             var ds = DS.DDH_Chua_Nhap as DataTable;
             if (ds.Rows.Count == 0)
@@ -276,19 +371,22 @@ namespace QLVT_DATHANG
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bds_PhieuNhap.CancelEdit();
-            if (IsAdding)
+
+            if (State == FormState.Adding)
             {
                 var res = bds_PhieuNhap.Contains(NewRow);
                 if (res)
                     bds_PhieuNhap.Remove(NewRow);
-                IsAdding = false;
                 bds_PhieuNhap.Position = RowIndex;
-
                 ms_cancel.Visible = false;
                 ms_delete.Visible = false;
+
+                //cbb_DDH.DataSource = bds_PhieuNhap;
+                //cbb_DDH.DisplayMember = "MaSoDDH";
+                //cbb_DDH.ValueMember = "MaSoDDH";
             }
             cbb_DDH.Enabled = true;
-
+            State = FormState.Reading;
             TurnOffEditingState();
         }
 
@@ -363,7 +461,7 @@ namespace QLVT_DATHANG
             for (int i = 0; i < count; i++)
             {
                 bds_CTPN.Position = 0;
-                bds_CTPN.RemoveCurrent(); 
+                bds_CTPN.RemoveCurrent();
             } 
 
             var maSoDDH = cbb_DDH.SelectedValue;
@@ -378,21 +476,52 @@ namespace QLVT_DATHANG
             { 
                 while (Program.Reader.Read())
                 {
-                    DataRowView newRow = (DataRowView)bds_CTPN.AddNew(); 
+                    DataRowView newRow = (DataRowView)bds_CTPN.AddNew();
+                    newRow[0] = txt_importId.Text;
                     newRow[1] = Program.Reader["MaVT"];
                     newRow[2] = Program.Reader["SoLuong"];
                     newRow[3] = Program.Reader["DonGia"];
                     bds_CTPN.EndEdit();
                 }
             }
-            Program.Reader.Close();
+            Program.Reader.Close(); 
         }
         private void cbb_DDH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsAdding)
+            if (State == FormState.Adding)
             {
+                // ((DataRowView)bds_PhieuNhap[bds_PhieuNhap.Position])["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
+                ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
                 FillCTPNBasedOnCTDDH();
             }
+        }
+
+        private void txt_importId_Leave(object sender, EventArgs e)
+        {
+            bds_PhieuNhap.EndEdit();
+            bds_PhieuNhap.ResetCurrentItem();
+
+            FillCTPNBasedOnCTDDH(); 
+        }
+
+        private void ms_save_Click(object sender, EventArgs e)
+        {
+            // When Reading
+            gdv_CTPN.EndEdit();
+
+            // BindingSource doesnot work! It just works when using DataGridView.EndEdit()
+            // bds_CTPN.EndEdit();
+            // bds_CTPN.ResetCurrentItem();
+
+            tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
+            tbla_CTPN.Update(DS.CTPN);
+        }
+
+        private void ms_reload_Click(object sender, EventArgs e)
+        {
+            // When Reading
+            bds_CTPN.CancelEdit();
+            gdv_CTPN.EndEdit();
         }
     }
 }

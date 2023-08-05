@@ -23,9 +23,7 @@ namespace QLVT_DATHANG
         }
         private int RowDatHangIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         private object NewDDHRow;
-        private bool IsAdding = false;
-        private FormState CurrentState = FormState.Reading;
-        private string SP_CheckDDHHasPhieuNhap = "SP_CheckDDHHasPhieuNhap";
+        private FormState CurrentState = FormState.Reading; 
 
         public FormOrder()
         {
@@ -89,7 +87,6 @@ namespace QLVT_DATHANG
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
-            IsAdding = false;
 
             // Special
             txt_orderId.ReadOnly = false;
@@ -136,7 +133,6 @@ namespace QLVT_DATHANG
             TurnOnEditingState();
             NewDDHRow = bds_DatHang.AddNew();
             RowDatHangIndex = bds_DatHang.Position;
-            IsAdding = true;
             CurrentState = FormState.Adding;
             //  
             dte_date.Enabled = false;
@@ -296,17 +292,13 @@ namespace QLVT_DATHANG
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bds_DatHang.CancelEdit();
-            if (IsAdding)
+            if (CurrentState == FormState.Adding)
             {
                 var res = bds_DatHang.Contains(NewDDHRow);
                 if (res)
                     bds_DatHang.Remove(NewDDHRow);
-                IsAdding = false;
-            }
-
-
-            if (btn_add.Enabled == false) // When adding the Row Position points to the last row
                 bds_DatHang.Position = RowDatHangIndex;
+            }
 
             // ManagerStatus
             ms_save.Visible = true;
@@ -428,13 +420,7 @@ namespace QLVT_DATHANG
             bds_DatHang.EndEdit();
             bds_DatHang.ResetCurrentItem();
         }
-
-        private bool CheckDDHHasPhieuNhap()
-        {
-            var currentRow = (DataRowView) bds_DatHang.Current;
-            MessageBox.Show(currentRow["MaSoDDH"].ToString());
-            return true;
-        }
+         
          
     }
 }

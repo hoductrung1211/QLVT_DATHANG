@@ -76,7 +76,6 @@
             this.cbb_whsname = new System.Windows.Forms.ComboBox();
             this.bds_Kho = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
-            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
             this.panel9 = new System.Windows.Forms.Panel();
             this.txt_whsId = new DevExpress.XtraEditors.TextEdit();
             this.label9 = new System.Windows.Forms.Label();
@@ -93,8 +92,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_exportId = new DevExpress.XtraEditors.TextEdit();
+            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
             this.tbla_DSNV = new QLVT_DATHANG.DSTableAdapters.DS_NVTableAdapter();
             this.tbla_VatTu = new QLVT_DATHANG.DSTableAdapters.VatTuTableAdapter();
+            this.cms_CTPX = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ms_endEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_addNew = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).BeginInit();
@@ -114,7 +117,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_cusName.Properties)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).BeginInit();
             this.panel6.SuspendLayout();
@@ -126,6 +128,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
+            this.cms_CTPX.SuspendLayout();
             this.SuspendLayout();
             // 
             // barmngr_employee
@@ -388,6 +392,7 @@
             this.colCTPXMaVT,
             this.colCTPXSoLuong,
             this.colCTPXDonGia});
+            this.gdv_CTPX.ContextMenuStrip = this.cms_CTPX;
             this.gdv_CTPX.DataSource = this.bds_CTPX;
             this.gdv_CTPX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gdv_CTPX.Location = new System.Drawing.Point(942, 2);
@@ -567,11 +572,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Tên Kho";
             // 
-            // bds_VatTu
-            // 
-            this.bds_VatTu.DataMember = "VatTu";
-            this.bds_VatTu.DataSource = this.DS;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.txt_whsId);
@@ -735,6 +735,11 @@
             this.txt_exportId.Size = new System.Drawing.Size(280, 28);
             this.txt_exportId.TabIndex = 18;
             // 
+            // bds_VatTu
+            // 
+            this.bds_VatTu.DataMember = "VatTu";
+            this.bds_VatTu.DataSource = this.DS;
+            // 
             // tbla_DSNV
             // 
             this.tbla_DSNV.ClearBeforeFill = true;
@@ -742,6 +747,29 @@
             // tbla_VatTu
             // 
             this.tbla_VatTu.ClearBeforeFill = true;
+            // 
+            // cms_CTPX
+            // 
+            this.cms_CTPX.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cms_CTPX.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ms_endEdit,
+            this.ms_addNew});
+            this.cms_CTPX.Name = "cms_CTPX";
+            this.cms_CTPX.Size = new System.Drawing.Size(211, 80);
+            // 
+            // ms_endEdit
+            // 
+            this.ms_endEdit.Name = "ms_endEdit";
+            this.ms_endEdit.Size = new System.Drawing.Size(210, 24);
+            this.ms_endEdit.Text = "EndEdit";
+            this.ms_endEdit.Click += new System.EventHandler(this.endEditToolStripMenuItem_Click);
+            // 
+            // ms_addNew
+            // 
+            this.ms_addNew.Name = "ms_addNew";
+            this.ms_addNew.Size = new System.Drawing.Size(210, 24);
+            this.ms_addNew.Text = "AddNew";
+            this.ms_addNew.Click += new System.EventHandler(this.ms_addNew_Click);
             // 
             // FormExReceipt
             // 
@@ -782,7 +810,6 @@
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_Kho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_whsId.Properties)).EndInit();
@@ -799,6 +826,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
+            this.cms_CTPX.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -872,5 +901,8 @@
         private DevExpress.XtraEditors.TextEdit txt_exportId;
         private System.Windows.Forms.BindingSource bds_VatTu;
         private DSTableAdapters.VatTuTableAdapter tbla_VatTu;
+        private System.Windows.Forms.ContextMenuStrip cms_CTPX;
+        private System.Windows.Forms.ToolStripMenuItem ms_endEdit;
+        private System.Windows.Forms.ToolStripMenuItem ms_addNew;
     }
 }
