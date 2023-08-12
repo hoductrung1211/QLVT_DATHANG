@@ -40,12 +40,12 @@ namespace QLVT_DATHANG
 
         private void SetUpUIConstraints()
         {
+            // Group Control
             this.AutoScaleMode = AutoScaleMode.None;
-            // Bar Manager
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
 
-            // Group Control Infor
+            // Group Control format & type
             gpc_info.Enabled = false;
             cbb_fullname.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -53,7 +53,7 @@ namespace QLVT_DATHANG
             dte_date.Properties.EditMask = "dd/MM/yyyy";
             dte_date.Properties.UseMaskAsDisplayFormat = true;
 
-            // Group control Phieu Nhap
+            // GridView Phieu Nhap
             colMaSoDDH.OptionsColumn.AllowEdit = false; colMaSoDDH.Caption = "Mã Đơn đặt hàng";
             colNgay.OptionsColumn.AllowEdit = false; colNgay.Caption = "Mã Ngày";
             colNhaCC.OptionsColumn.AllowEdit = false; colNhaCC.Caption = "Mã Nhà Cung cấp";
@@ -134,7 +134,7 @@ namespace QLVT_DATHANG
             NewDDHRow = bds_DatHang.AddNew();
             RowDatHangIndex = bds_DatHang.Position;
             CurrentState = FormState.Adding;
-            //  
+            //  Date Edit Now
             dte_date.Enabled = false;
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -151,9 +151,7 @@ namespace QLVT_DATHANG
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            // 1. Check wheather this Employee can be deleted
-            // A row can not be deleted if it's referenced to another Table (it's a FK)
+        { 
             string OrderId = "";
 
             var deleteConfirm = MessageBox.Show("Đơn đặt hàng sẽ bị xóa vĩnh viễn, bạn có muốn xóa?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
@@ -228,10 +226,7 @@ namespace QLVT_DATHANG
             else if (CurrentState == FormState.Adding)
             {
                 gdv_CTDDH.EndEdit();
-                // bds_CTDDH.EndEdit();
                 
-                // Check CTDDH
-                // MessageBox.Show(bds_CTDDH.List.Count.ToString());
                 if (bds_CTDDH.List.Count == 0)
                 {
                     MessageBox.Show("Khi thêm Đơn đặt hàng không được để trống Chi tiết Đơn đặt hàng. Vui lòng nhập lại!", "Lỗi nhập liệu");
@@ -420,7 +415,5 @@ namespace QLVT_DATHANG
             bds_DatHang.EndEdit();
             bds_DatHang.ResetCurrentItem();
         }
-         
-         
     }
 }
