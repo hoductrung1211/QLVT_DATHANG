@@ -2,7 +2,7 @@
 {
 
 
-    partial class DSEmployee
+    partial class DS
     {
     }
 }

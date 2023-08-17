@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using QLVT_DATHANG.DSEmployeeTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +15,7 @@ namespace QLVT_DATHANG
     {
         public static int RowIndex = 0;
         public static object NewRow;
+        public bool IsAdding = false;
         public FormProduct()
         {
             InitializeComponent();
@@ -25,23 +25,44 @@ namespace QLVT_DATHANG
         {
             this.Validate();
             this.bds_VatTu.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.ds_product);
+            this.tableAdapterManager.UpdateAll(this.DS);
 
         }
 
-        private void FormProduct_Load(object sender, EventArgs e)
+        private void TurnOnEditingState()
         {
-            ds_product.EnforceConstraints = false;
-            tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_VatTu.Fill(this.ds_product.VatTu);
-            tbla_CTDHH.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTDHH.Fill(this.ds_product.CTDDH);
-            tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTPN.Fill(this.ds_product.CTPN);
-            tbla_CTPX.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_CTPX.Fill(this.ds_product.CTPX);
+            RowIndex = bds_VatTu.Position;
+            gpc_info.Enabled = true;
+            gdc_VatTu.Enabled = false;
 
-            gb_info.Enabled = false;
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
+        }
+
+        private void TurnOffEditingState()
+        {
+
+            gdc_VatTu.Enabled = true;
+            gpc_info.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+            IsAdding = false;
+        }
+
+        private void FormProduct2_Load(object sender, EventArgs e)
+        {
+            DS.EnforceConstraints = false;
+            tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_VatTu.Fill(this.DS.VatTu);
+            tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_CTDDH.Fill(this.DS.CTDDH);
+            tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_CTPN.Fill(this.DS.CTPN);
+            tbla_CTPX.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_CTPX.Fill(this.DS.CTPX);
+
+            gpc_info.Enabled = false;
 
             if (Program.Role == "CongTy")
             {
@@ -56,45 +77,54 @@ namespace QLVT_DATHANG
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_VatTu.Position;
-            gb_info.Enabled = true;
+            TurnOnEditingState();
             NewRow = bds_VatTu.AddNew();
-            gc_VatTu.Enabled = false; // Have to add new before unabling grid control
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            IsAdding = true;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_VatTu.Position;
-            gb_info.Enabled = true;
-            gc_VatTu.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            TurnOnEditingState();
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string productId = "";
 
-            if (bds_CTDDH.Count > 0 || bds_CTPN.Count > 0 || bds_CTPX.Count > 0)
+            if (bds_CTDDH.Count > 0  )
             {
                 MessageBox.Show(
-                    "This product cannot be deleted because it has been used in 'Chi Tiet Don Dat Hang' or 'Phieu Nhap' or 'Phieu Xuat'",
-                    "Deleting Error",
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Đặt hàng. Không thể xóa!",
+                    "Lỗi ràng buộc",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            if ( bds_CTPN.Count > 0 )
+            {
+                MessageBox.Show(
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Phiếu nhập. Không thể xóa!",
+                    "Lỗi ràng buộc",
+                    MessageBoxButtons.OK
+                );
+                return;
+            }
+            if ( bds_CTPX.Count > 0)
+            {
+                MessageBox.Show(
+                    "Thông tin Vật tư đã được sử dụng ở Chi tiết Phiếu xuất. Không thể xóa!",
+                    "Lỗi ràng buộc",
                     MessageBoxButtons.OK
                 );
                 return;
             }
 
             var deletingConfirm = MessageBox.Show(
-                "Are you sure to delete this product?", 
-                "Deleting Confirm", 
+                "Thông tin Vật tư này sẽ bị xóa vĩnh viễn. Bạn có muốn xóa?",
+                "Xác nhận xóa vật tư",
                 MessageBoxButtons.OKCancel
                );
-            if (deletingConfirm  == DialogResult.OK)
+            if (deletingConfirm == DialogResult.OK)
             {
                 try
                 {
@@ -102,16 +132,16 @@ namespace QLVT_DATHANG
                     bds_VatTu.RemoveCurrent();
 
                     tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-                    tbla_VatTu.Update(ds_product.VatTu);
+                    tbla_VatTu.Update(DS.VatTu);
                 }
-                catch (Exception ex )
+                catch (Exception ex)
                 {
                     MessageBox.Show(
-                            "Error when deleting this product. Please delete again. " + ex.Message,
-                            "Error",
+                            "Xảy ra lỗi trong khi xóa vật tư. Vui lòng thử lại!\t" + ex.Message,
+                            "Lỗi",
                             MessageBoxButtons.OK
                         );
-                    tbla_VatTu.Fill(ds_product.VatTu);
+                    tbla_VatTu.Fill(DS.VatTu);
                     bds_VatTu.Position = bds_VatTu.Find("MaVT", productId);
                     return;
                 }
@@ -125,25 +155,25 @@ namespace QLVT_DATHANG
         {
             if (txt_id.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Mã Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_id.Focus();
                 return;
             }
             if (txt_name.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Name!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Tên Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_name.Focus();
                 return;
             }
             if (txt_unit.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Unit!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Đơn vị tính! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_unit.Focus();
                 return;
             }
             if (spe_count.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Product Count!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể để trống Số lượng Vật tư! Vui lòng nhập", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 spe_count.Focus();
                 return;
             }
@@ -154,47 +184,43 @@ namespace QLVT_DATHANG
                 bds_VatTu.ResetCurrentItem();
 
                 tbla_VatTu.Connection.ConnectionString = Program.ConnectionString;
-                tbla_VatTu.Update(ds_product.VatTu);
+                tbla_VatTu.Update(DS.VatTu);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when adding Product!" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Xuất hiện lỗi khi thêm vật tư! Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
-
-            gc_VatTu.Enabled = true;
-            gb_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bds_VatTu.CancelEdit();
-            
-            if (NewRow != null)
-                bds_VatTu.Remove(NewRow);
+
+            if (IsAdding)
+            {
+                var res = bds_VatTu.Contains(NewRow);
+                if (res)
+                    bds_VatTu.Remove(NewRow);
+                IsAdding = false;
+            }
 
             if (btn_add.Enabled == false)
                 bds_VatTu.Position = RowIndex;
 
-            gc_VatTu.Enabled = true;
-            gb_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
-                tbla_VatTu.Fill(ds_product.VatTu);
+                tbla_VatTu.Fill(DS.VatTu);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error when reloading: " + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Xuất hiện lỗi trong khi reload! Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
         }

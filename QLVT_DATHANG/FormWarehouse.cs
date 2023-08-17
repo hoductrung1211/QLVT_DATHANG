@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraEditors;
-using QLVT_DATHANG.DSEmployeeTableAdapters;
+using DevExpress.XtraLayout.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace QLVT_DATHANG
 {
     public partial class FormWarehouse : DevExpress.XtraEditors.XtraForm
     {
-        public string BranchId = ""; // When combox index changes, record branch ID
         public int RowIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
         public object NewRow;
+        public bool IsAdding;
         public FormWarehouse()
         {
             InitializeComponent();
@@ -25,108 +26,128 @@ namespace QLVT_DATHANG
         private void khoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.bds_kho.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.ds_warehouse);
+            this.bds_Kho.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.DS);
 
         }
-        private void GetBranchId()
+         
+        private void TurnOnEditingState()
         {
-            if (bds_kho.Count > 0)
-                BranchId = ((DataRowView)bds_kho[0])["MaCN"].ToString();
-            else
-            {
-                var reader = Program.ExecSqlDataReader("SELECT MaCN FROM [Kho]");
-                if (reader == null)
-                {
-                    MessageBox.Show("Error when trying to get the current branch.", "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                reader.Read();
-                BranchId = reader[0].ToString();
-            }
+            RowIndex = bds_Kho.Position;
+            gpc_info.Enabled = true;
+            gdc_Kho.Enabled = false;
+
+            txt_branchId.Text = Program.BranchId;
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
+
+            txt_branchId.Enabled = false;
         }
-        private void FormWarehouse_Load(object sender, EventArgs e)
-        { 
-            ds_warehouse.EnforceConstraints = false;
+        private void TurnOffEditingState()
+        {
 
-            tbla_kho.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_kho.Fill(this.ds_warehouse.Kho);
-            tbla_datHang.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_datHang.Fill(this.ds_warehouse.DatHang);
-            tbla_phieuNhap.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_phieuNhap.Fill(this.ds_warehouse.PhieuNhap);
-            tbla_phieuXuat.Connection.ConnectionString = Program.ConnectionString;
-            this.tbla_phieuXuat.Fill(this.ds_warehouse.PhieuXuat);
+            gdc_Kho.Enabled = true;
+            gpc_info.Enabled = false;
 
-            GetBranchId();
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
+            btn_save.Enabled = btn_undo.Enabled = false;
+
+            IsAdding = false;
+        }
+        private void FormWarehouse2_Load(object sender, EventArgs e)
+        {
+            DS.EnforceConstraints = false;
+
+            tbla_Kho.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_Kho.Fill(this.DS.Kho);
+            tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_DatHang.Fill(this.DS.DatHang);
+            tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuNhap.Fill(this.DS.PhieuNhap);
+            tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
+
+
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_branch.DataSource = Program.bds_subscriptionList;
+            cb_branch.DisplayMember = "TenCN";
+            cb_branch.ValueMember = "TenServer";
+            cb_branch.SelectedIndex = Program.SubsIndex;
+
+            gpc_info.Enabled = false;
 
             if (Program.Role == "CongTy")
             {
-                btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
+               btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
             }
             else
             {
-                btn_undo.Enabled = btn_save.Enabled = false;
+                cb_branch.Enabled = btn_undo.Enabled = btn_save.Enabled = false;
                 btn_add.Enabled = btn_delete.Enabled = btn_edit.Enabled = true;
             }
         }
 
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_kho.Position;
-            gb_info.Enabled = true;
-            NewRow = bds_kho.AddNew();
-            gc_kho.Enabled = false;
+            TurnOnEditingState();
+            NewRow = bds_Kho.AddNew();
+            IsAdding = true;
 
-            txt_branchId.Text = BranchId;
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            txt_branchId.Text = Program.BranchId;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            RowIndex = bds_kho.Position;
-            gb_info.Enabled = true;
-            gc_kho.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
-            btn_save.Enabled = btn_undo.Enabled = true;
+            TurnOnEditingState();
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string warehouseId = "";
-            MessageBox.Show(bds_datHang.Count + " - " + bds_phieuNhap.Count + " - " + bds_phieuXuat.Count);
-            if (bds_datHang.Count > 0 || bds_phieuNhap.Count > 0 || bds_phieuXuat.Count > 0)
+            if (bds_DatHang.Count > 0)
             {
                 MessageBox.Show(
-                    "This employee cannot be deleted because this employee has created Import Order or Import Invoice or Export Invoice!",
-                    "", MessageBoxButtons.OK);
+                    "Kho đã được sử dụng ở Đơn Đặt hàng! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
+                return;
+            }
+            if (bds_PhieuNhap.Count > 0)
+            {
+                MessageBox.Show(
+                    "Kho đã được sử dụng ở Đơn Phiếu Nhập! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
+                return;
+            }
+            if (bds_PhieuXuat.Count > 0)
+            {
+                MessageBox.Show(
+                    "Kho đã được sử dụng ở Đơn Phiếu Xuất! Không thể Xóa",
+                    "Lỗi Ràng buộc", MessageBoxButtons.OK);
                 return;
             }
 
-            var deleteConfirm = MessageBox.Show("Are you sure to delete this employee?", "Confirm", MessageBoxButtons.OKCancel);
+            var deleteConfirm = MessageBox.Show("Kho sẽ bị Xóa Vĩnh viễn! Bạn có muốn xóa?", "Xác nhận Xóa", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
             {
                 try
                 {
-                    warehouseId = ((DataRowView)bds_kho[bds_kho.Position])["MaKho"].ToString();
-                    bds_kho.RemoveCurrent();
+                    warehouseId = ((DataRowView)bds_Kho[bds_Kho.Position])["MaKho"].ToString();
+                    bds_Kho.RemoveCurrent();
 
-                    tbla_kho.Connection.ConnectionString = Program.ConnectionString;
-                    tbla_kho.Update(ds_warehouse.Kho);
+                    tbla_Kho.Connection.ConnectionString = Program.ConnectionString;
+                    tbla_Kho.Update(DS.Kho);
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
-                    MessageBox.Show("Error when deleting this employee. Please delete again" + ex.Message, "", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
-                    tbla_kho.Fill(ds_warehouse.Kho);
-                    bds_kho.Position = bds_kho.Find("MaKho", warehouseId); // Jump to Employee position
+                    MessageBox.Show("Lỗi khi Xóa Kho! Làm ơn thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
+                    tbla_Kho.Fill(DS.Kho);
+                    bds_Kho.Position = bds_Kho.Find("MaKho", warehouseId); // Jump to Employee position
                     return;
                 }
             }
 
             // Strict constraint -> If there are no employees, Cannot Delete
-            if (bds_kho.Count == 0)
+            if (bds_Kho.Count == 0)
                 btn_delete.Enabled = false;
         }
 
@@ -134,72 +155,105 @@ namespace QLVT_DATHANG
         {
             if (txt_id.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Mã Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_id.Focus();
                 return;
             }
             if (txt_name.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse Name!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Tên Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_name.Focus();
                 return;
             }
             if (txt_address.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Warehouse Address!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không được để trống Địa chỉ Kho!", "Lỗi Nhập liệu", MessageBoxButtons.OK);
                 txt_address.Focus();
                 return;
             }
 
             try
             {
-                bds_kho.EndEdit();
-                bds_kho.ResetCurrentItem();
+                bds_Kho.EndEdit();
+                bds_Kho.ResetCurrentItem();
 
-                tbla_kho.Connection.ConnectionString = Program.ConnectionString;
-                tbla_kho.Update(ds_warehouse.Kho);
+                tbla_Kho.Connection.ConnectionString = Program.ConnectionString;
+                tbla_Kho.Update(DS.Kho);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when adding Employee!" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi khi thêm Kho!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
 
-            gc_kho.Enabled = true;
-            gb_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bds_kho.CancelEdit();
-            if (NewRow != null)
-                bds_kho.Remove(NewRow);
-
+            bds_Kho.CancelEdit(); 
+            if (IsAdding)
+            {
+                var res = bds_Kho.Contains(NewRow);
+                if (res)
+                    bds_Kho.Remove(NewRow);
+                IsAdding = false;
+            }
             if (btn_add.Enabled == false) // When adding or editing, this button will be unabled
-                bds_kho.Position = RowIndex;
+                bds_Kho.Position = RowIndex;
 
-            gc_kho.Enabled = true;
-            gb_info.Enabled = false;
-
-            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
-            btn_save.Enabled = btn_undo.Enabled = false;
+            TurnOffEditingState();
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
-                // Refill to Table NhanVien
-                tbla_kho.Fill(ds_warehouse.Kho);
+                tbla_Kho.Fill(DS.Kho);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error when reloading: " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi khi Reload: " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
+        }
+
+        private void cb_branch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // If this combobox haven't had records
+            if (cb_branch.SelectedValue.ToString() == "System.Data.DataRowView")
+                return;
+
+            Program.Server = cb_branch.SelectedValue.ToString();
+
+            if (cb_branch.SelectedIndex != Program.SubsIndex)
+            {
+                Program.ConnectionUserId = Program.RemoteUserId;
+                Program.ConnectionPassword = Program.RemotePassword;
+            }
+            else
+            {
+                Program.ConnectionUserId = Program.UserId;
+                Program.ConnectionPassword = Program.Password;
+            }
+
+            if (!Program.LoginToServer())
+            {
+                MessageBox.Show("Lỗi khi kết nối với Chi nhánh khác", "Lỗi", MessageBoxButtons.OK);
+                return;
+            }
+
+            tbla_Kho.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_Kho.Fill(this.DS.Kho);
+            tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_DatHang.Fill(this.DS.DatHang);
+            tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuNhap.Fill(this.DS.PhieuNhap);
+            tbla_PhieuXuat.Connection.ConnectionString = Program.ConnectionString;
+            this.tbla_PhieuXuat.Fill(this.DS.PhieuXuat);
+
+            // Role Company cannot edit data and branchid is just used to add data.
+            // The reason it's here that is some subjects not only change branch but also update data.
         }
     }
 }

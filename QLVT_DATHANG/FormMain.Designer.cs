@@ -42,15 +42,16 @@
             this.btn_product = new DevExpress.XtraBars.BarButtonItem();
             this.btn_warehouse = new DevExpress.XtraBars.BarButtonItem();
             this.btn_order = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_invoice = new DevExpress.XtraBars.BarButtonItem();
-            this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btn_imReceipt = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_exReceipt = new DevExpress.XtraBars.BarButtonItem();
             this.page_cat = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_business = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.page_report = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.page_system = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MaNV = new System.Windows.Forms.ToolStripStatusLabel();
@@ -79,17 +80,18 @@
             this.btn_product,
             this.btn_warehouse,
             this.btn_order,
-            this.btn_invoice});
+            this.btn_imReceipt,
+            this.btn_exReceipt});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.ribbonControl1.MaxItemId = 14;
+            this.ribbonControl1.MaxItemId = 15;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.OptionsMenuMinWidth = 605;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.page_system,
             this.page_cat,
             this.page_business,
-            this.page_report});
+            this.page_report,
+            this.page_system});
             this.ribbonControl1.Size = new System.Drawing.Size(798, 193);
             // 
             // btn_login
@@ -181,27 +183,23 @@
             this.btn_order.Id = 12;
             this.btn_order.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.shipment;
             this.btn_order.Name = "btn_order";
+            this.btn_order.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_order_ItemClick);
             // 
-            // btn_invoice
+            // btn_imReceipt
             // 
-            this.btn_invoice.Caption = "Phiếu nhập / xuất";
-            this.btn_invoice.Id = 13;
-            this.btn_invoice.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
-            this.btn_invoice.Name = "btn_invoice";
+            this.btn_imReceipt.Caption = "Phiếu nhập";
+            this.btn_imReceipt.Id = 13;
+            this.btn_imReceipt.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeetasklist;
+            this.btn_imReceipt.Name = "btn_imReceipt";
+            this.btn_imReceipt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_invoice_ItemClick);
             // 
-            // page_system
+            // btn_exReceipt
             // 
-            this.page_system.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.page_system.Name = "page_system";
-            this.page_system.Text = "Hệ thống";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_login);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_create_login);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btn_logout);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.btn_exReceipt.Caption = "Phiếu xuất";
+            this.btn_exReceipt.Id = 14;
+            this.btn_exReceipt.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.portrait;
+            this.btn_exReceipt.Name = "btn_exReceipt";
+            this.btn_exReceipt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_exReceipt_ItemClick);
             // 
             // page_cat
             // 
@@ -217,7 +215,8 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_product);
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_warehouse);
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_order);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btn_invoice);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_imReceipt);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btn_exReceipt);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // page_business
@@ -246,6 +245,20 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem6);
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem8);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            // 
+            // page_system
+            // 
+            this.page_system.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.page_system.Name = "page_system";
+            this.page_system.Text = "Hệ thống";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_login);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_create_login);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btn_logout);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // xtraTabbedMdiManager1
             // 
@@ -336,7 +349,8 @@
         private DevExpress.XtraBars.BarButtonItem btn_product;
         private DevExpress.XtraBars.BarButtonItem btn_warehouse;
         private DevExpress.XtraBars.BarButtonItem btn_order;
-        private DevExpress.XtraBars.BarButtonItem btn_invoice;
+        private DevExpress.XtraBars.BarButtonItem btn_imReceipt;
+        private DevExpress.XtraBars.BarButtonItem btn_exReceipt;
     }
 }
 

@@ -45,6 +45,7 @@ namespace QLVT_DATHANG
             adapter.Fill(dataTable);
             PublisherConnection.Close();
 
+            // Store for later using in branch combobox
             Program.bds_subscriptionList.DataSource = dataTable;
 
             cb_branch.DataSource = dataTable;
@@ -62,7 +63,8 @@ namespace QLVT_DATHANG
         private void FormLogin_Load(object sender, EventArgs e)
         {
             LoadSubscriptionsToCombobox();
-            txb_username.Text = "LT";
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
+            txb_username.Text = "TT";
             txb_password.Text = "123456";
         }
 
@@ -75,7 +77,7 @@ namespace QLVT_DATHANG
             }
             catch
             {
-                Console.WriteLine("Error when loading global Server name");
+                Console.WriteLine("Xuất hiện lỗi! Vui lòng xem lại code!");
             }
         }
 
@@ -111,7 +113,7 @@ namespace QLVT_DATHANG
 
             if (Convert.IsDBNull(Program.EmployeeId)) // ???
             {
-                MessageBox.Show("This login has been forbidden.\nPlease check your username & password.", "", MessageBoxButtons.OK);
+                MessageBox.Show("Thông tin login bị sai!\tVui lòng kiểm tra lại Chi nhánh, Username & Mật khẩu!", "", MessageBoxButtons.OK);
                 return false;
             }
 
@@ -122,7 +124,7 @@ namespace QLVT_DATHANG
         {
             if (txb_username.Text.Trim() == "" || txb_password.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank username or password");
+                MessageBox.Show("Không được để trống Username & Mật khẩu!");
                 return;
             }
 
