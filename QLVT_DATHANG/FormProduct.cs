@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
+using QLVT_DATHANG.ReportForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -223,6 +225,13 @@ namespace QLVT_DATHANG
                 MessageBox.Show("Xuất hiện lỗi trong khi reload! Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
+        }
+
+        private void btn_ProdList_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Xrpt_ProductList rpt = new Xrpt_ProductList();
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
 }

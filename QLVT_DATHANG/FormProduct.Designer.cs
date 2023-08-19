@@ -72,6 +72,7 @@
             this.bds_CTPX = new System.Windows.Forms.BindingSource(this.components);
             this.bds_CTPN = new System.Windows.Forms.BindingSource(this.components);
             this.bds_CTDDH = new System.Windows.Forms.BindingSource(this.components);
+            this.btn_ProdList = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpc_info)).BeginInit();
             this.gpc_info.SuspendLayout();
@@ -109,9 +110,10 @@
             this.btn_undo,
             this.btn_reload,
             this.btn_list,
-            this.btn_exit});
+            this.btn_exit,
+            this.btn_ProdList});
             this.barmngr_employee.MainMenu = this.bar2;
-            this.barmngr_employee.MaxItemId = 8;
+            this.barmngr_employee.MaxItemId = 9;
             // 
             // bar2
             // 
@@ -125,7 +127,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_save, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_undo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_ProdList)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -489,6 +492,13 @@
             this.bds_CTDDH.DataMember = "FK_CTDDH_VatTu";
             this.bds_CTDDH.DataSource = this.bds_VatTu;
             // 
+            // btn_ProdList
+            // 
+            this.btn_ProdList.Caption = "Danh sách vật tư";
+            this.btn_ProdList.Id = 8;
+            this.btn_ProdList.Name = "btn_ProdList";
+            this.btn_ProdList.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_ProdList_ItemClick);
+            // 
             // FormProduct
             // 
             this.Appearance.Options.UseFont = true;
@@ -578,5 +588,6 @@
         private System.Windows.Forms.BindingSource bds_CTPN;
         private DSTableAdapters.CTDDHTableAdapter tbla_CTDDH;
         private System.Windows.Forms.BindingSource bds_CTDDH;
+        private DevExpress.XtraBars.BarButtonItem btn_ProdList;
     }
 }

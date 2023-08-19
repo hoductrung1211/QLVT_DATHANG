@@ -36,9 +36,9 @@
             this.btn_logout = new DevExpress.XtraBars.BarButtonItem();
             this.btn_employee = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_EmployeeActivities = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_DetailQuantityImEx = new DevExpress.XtraBars.BarButtonItem();
             this.btn_product = new DevExpress.XtraBars.BarButtonItem();
             this.btn_warehouse = new DevExpress.XtraBars.BarButtonItem();
             this.btn_order = new DevExpress.XtraBars.BarButtonItem();
@@ -74,9 +74,9 @@
             this.btn_logout,
             this.btn_employee,
             this.barButtonItem5,
-            this.barButtonItem6,
+            this.btn_EmployeeActivities,
             this.barButtonItem7,
-            this.barButtonItem8,
+            this.btn_DetailQuantityImEx,
             this.btn_product,
             this.btn_warehouse,
             this.btn_order,
@@ -141,12 +141,13 @@
             this.barButtonItem5.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.addfile;
             this.barButtonItem5.Name = "barButtonItem5";
             // 
-            // barButtonItem6
+            // btn_EmployeeActivities
             // 
-            this.barButtonItem6.Caption = "In các phiếu của nhân viên";
-            this.barButtonItem6.Id = 7;
-            this.barButtonItem6.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeesummary;
-            this.barButtonItem6.Name = "barButtonItem6";
+            this.btn_EmployeeActivities.Caption = "Hoạt động nhân viên";
+            this.btn_EmployeeActivities.Id = 7;
+            this.btn_EmployeeActivities.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.employeesummary;
+            this.btn_EmployeeActivities.Name = "btn_EmployeeActivities";
+            this.btn_EmployeeActivities.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_EmployeeActivities_ItemClick);
             // 
             // barButtonItem7
             // 
@@ -154,12 +155,13 @@
             this.barButtonItem7.Id = 8;
             this.barButtonItem7.Name = "barButtonItem7";
             // 
-            // barButtonItem8
+            // btn_DetailQuantityImEx
             // 
-            this.barButtonItem8.Caption = "Phiếu NV lập trong năm";
-            this.barButtonItem8.Id = 9;
-            this.barButtonItem8.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.printallpages;
-            this.barButtonItem8.Name = "barButtonItem8";
+            this.btn_DetailQuantityImEx.Caption = "Bảng kê chi tiết số lượng trị giá nhập xuất";
+            this.btn_DetailQuantityImEx.Id = 9;
+            this.btn_DetailQuantityImEx.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.printallpages;
+            this.btn_DetailQuantityImEx.Name = "btn_DetailQuantityImEx";
+            this.btn_DetailQuantityImEx.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_DetailQuantityImEx_ItemClick);
             // 
             // btn_product
             // 
@@ -238,12 +240,11 @@
             this.ribbonPageGroup4});
             this.page_report.Name = "page_report";
             this.page_report.Text = "Báo cáo";
-            this.page_report.Visible = false;
             // 
             // ribbonPageGroup4
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem6);
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem8);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btn_EmployeeActivities);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btn_DetailQuantityImEx);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // page_system
@@ -331,9 +332,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem btn_EmployeeActivities;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem btn_DetailQuantityImEx;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripStatusLabel MaNV;
