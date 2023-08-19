@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.About;
+using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraReports.UI;
 using QLVT_DATHANG.ReportForm;
@@ -16,11 +17,16 @@ namespace QLVT_DATHANG
 {
     public partial class FormOrder : DevExpress.XtraEditors.XtraForm
     {
-        public int RowDatHangIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
-        // public int RowCTDDHIndex = 0;
-        public object NewDDHRow;
-        public object NewCTDDHRow;
-        public bool IsAdding = false;
+        private enum FormState
+        {
+            Reading = 0,
+            Adding = 1,
+            Editing = 2,
+        }
+        private int RowDatHangIndex = 0; // When recovering deleted row, insert that row to this index (like never far away)
+        private object NewDDHRow;
+        private FormState CurrentState = FormState.Reading; 
+
         public FormOrder()
         {
             InitializeComponent();
@@ -36,11 +42,12 @@ namespace QLVT_DATHANG
 
         private void SetUpUIConstraints()
         {
-            // Bar Manager
+            // Group Control
+            this.AutoScaleMode = AutoScaleMode.None;
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
 
-            // Group Control Infor
+            // Group Control format & type
             gpc_info.Enabled = false;
             cbb_fullname.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -48,7 +55,7 @@ namespace QLVT_DATHANG
             dte_date.Properties.EditMask = "dd/MM/yyyy";
             dte_date.Properties.UseMaskAsDisplayFormat = true;
 
-            // Group control Phieu Nhap
+            // GridView Phieu Nhap
             colMaSoDDH.OptionsColumn.AllowEdit = false; colMaSoDDH.Caption = "Mã Đơn đặt hàng";
             colNgay.OptionsColumn.AllowEdit = false; colNgay.Caption = "Mã Ngày";
             colNhaCC.OptionsColumn.AllowEdit = false; colNhaCC.Caption = "Mã Nhà Cung cấp";
@@ -60,12 +67,11 @@ namespace QLVT_DATHANG
 
             // Grid view CTPN
             colCTDDHMaSoDDH.ReadOnly = true;
-            colCTDDHMaSoDDH.HeaderText = "Mã Phiếu Nhập"; colCTDDHMaSoDDH.Width = 200;
-            MaVT.HeaderText = "Vật tư"; MaVT.Width = 280;
-            //cb_MaVT.Width = 280;
-            colCTDDHSoLuong.HeaderText = "Số Lượng"; colCTDDHSoLuong.Width = 200;
-            colCTDDHDonGia.HeaderText = "Đơn Giá"; colCTDDHDonGia.Width = 200;
-    
+            colCTDDHMaSoDDH.HeaderText = "Mã Phiếu Nhập"; colCTDDHMaSoDDH.Width = 180;
+            cb_MaVT.HeaderText = "Vật tư"; cb_MaVT.Width = 280;
+            colCTDDHSoLuong.HeaderText = "Số Lượng"; colCTDDHSoLuong.Width = 180;
+            colCTDDHDonGia.HeaderText = "Đơn Giá"; colCTDDHDonGia.Width = 180;
+
         }
         private void TurnOnEditingState()
         {
@@ -83,7 +89,6 @@ namespace QLVT_DATHANG
 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
-            IsAdding = false;
 
             // Special
             txt_orderId.ReadOnly = false;
@@ -130,26 +135,28 @@ namespace QLVT_DATHANG
             TurnOnEditingState();
             NewDDHRow = bds_DatHang.AddNew();
             RowDatHangIndex = bds_DatHang.Position;
-            IsAdding = true;
-            //  
+            CurrentState = FormState.Adding;
+            //  Date Edit Now
             dte_date.Enabled = false;
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            // ManagerStatus
+            ms_save.Visible = false;
+            ms_cancel.Visible = false;
         }
 
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TurnOnEditingState();
+            dte_date.Enabled = false;
             txt_orderId.ReadOnly = true;
         }
 
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            // 1. Check wheather this Employee can be deleted
-            // A row can not be deleted if it's referenced to another Table (it's a FK)
+        { 
             string OrderId = "";
 
-            var deleteConfirm = MessageBox.Show("Are you sure to delete this Order?", "Confirm", MessageBoxButtons.OKCancel);
+            var deleteConfirm = MessageBox.Show("Đơn đặt hàng sẽ bị xóa vĩnh viễn, bạn có muốn xóa?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
             {
                 try
@@ -163,7 +170,7 @@ namespace QLVT_DATHANG
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
-                    MessageBox.Show("Error when deleting this Import Receipt. Please delete again" + ex.Message, "", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
+                    MessageBox.Show("Xảy ra lỗi khi xóa Đơn đặt hàng. Vui lòng thử lại" + ex.Message, "Lỗi", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
                     tbla_DatHang.Fill(DS.DatHang);
                     bds_DatHang.Position = bds_DatHang.Find("MaSoDDH", OrderId); // Jump to Order position
                     return;
@@ -178,66 +185,123 @@ namespace QLVT_DATHANG
         {
             if (txt_orderId.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Order ID!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng điền thông tin Mã Đơn đặt hàng!", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_orderId.Focus();
                 return;
             }
             if (txt_supplier.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Supllier!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng điền thông tin Nhà cung cấp!", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 txt_supplier.Focus();
                 return;
             }
             if (cbb_fullname.Text.Trim() == "")
             {
-                MessageBox.Show("Cannot blank Employee!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Vui lòng điền thông tin Nhân viên lập đơn!", "Lỗi nhập liệu", MessageBoxButtons.OK);
                 cbb_fullname.Focus();
                 return;
             }
             if (cbb_whsname.Text.Trim() == "")
-
-            try
             {
-                // DataGridViewRow row = gdv_CTDDH.Rows[RowCTDDHIndex];
-                // row.Cells[0].Value = txt_orderId.Text;
-                // MessageBox.Show($"{((DataRowView)NewCTDDHRow)[0]}");
+                MessageBox.Show("Vui lòng điền thông tin Kho!", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                cbb_whsname.Focus();
+                return;
+            }
+            bds_DatHang.EndEdit();
+            bds_DatHang.ResetCurrentItem();
+
+            // That means DatHang all pass
+            // If it's Editing state. Just Save DatHang infor. But if it's Adding -> Check CTDDH
+            if (CurrentState == FormState.Editing)
+            {
+                tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+                try
+                {
+                    tbla_DatHang.Update(DS.DatHang);
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show("Xảy ra lỗi khi Ghi thông tin Đơn đặt hàng vào CSDL. Vui lòng thử lại\t" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            else if (CurrentState == FormState.Adding)
+            {
+                gdv_CTDDH.EndEdit();
                 
-                //bds_DatHang.EndEdit();
-                //bds_DatHang.ResetCurrentItem();
-                //bds_CTDDH.EndEdit();
-                //bds_CTDDH.ResetCurrentItem();
+                if (bds_CTDDH.List.Count == 0)
+                {
+                    MessageBox.Show("Khi thêm Đơn đặt hàng không được để trống Chi tiết Đơn đặt hàng. Vui lòng nhập lại!", "Lỗi nhập liệu");
+                    return;
+                }
 
-                //tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
-                //tbla_DatHang.Update(DS.DatHang);
-                //tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
-                //tbla_CTDDH.Update(DS.CTDDH);
+                foreach (DataRowView item in bds_CTDDH)
+                { 
+                    if (item["MaVT"].ToString().Trim() == "")
+                    {
+                        MessageBox.Show("Vật tư trong Chi tiết phiếu nhập không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
+                        return;
+                    }
+                    if (item["SoLuong"].ToString().Trim() == "")
+                    {
+                        MessageBox.Show("Số lượng trong Chi tiết phiếu nhập không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
+                        return;
+                    }
+                    if (item["DonGia"].ToString().Trim() == "")
+                    {
+                        MessageBox.Show("Đơn giá trong Chi tiết phiếu nhập không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
+                        return;
+                    }
+                }
+
+                // Update on database
+                tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
+                tbla_DatHang.Connection.ConnectionString = Program.ConnectionString;
+                try
+                {
+                    tbla_DatHang.Update(DS.DatHang);
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Xảy ra lỗi khi thêm Đơn đặt hàng. Vui lòng thử lại\n" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+
+                try
+                {
+                    tbla_CTDDH.Update(DS.CTDDH);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Xảy ra lỗi khi thêm Chi tiết Đơn đặt hàng. Vui lòng thử lại\n" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error when adding Order! " + ex.Message, "Error", MessageBoxButtons.OK);
-            }
-            finally
-            {
-                TurnOffEditingState();
-            }
+             
+            // ManagerStatus
+            ms_save.Visible = true;
+            ms_cancel.Visible = true;
+            TurnOffEditingState(); 
+            CurrentState = FormState.Reading;
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bds_DatHang.CancelEdit();
-            if (IsAdding)
+            if (CurrentState == FormState.Adding)
             {
                 var res = bds_DatHang.Contains(NewDDHRow);
                 if (res)
                     bds_DatHang.Remove(NewDDHRow);
-                IsAdding = false;
+                bds_DatHang.Position = RowDatHangIndex;
             }
 
-
-            if (btn_add.Enabled == false) // When adding the Row Position points to the last row
-                bds_DatHang.Position = RowDatHangIndex;
-
+            // ManagerStatus
+            ms_save.Visible = true;
+            ms_cancel.Visible = true;
             TurnOffEditingState();
+            CurrentState = FormState.Reading;
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -322,10 +386,19 @@ namespace QLVT_DATHANG
 
         private void ms_save_Click(object sender, EventArgs e)
         {
-            DataRowView current = (DataRowView)bds_CTDDH.Current;
-            var s = current.Row["MaVT"] as string;
-            
-            MessageBox.Show(s);
+            gdv_CTDDH.EndEdit();
+            bds_CTDDH.EndEdit();
+
+            tbla_CTDDH.Connection.ConnectionString = Program.ConnectionString;
+            try
+            {
+                tbla_CTDDH.Update(DS.CTDDH);
+                MessageBox.Show("Ghi Chi tiết đơn đặt hàng vào CSDL thành công!", "Thông tin");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Lỗi khi ghi dữ liệu vào CSDL! Vui lòng thử lại\t" + ex.Message);
+            }
         }
 
         private void ms_delete_Click(object sender, EventArgs e)
@@ -339,12 +412,19 @@ namespace QLVT_DATHANG
             tbla_CTDDH.Fill(DS.CTDDH);
         }
 
+ 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Xrpt_OrderListDontHaveImports rpt = new Xrpt_OrderListDontHaveImports();
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.PreviewForm.FormClosed += new FormClosedEventHandler(rpt.FormClosedEventHandler);
             print.ShowPreviewDialog();
+        }
+        private void txt_orderId_Leave(object sender, EventArgs e)
+        {
+            bds_DatHang.EndEdit();
+            bds_DatHang.ResetCurrentItem();
+ 
         }
     }
 }

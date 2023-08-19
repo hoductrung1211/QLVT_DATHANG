@@ -91,8 +91,12 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gdv_CTDDH = new System.Windows.Forms.DataGridView();
             this.colCTDDHMaSoDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+ 
             this.MaVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+ 
+            this.cb_MaVT = new System.Windows.Forms.DataGridViewComboBoxColumn();
+ 
             this.colCTDDHSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTDDHDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cms_CTDDH = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -100,7 +104,9 @@
             this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
+ 
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+ 
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).BeginInit();
@@ -614,6 +620,7 @@
             this.txt_orderId.Properties.Appearance.Options.UseFont = true;
             this.txt_orderId.Size = new System.Drawing.Size(280, 28);
             this.txt_orderId.TabIndex = 8;
+            this.txt_orderId.Leave += new System.EventHandler(this.txt_orderId_Leave);
             // 
             // gdc_DatHang
             // 
@@ -706,8 +713,7 @@
             this.gdv_CTDDH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdv_CTDDH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCTDDHMaSoDDH,
-            this.MaVT,
-            this.dataGridViewComboBoxColumn1,
+            this.cb_MaVT,
             this.colCTDDHSoLuong,
             this.colCTDDHDonGia});
             this.gdv_CTDDH.ContextMenuStrip = this.cms_CTDDH;
@@ -723,12 +729,15 @@
             // colCTDDHMaSoDDH
             // 
             this.colCTDDHMaSoDDH.DataPropertyName = "MaSoDDH";
+ 
             this.colCTDDHMaSoDDH.HeaderText = "Mã số Đơn đặt hàng";
+ 
             this.colCTDDHMaSoDDH.MinimumWidth = 6;
             this.colCTDDHMaSoDDH.Name = "colCTDDHMaSoDDH";
             this.colCTDDHMaSoDDH.ReadOnly = true;
             this.colCTDDHMaSoDDH.Width = 125;
             // 
+ 
             // MaVT
             // 
             this.MaVT.DataPropertyName = "MaVT";
@@ -748,11 +757,14 @@
             this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
             this.dataGridViewComboBoxColumn1.ValueMember = "MaVT";
             this.dataGridViewComboBoxColumn1.Width = 125;
+ 
             // 
             // colCTDDHSoLuong
             // 
             this.colCTDDHSoLuong.DataPropertyName = "SoLuong";
+ 
             this.colCTDDHSoLuong.HeaderText = "Số Lượng";
+ 
             this.colCTDDHSoLuong.MinimumWidth = 6;
             this.colCTDDHSoLuong.Name = "colCTDDHSoLuong";
             this.colCTDDHSoLuong.Width = 125;
@@ -760,7 +772,9 @@
             // colCTDDHDonGia
             // 
             this.colCTDDHDonGia.DataPropertyName = "DonGia";
+ 
             this.colCTDDHDonGia.HeaderText = "Đơn Giá";
+ 
             this.colCTDDHDonGia.MinimumWidth = 6;
             this.colCTDDHDonGia.Name = "colCTDDHDonGia";
             this.colCTDDHDonGia.Width = 125;
@@ -806,6 +820,7 @@
             this.ms_cancel.Text = "Hoàn tác";
             this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
             // 
+ 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "Danh sách các đơn đặt hàng chưa có phiếu nhập";
@@ -813,11 +828,11 @@
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
+ 
             // FormOrder
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1938, 760);
             this.Controls.Add(this.gdc_DatHang);
             this.Controls.Add(this.panelControl1);
@@ -932,7 +947,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNhaCC;
         private DevExpress.XtraGrid.Columns.GridColumn colMaNV;
         private DevExpress.XtraGrid.Columns.GridColumn colMaKho;
-        private System.Windows.Forms.DataGridView gdv_CTDDH;
         private DevExpress.XtraEditors.TextEdit txt_supplier;
         private DevExpress.XtraEditors.DateEdit dte_date;
         private DevExpress.XtraEditors.TextEdit txt_orderId;
@@ -943,9 +957,9 @@
         private System.Windows.Forms.ToolStripMenuItem ms_save;
         private System.Windows.Forms.ToolStripMenuItem ms_delete;
         private System.Windows.Forms.ToolStripMenuItem ms_cancel;
+        private System.Windows.Forms.DataGridView gdv_CTDDH;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHMaSoDDH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaVT;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn cb_MaVT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHDonGia;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
