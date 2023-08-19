@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
+using DevExpress.XtraReports.UI;
+using QLVT_DATHANG.ReportForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -336,6 +338,13 @@ namespace QLVT_DATHANG
         {
             tbla_CTDDH.Fill(DS.CTDDH);
         }
-         
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Xrpt_OrderListDontHaveImports rpt = new Xrpt_OrderListDontHaveImports();
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.FormClosed += new FormClosedEventHandler(rpt.FormClosedEventHandler);
+            print.ShowPreviewDialog();
+        }
     }
 }

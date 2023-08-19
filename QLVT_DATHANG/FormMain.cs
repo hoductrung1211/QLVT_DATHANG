@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLVT_DATHANG.ReportForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -184,6 +185,40 @@ namespace QLVT_DATHANG
             }
         }
 
+        private void LoadFprt_DetailQuantityPriceImEx()
+        {
+            var form = CheckExists(typeof(Frpt_DetailQuantityPriceImEx));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var frptDetailQuantityPriceImEx = new Frpt_DetailQuantityPriceImEx();
+                frptDetailQuantityPriceImEx.MdiParent = this;
+                frptDetailQuantityPriceImEx.Show();
+            }
+        }
+
+        private void LoadFprt_EmployeeActivities()
+        {
+            var form = CheckExists(typeof(Frpt_EmployeeActivities));
+            if (form != null)
+                form.Activate();
+            else
+            {
+                foreach (var item in MdiChildren)
+                {
+                    item.Close();
+                }
+                var frptEmployeeActivities = new Frpt_EmployeeActivities();
+                frptEmployeeActivities.MdiParent = this;
+                frptEmployeeActivities.Show();
+            }
+        }
+
         private void btn_employee_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadEmployeeForm();
@@ -212,6 +247,16 @@ namespace QLVT_DATHANG
         private void btn_exReceipt_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LoadExReceiptForm();
+        }
+
+        private void btn_EmployeeActivities_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadFprt_EmployeeActivities();
+        }
+
+        private void btn_DetailQuantityImEx_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadFprt_DetailQuantityPriceImEx();
         }
     }
 }

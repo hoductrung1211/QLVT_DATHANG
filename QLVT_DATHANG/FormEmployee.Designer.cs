@@ -204,6 +204,7 @@
             this.btn_list.ImageOptions.SvgImage = global::QLVT_DATHANG.Properties.Resources.customerprofilereport;
             this.btn_list.Name = "btn_list";
             this.btn_list.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btn_list.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_list_ItemClick);
             // 
             // btn_add
             // 

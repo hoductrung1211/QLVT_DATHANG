@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraReports.UI;
+using QLVT_DATHANG.ReportForm;
 
 namespace QLVT_DATHANG
 {
@@ -517,6 +519,13 @@ namespace QLVT_DATHANG
             cb_newBranch.DataSource = dtTable;
             cb_newBranch.DisplayMember = "TenCN";
             cb_newBranch.ValueMember = "TenServer";
+        }
+
+        private void btn_list_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Xrpt_EmployeeList rpt = new Xrpt_EmployeeList();
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.ShowPreviewDialog();
         }
     }
 }

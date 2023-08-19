@@ -90,16 +90,17 @@
             this.colMaKho = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gdv_CTDDH = new System.Windows.Forms.DataGridView();
-            this.cms_CTDDH = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ms_add = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
             this.colCTDDHMaSoDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colCTDDHSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTDDHDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cms_CTDDH = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ms_add = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).BeginInit();
@@ -150,9 +151,10 @@
             this.btn_save,
             this.btn_undo,
             this.btn_reload,
-            this.btn_exit});
+            this.btn_exit,
+            this.barButtonItem1});
             this.barmngr_employee.MainMenu = this.bar3;
-            this.barmngr_employee.MaxItemId = 8;
+            this.barmngr_employee.MaxItemId = 9;
             // 
             // bar3
             // 
@@ -166,7 +168,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_save, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_undo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
@@ -717,47 +720,6 @@
             this.gdv_CTDDH.Size = new System.Drawing.Size(994, 376);
             this.gdv_CTDDH.TabIndex = 16;
             // 
-            // cms_CTDDH
-            // 
-            this.cms_CTDDH.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cms_CTDDH.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ms_add,
-            this.ms_save,
-            this.ms_delete,
-            this.ms_cancel});
-            this.cms_CTDDH.Name = "cms_CTDDH";
-            this.cms_CTDDH.Size = new System.Drawing.Size(232, 100);
-            this.cms_CTDDH.Text = "Chức năng";
-            // 
-            // ms_add
-            // 
-            this.ms_add.Name = "ms_add";
-            this.ms_add.Size = new System.Drawing.Size(231, 24);
-            this.ms_add.Text = "Thêm Chi tiết Đặt hàng";
-            this.ms_add.Visible = false;
-            this.ms_add.Click += new System.EventHandler(this.ms_add_Click);
-            // 
-            // ms_save
-            // 
-            this.ms_save.Name = "ms_save";
-            this.ms_save.Size = new System.Drawing.Size(231, 24);
-            this.ms_save.Text = "Ghi Chi tiết Đặt hàng";
-            this.ms_save.Click += new System.EventHandler(this.ms_save_Click);
-            // 
-            // ms_delete
-            // 
-            this.ms_delete.Name = "ms_delete";
-            this.ms_delete.Size = new System.Drawing.Size(231, 24);
-            this.ms_delete.Text = "Xóa Chi tiết Đặt hàng";
-            this.ms_delete.Click += new System.EventHandler(this.ms_delete_Click);
-            // 
-            // ms_cancel
-            // 
-            this.ms_cancel.Name = "ms_cancel";
-            this.ms_cancel.Size = new System.Drawing.Size(231, 24);
-            this.ms_cancel.Text = "Hoàn tác";
-            this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
-            // 
             // colCTDDHMaSoDDH
             // 
             this.colCTDDHMaSoDDH.DataPropertyName = "MaSoDDH";
@@ -802,6 +764,54 @@
             this.colCTDDHDonGia.MinimumWidth = 6;
             this.colCTDDHDonGia.Name = "colCTDDHDonGia";
             this.colCTDDHDonGia.Width = 125;
+            // 
+            // cms_CTDDH
+            // 
+            this.cms_CTDDH.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cms_CTDDH.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ms_add,
+            this.ms_save,
+            this.ms_delete,
+            this.ms_cancel});
+            this.cms_CTDDH.Name = "cms_CTDDH";
+            this.cms_CTDDH.Size = new System.Drawing.Size(232, 100);
+            this.cms_CTDDH.Text = "Chức năng";
+            // 
+            // ms_add
+            // 
+            this.ms_add.Name = "ms_add";
+            this.ms_add.Size = new System.Drawing.Size(231, 24);
+            this.ms_add.Text = "Thêm Chi tiết Đặt hàng";
+            this.ms_add.Visible = false;
+            this.ms_add.Click += new System.EventHandler(this.ms_add_Click);
+            // 
+            // ms_save
+            // 
+            this.ms_save.Name = "ms_save";
+            this.ms_save.Size = new System.Drawing.Size(231, 24);
+            this.ms_save.Text = "Ghi Chi tiết Đặt hàng";
+            this.ms_save.Click += new System.EventHandler(this.ms_save_Click);
+            // 
+            // ms_delete
+            // 
+            this.ms_delete.Name = "ms_delete";
+            this.ms_delete.Size = new System.Drawing.Size(231, 24);
+            this.ms_delete.Text = "Xóa Chi tiết Đặt hàng";
+            this.ms_delete.Click += new System.EventHandler(this.ms_delete_Click);
+            // 
+            // ms_cancel
+            // 
+            this.ms_cancel.Name = "ms_cancel";
+            this.ms_cancel.Size = new System.Drawing.Size(231, 24);
+            this.ms_cancel.Text = "Hoàn tác";
+            this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Danh sách các đơn đặt hàng chưa có phiếu nhập";
+            this.barButtonItem1.Id = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // FormOrder
             // 
@@ -938,5 +948,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHDonGia;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }
