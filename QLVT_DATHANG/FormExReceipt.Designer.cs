@@ -59,9 +59,14 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gdv_CTPX = new System.Windows.Forms.DataGridView();
             this.colCTPXMaPX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCTPXMaVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCTPXVT = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
             this.colCTPXSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTPXDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cms_CTPX = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
             this.bds_CTPX = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -92,12 +97,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_exportId = new DevExpress.XtraEditors.TextEdit();
-            this.bds_VatTu = new System.Windows.Forms.BindingSource(this.components);
             this.tbla_DSNV = new QLVT_DATHANG.DSTableAdapters.DS_NVTableAdapter();
             this.tbla_VatTu = new QLVT_DATHANG.DSTableAdapters.VatTuTableAdapter();
-            this.cms_CTPX = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ms_endEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.ms_addNew = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_PhieuXuat)).BeginInit();
@@ -106,6 +107,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
+            this.cms_CTPX.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -128,8 +131,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bds_DSNV)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).BeginInit();
-            this.cms_CTPX.SuspendLayout();
             this.SuspendLayout();
             // 
             // barmngr_employee
@@ -389,7 +390,7 @@
             this.gdv_CTPX.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdv_CTPX.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCTPXMaPX,
-            this.colCTPXMaVT,
+            this.colCTPXVT,
             this.colCTPXSoLuong,
             this.colCTPXDonGia});
             this.gdv_CTPX.ContextMenuStrip = this.cms_CTPX;
@@ -410,13 +411,21 @@
             this.colCTPXMaPX.Name = "colCTPXMaPX";
             this.colCTPXMaPX.Width = 125;
             // 
-            // colCTPXMaVT
+            // colCTPXVT
             // 
-            this.colCTPXMaVT.DataPropertyName = "MaVT";
-            this.colCTPXMaVT.HeaderText = "MaVT";
-            this.colCTPXMaVT.MinimumWidth = 6;
-            this.colCTPXMaVT.Name = "colCTPXMaVT";
-            this.colCTPXMaVT.Width = 125;
+            this.colCTPXVT.DataPropertyName = "MaVT";
+            this.colCTPXVT.DataSource = this.bds_VatTu;
+            this.colCTPXVT.DisplayMember = "TenVT";
+            this.colCTPXVT.HeaderText = "Vật tư";
+            this.colCTPXVT.MinimumWidth = 6;
+            this.colCTPXVT.Name = "colCTPXVT";
+            this.colCTPXVT.ValueMember = "MaVT";
+            this.colCTPXVT.Width = 125;
+            // 
+            // bds_VatTu
+            // 
+            this.bds_VatTu.DataMember = "VatTu";
+            this.bds_VatTu.DataSource = this.DS;
             // 
             // colCTPXSoLuong
             // 
@@ -433,6 +442,37 @@
             this.colCTPXDonGia.MinimumWidth = 6;
             this.colCTPXDonGia.Name = "colCTPXDonGia";
             this.colCTPXDonGia.Width = 125;
+            // 
+            // cms_CTPX
+            // 
+            this.cms_CTPX.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cms_CTPX.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ms_save,
+            this.ms_delete,
+            this.ms_cancel});
+            this.cms_CTPX.Name = "cms_CTPX";
+            this.cms_CTPX.Size = new System.Drawing.Size(196, 76);
+            // 
+            // ms_save
+            // 
+            this.ms_save.Name = "ms_save";
+            this.ms_save.Size = new System.Drawing.Size(210, 24);
+            this.ms_save.Text = "Ghi Chi tiết Phiếu";
+            this.ms_save.Click += new System.EventHandler(this.ms_save_Click);
+            // 
+            // ms_delete
+            // 
+            this.ms_delete.Name = "ms_delete";
+            this.ms_delete.Size = new System.Drawing.Size(210, 24);
+            this.ms_delete.Text = "Xóa Chi tiết Phiếu";
+            this.ms_delete.Click += new System.EventHandler(this.ms_delete_Click);
+            // 
+            // ms_cancel
+            // 
+            this.ms_cancel.Name = "ms_cancel";
+            this.ms_cancel.Size = new System.Drawing.Size(210, 24);
+            this.ms_cancel.Text = "Hoàn tác";
+            this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
             // 
             // bds_CTPX
             // 
@@ -734,11 +774,7 @@
             this.txt_exportId.Properties.Appearance.Options.UseFont = true;
             this.txt_exportId.Size = new System.Drawing.Size(280, 28);
             this.txt_exportId.TabIndex = 18;
-            // 
-            // bds_VatTu
-            // 
-            this.bds_VatTu.DataMember = "VatTu";
-            this.bds_VatTu.DataSource = this.DS;
+            this.txt_exportId.Leave += new System.EventHandler(this.txt_exportId_Leave);
             // 
             // tbla_DSNV
             // 
@@ -747,29 +783,6 @@
             // tbla_VatTu
             // 
             this.tbla_VatTu.ClearBeforeFill = true;
-            // 
-            // cms_CTPX
-            // 
-            this.cms_CTPX.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cms_CTPX.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ms_endEdit,
-            this.ms_addNew});
-            this.cms_CTPX.Name = "cms_CTPX";
-            this.cms_CTPX.Size = new System.Drawing.Size(211, 80);
-            // 
-            // ms_endEdit
-            // 
-            this.ms_endEdit.Name = "ms_endEdit";
-            this.ms_endEdit.Size = new System.Drawing.Size(210, 24);
-            this.ms_endEdit.Text = "EndEdit";
-            this.ms_endEdit.Click += new System.EventHandler(this.endEditToolStripMenuItem_Click);
-            // 
-            // ms_addNew
-            // 
-            this.ms_addNew.Name = "ms_addNew";
-            this.ms_addNew.Size = new System.Drawing.Size(210, 24);
-            this.ms_addNew.Text = "AddNew";
-            this.ms_addNew.Click += new System.EventHandler(this.ms_addNew_Click);
             // 
             // FormExReceipt
             // 
@@ -796,6 +809,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gdv_CTPX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
+            this.cms_CTPX.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bds_CTPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -826,8 +841,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_exportId.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bds_VatTu)).EndInit();
-            this.cms_CTPX.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -884,10 +897,6 @@
         private DSTableAdapters.CTPXTableAdapter tbla_CTPX;
         private System.Windows.Forms.BindingSource bds_CTPX;
         private System.Windows.Forms.DataGridView gdv_CTPX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXMaPX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXMaVT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXSoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXDonGia;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label5;
         private DSTableAdapters.KhoTableAdapter tbla_Kho;
@@ -902,7 +911,12 @@
         private System.Windows.Forms.BindingSource bds_VatTu;
         private DSTableAdapters.VatTuTableAdapter tbla_VatTu;
         private System.Windows.Forms.ContextMenuStrip cms_CTPX;
-        private System.Windows.Forms.ToolStripMenuItem ms_endEdit;
-        private System.Windows.Forms.ToolStripMenuItem ms_addNew;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXMaPX;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colCTPXVT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXSoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCTPXDonGia;
+        private System.Windows.Forms.ToolStripMenuItem ms_save;
+        private System.Windows.Forms.ToolStripMenuItem ms_delete;
+        private System.Windows.Forms.ToolStripMenuItem ms_cancel;
     }
 }

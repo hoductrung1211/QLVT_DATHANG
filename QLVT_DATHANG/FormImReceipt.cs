@@ -32,7 +32,6 @@ namespace QLVT_DATHANG
         {
             InitializeComponent();
         }
-
         private void SetUIConstraints()
         {
             // Group Control
@@ -50,14 +49,13 @@ namespace QLVT_DATHANG
             dte_date.ReadOnly = true; 
 
             // Grid control Phieu Nhap
-            colMaPN.OptionsColumn.AllowEdit = false;
-            colNgay.OptionsColumn.AllowEdit = false;
-            colMaSoDDH.OptionsColumn.AllowEdit = false;
-            colMaNV.OptionsColumn.AllowEdit = false;
-            colMaKho.OptionsColumn.AllowEdit = false;
-
-            colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
+            colMaPN.OptionsColumn.AllowEdit = false; colMaPN.Caption = "Mã Phiếu Nhập";
+            colNgay.OptionsColumn.AllowEdit = false; colNgay.Caption = "Ngày";
+                colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                colNgay.DisplayFormat.FormatString = "dd/MM/yyyy";
+            colMaSoDDH.OptionsColumn.AllowEdit = false; colMaSoDDH.Caption = "Mã số Đơn đặt hàng";
+            colMaNV.OptionsColumn.AllowEdit = false; colMaNV.Caption = "Mã Nhân viên";
+            colMaKho.OptionsColumn.AllowEdit = false; colMaKho.Caption = "Mã Kho";
 
             // Grid view CTPN
             colCTPNMaPN.HeaderText = "Mã Phiếu Nhập"; colCTPNVatTu.Width = 200;
@@ -70,39 +68,40 @@ namespace QLVT_DATHANG
             // Context menu strip
             ms_delete.Visible = false;
             ms_cancel.Visible = false;
-        }
 
+            // Load combobox branch
+            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb_branch.DataSource = Program.bds_subscriptionList;
+            cb_branch.DisplayMember = "TenCN";
+            cb_branch.ValueMember = "TenServer";
+            cb_branch.SelectedIndex = Program.SubsIndex;
+        }
         private void TurnOnEditingState()
         {
-            // Bar manager
+            // Tool bar manager 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
-            // Group
+            // Group Info "Bảng thông tin"
             gpc_info.Enabled = true;
-            // Grid
+            // Grid Control "Phiếu nhập"
             gdc_PhieuNhap.Enabled = false;
         }
-
         private void TurnOffEditingState()
         {
-            // Group Control
-            gpc_info.Enabled = false;
-
-            // Grid
-            gdc_PhieuNhap.Enabled = true;
-
             // Bar Manager
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
-            State = FormState.Reading;
-
+            // Group Info "Bảng thông tin"
+            gpc_info.Enabled = false;
+            txt_importId.ReadOnly = true;
+            // Grid Control "Phiếu nhập"
+            gdc_PhieuNhap.Enabled = true;
             // Context menu strip
-            ms_delete.Visible = false;
-            ms_cancel.Visible = false;
-            ms_save.Visible = true;
-            ms_reload.Visible = true;
-        }
+            ms_delete.Visible = ms_cancel.Visible = false;
+            ms_save.Visible = ms_reload.Visible = true; 
 
+            State = FormState.Reading;
+        }
         private void FormReceipt_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
@@ -119,13 +118,6 @@ namespace QLVT_DATHANG
             this.tbla_VatTu.Fill(this.DS.VatTu);
             tbla_DSNV.Connection.ConnectionString = Program.ConnectionString;
             this.tbla_DSNV.Fill(this.DS.DsNV);
-
-            // Load combobox branch
-            cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
-            cb_branch.DataSource = Program.bds_subscriptionList;
-            cb_branch.DisplayMember = "TenCN";
-            cb_branch.ValueMember = "TenServer";
-            cb_branch.SelectedIndex = Program.SubsIndex;
 
             SetUIConstraints();
 
@@ -145,7 +137,6 @@ namespace QLVT_DATHANG
             if (bds_DDH_Chua_Nhap.Count == 0)
                 btn_add.Enabled = false;
         }
-
         private void cbb_fullname_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -154,7 +145,6 @@ namespace QLVT_DATHANG
                     txt_eeId.Text = cbb_fullname.SelectedValue.ToString();
             }catch { }
         }
-
         private void cbb_whsname_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -164,14 +154,15 @@ namespace QLVT_DATHANG
             }
             catch { }
         }
-
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TurnOnEditingState();
-            NewRow = bds_PhieuNhap.AddNew();
+
             RowIndex = bds_PhieuNhap.Position;
+            NewRow = bds_PhieuNhap.AddNew();
             State = FormState.Adding;
 
+            // ?
             try
             {
                 if (cbb_DDH.Items.Count > 0)
@@ -182,32 +173,28 @@ namespace QLVT_DATHANG
             }
             catch { }
 
-            // Group info
             txt_importId.ReadOnly = false;
+            // Group info
             dte_date.Enabled = false;
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
 
-            // Context menu strip
-            ms_delete.Visible = true;
-            ms_cancel.Visible = true;
-            ms_save.Visible = false;
-            ms_reload.Visible = false;
+            // Strip Menu Item
+            ms_delete.Visible = ms_cancel.Visible = true;
+            ms_save.Visible = ms_reload.Visible = false;
         }
-
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TurnOnEditingState();
             cbb_DDH.Enabled = false;
         }
-
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // 1. Check wheather this Employee can be deleted
             // A row can not be deleted if it's referenced to another Table (it's a FK)
             string ImReceiptId = "";
 
-            var deleteConfirm = MessageBox.Show("Bạn chắc chắc muốn xóa Phiếu nhập này?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
+            var deleteConfirm = MessageBox.Show("Phiếu Nhập sẽ bị xóa vĩnh viễn, bạn có muốn xóa?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
             if (deleteConfirm == DialogResult.OK)
             {
                 var execDeletePNCommand = new SqlCommand(SP_DeletePhieuNhap)
@@ -231,7 +218,7 @@ namespace QLVT_DATHANG
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
                 {
-                    MessageBox.Show("Xảy ra lỗi trong khi xóa. Vui lòng thử lại!\t" + ex.Message, "Lỗi", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
+                    MessageBox.Show("Xảy ra lỗi trong khi xóa. Vui lòng thử lại!\t" + ex.Message, "Lỗi Xóa ở DB", MessageBoxButtons.OK); // Sometimes, computers are crazy so ... 
                     tbla_PhieuNhap.Fill(DS.PhieuNhap);
                     bds_PhieuNhap.Position = bds_PhieuNhap.Find("MaPN", ImReceiptId); // Jump to Receipt position
                     return;
@@ -241,6 +228,32 @@ namespace QLVT_DATHANG
             // Special -> Because it's always greater than 0
             tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap); 
             btn_add.Enabled = true;
+
+            if (bds_PhieuNhap.Count == 0)
+                btn_delete.Enabled = false;
+        }
+        private bool ValidateInputs()
+        {
+            if (txt_importId.Text.Trim() == "")
+            {
+                MessageBox.Show("Không được để trống Mã Phiếu nhập!", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                txt_importId.Focus();
+                return false;
+            }
+            if (cbb_fullname.Text.Trim() == "")
+            {
+                MessageBox.Show("Không được để trống Nhân viên lập phiếu!", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                cbb_fullname.Focus();
+                return false;
+            }
+            if (cbb_whsname.Text.Trim() == "")
+            {
+                MessageBox.Show("Không được để trống Kho!", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                cbb_whsname.Focus();
+                return false;
+            }
+
+            return true;
         }
         private bool CheckMaPNExist(string MaPN) // true -> Exist / false -> Haven't Existed yet
         {
@@ -297,62 +310,53 @@ namespace QLVT_DATHANG
                 txt_importId.Focus();
                 return false;
             }
+            // Save changes
+            gdv_CTPN.EndEdit();
+            bds_CTPN.EndEdit(); // New
+            bds_CTPN.ResetCurrentItem();
+
+            bds_PhieuNhap.EndEdit();
+            bds_PhieuNhap.ResetCurrentItem();
+
+            tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+            tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
+
             // Write to DB
             try
             {
-                bds_PhieuNhap.EndEdit();
-                bds_PhieuNhap.ResetCurrentItem();
-                tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
                 tbla_PhieuNhap.Update(DS.PhieuNhap);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Xảy ra lỗi khi thêm Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Xảy ra lỗi khi thêm Phiếu. Vui lòng thử lại!\t" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return false;
             }
             try
             {
-                bds_CTPN.EndEdit(); // New
-                gdv_CTPN.EndEdit();
-                tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
                 tbla_CTPN.Update(DS.CTPN);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Xảy ra lỗi khi thêm Chi tiết Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Xảy ra lỗi khi thêm Chi tiết Phiếu. Vui lòng thử lại!\t" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return false;
             }
-            
 
-            // tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap);
-            cbb_DDH.SelectedValue = ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"].ToString();
-            bds_PhieuNhap.EndEdit();
-            var ds = DS.DDH_Chua_Nhap as DataTable;
-            if (ds.Rows.Count == 0)
+            tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap); 
+
+            tbla_PhieuNhap.Fill(DS.PhieuNhap); // Fix bug
+            bds_PhieuNhap.Position = RowIndex;
+            tbla_CTPN.Fill(DS.CTPN);
+
+            TurnOffEditingState();
+
+            if (DS.DDH_Chua_Nhap.Count == 0)
                 btn_add.Enabled = false;
 
             return true;
         }
         private void btn_save_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (txt_importId.Text.Trim() == "")
-            {
-                MessageBox.Show("Không được để trống Mã Phiếu nhập!", "Lỗi nhập liệu", MessageBoxButtons.OK);
-                txt_importId.Focus();
-                return;
-            }
-            if (cbb_fullname.Text.Trim() == "")
-            {
-                MessageBox.Show("Không được để trống Nhân viên lập phiếu!", "Lỗi nhập liệu", MessageBoxButtons.OK);
-                cbb_fullname.Focus();
-                return;
-            }
-            if (cbb_whsname.Text.Trim() == "")
-            {
-                MessageBox.Show("Không được để trống Kho!", "Lỗi nhập liệu", MessageBoxButtons.OK);
-                cbb_whsname.Focus();
-                return;
-            } 
+            if (!ValidateInputs()) return;
             
             if (State == FormState.Adding)
             {
@@ -361,12 +365,13 @@ namespace QLVT_DATHANG
             }
             else if (State == FormState.Editing)
             {
+                bds_PhieuNhap.EndEdit();
+                bds_PhieuNhap.ResetCurrentItem();
+                tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
                 try
                 {
-                    bds_PhieuNhap.EndEdit();
-                    bds_PhieuNhap.ResetCurrentItem();
-                    tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
                     tbla_PhieuNhap.Update(DS.PhieuNhap);
+                    TurnOffEditingState();
                 }
                 catch (Exception ex)
                 {
@@ -374,11 +379,6 @@ namespace QLVT_DATHANG
                     return;
                 }
             }
-
-            TurnOffEditingState();
-            ms_cancel.Visible = false;
-            ms_delete.Visible = false;
-            State = FormState.Reading;
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -388,18 +388,13 @@ namespace QLVT_DATHANG
             if (State == FormState.Adding)
             {
                 var res = bds_PhieuNhap.Contains(NewRow);
-                if (res)
-                    bds_PhieuNhap.Remove(NewRow);
-                bds_PhieuNhap.Position = RowIndex;
-                ms_cancel.Visible = false;
-                ms_delete.Visible = false;
+                if (res) bds_PhieuNhap.Remove(NewRow);
+                bds_PhieuNhap.Position = RowIndex; 
             }
 
             // Reset UI & Constraints
             TurnOffEditingState();
-            cbb_DDH.Enabled = true;
-            State = FormState.Reading;
-            // bds_PhieuNhap.Position = RowIndex;
+            cbb_DDH.Enabled = true; // ?
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -407,6 +402,7 @@ namespace QLVT_DATHANG
             try
             {
                 tbla_PhieuNhap.Fill(DS.PhieuNhap);
+                tbla_CTPN.Fill(DS.CTPN);
             }
             catch (Exception ex)
             {
@@ -502,7 +498,6 @@ namespace QLVT_DATHANG
         {
             if (State == FormState.Adding)
             {
-                // ((DataRowView)bds_PhieuNhap[bds_PhieuNhap.Position])["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
                 if (cbb_DDH.SelectedValue != null)
                 {
                     ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
