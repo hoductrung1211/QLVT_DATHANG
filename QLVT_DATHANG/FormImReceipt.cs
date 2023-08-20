@@ -34,12 +34,12 @@ namespace QLVT_DATHANG
         }
         private void SetUIConstraints()
         {
-            // Group Control
+            // Bar Manager
             txt_importId.ReadOnly = true;
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
 
-            // Group Control format & type
+            // Group Control Infor
             gpc_info.Enabled = false;
             cbb_fullname.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -48,6 +48,7 @@ namespace QLVT_DATHANG
             dte_date.Properties.UseMaskAsDisplayFormat = true;
             dte_date.ReadOnly = true; 
 
+ 
             // Grid control Phieu Nhap
             colMaPN.OptionsColumn.AllowEdit = false; colMaPN.Caption = "Mã Phiếu Nhập";
             colNgay.OptionsColumn.AllowEdit = false; colNgay.Caption = "Ngày";
@@ -56,6 +57,7 @@ namespace QLVT_DATHANG
             colMaSoDDH.OptionsColumn.AllowEdit = false; colMaSoDDH.Caption = "Mã số Đơn đặt hàng";
             colMaNV.OptionsColumn.AllowEdit = false; colMaNV.Caption = "Mã Nhân viên";
             colMaKho.OptionsColumn.AllowEdit = false; colMaKho.Caption = "Mã Kho";
+ 
 
             // Grid view CTPN
             colCTPNMaPN.HeaderText = "Mã Phiếu Nhập"; colCTPNVatTu.Width = 200;
@@ -63,11 +65,12 @@ namespace QLVT_DATHANG
             colCTPNSoLuong.HeaderText = "Số Lượng"; colCTPNSoLuong.Width = 200;
             colCTPNDonGia.HeaderText = "Đơn Giá"; colCTPNDonGia.Width = 200; 
             
-            gdv_CTPN.AllowUserToAddRows = false; // Special
+            gdv_CTPN.AllowUserToAddRows = false;
 
             // Context menu strip
             ms_delete.Visible = false;
             ms_cancel.Visible = false;
+ 
 
             // Load combobox branch
             cb_branch.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -78,16 +81,22 @@ namespace QLVT_DATHANG
         }
         private void TurnOnEditingState()
         {
+ 
             // Tool bar manager 
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
             btn_save.Enabled = btn_undo.Enabled = true;
             // Group Info "Bảng thông tin"
             gpc_info.Enabled = true;
             // Grid Control "Phiếu nhập"
+ 
             gdc_PhieuNhap.Enabled = false;
+
+            btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = false;
+            btn_save.Enabled = btn_undo.Enabled = true;
         }
         private void TurnOffEditingState()
         {
+ 
             // Bar Manager
             btn_add.Enabled = btn_edit.Enabled = btn_delete.Enabled = btn_reload.Enabled = true;
             btn_save.Enabled = btn_undo.Enabled = false;
@@ -99,6 +108,7 @@ namespace QLVT_DATHANG
             // Context menu strip
             ms_delete.Visible = ms_cancel.Visible = false;
             ms_save.Visible = ms_reload.Visible = true; 
+ 
 
             State = FormState.Reading;
         }
@@ -157,19 +167,18 @@ namespace QLVT_DATHANG
         private void btn_add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             TurnOnEditingState();
+ 
 
             RowIndex = bds_PhieuNhap.Position;
             NewRow = bds_PhieuNhap.AddNew();
             State = FormState.Adding;
 
             // ?
+ 
             try
             {
                 if (cbb_DDH.Items.Count > 0)
-                {
                     cbb_DDH.SelectedIndex = 0;
-                    ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
-                }
             }
             catch { }
 
@@ -179,9 +188,11 @@ namespace QLVT_DATHANG
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
 
+ 
             // Strip Menu Item
             ms_delete.Visible = ms_cancel.Visible = true;
             ms_save.Visible = ms_reload.Visible = false;
+ 
         }
         private void btn_edit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -208,12 +219,19 @@ namespace QLVT_DATHANG
 
                 try
                 {
+                    // var idData = ((DataRowView)bds_PhieuNhap[bds_PhieuNhap.Position])["MaPN"].ToString();
+                    // ImReceiptId = idData; // Store Receipt ID to roll back to this Employee position
+                    // bds_PhieuNhap.RemoveCurrent();
+
+                    // tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
+                    // tbla_PhieuNhap.Update(DS.PhieuNhap);
                     if (Program.Connection.State == ConnectionState.Closed)
                         Program.Connection.Open();
 
                     execDeletePNCommand.ExecuteNonQuery();
                     Program.Connection.Close();
 
+                    // bds_PhieuNhap.RemoveCurrent();
                     tbla_PhieuNhap.Fill(DS.PhieuNhap);
                 }
                 catch (Exception ex) // There maybe it's deleted it in UI but not in DB -> Re fill the UI
@@ -255,6 +273,7 @@ namespace QLVT_DATHANG
 
             return true;
         }
+        
         private bool CheckMaPNExist(string MaPN) // true -> Exist / false -> Haven't Existed yet
         {
             var checkCommand = new SqlCommand(SP_CheckMaPNExist)
@@ -295,6 +314,7 @@ namespace QLVT_DATHANG
                 return true;
             return false;
         }
+ 
         private bool AddPhieuNhap()
         {
             // Have to check this PhieuNhap whether has any CTPNs?
@@ -354,17 +374,24 @@ namespace QLVT_DATHANG
 
             return true;
         }
+ 
         private void btn_save_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        // This is just for Adding
         {
+ 
             if (!ValidateInputs()) return;
             
             if (State == FormState.Adding)
+ 
             {
-                if (AddPhieuNhap() == false)
-                    return;
+                MessageBox.Show("Chi tiết Phiếu nhập trống! Không thể tạo Phiếu Nhập!\nVui lòng thêm Chi tiết Phiếu", "Lỗi nhập liệu", MessageBoxButtons.OK);
+                cbb_whsname.Focus();
+                return;
             }
-            else if (State == FormState.Editing)
+             
+            if (CheckMaPNExist(txt_importId.Text.Trim()))
             {
+ 
                 bds_PhieuNhap.EndEdit();
                 bds_PhieuNhap.ResetCurrentItem();
                 tbla_PhieuNhap.Connection.ConnectionString = Program.ConnectionString;
@@ -372,13 +399,16 @@ namespace QLVT_DATHANG
                 {
                     tbla_PhieuNhap.Update(DS.PhieuNhap);
                     TurnOffEditingState();
+ 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Xảy ra lỗi khi ghi thay đổi Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                    MessageBox.Show("Xảy ra lỗi khi thêm Chi tiết Phiếu. Vui lòng thử lại!" + ex.Message, "Lỗi", MessageBoxButtons.OK);
                     return;
                 }
+ 
             }
+ 
         }
 
         private void btn_undo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -388,6 +418,7 @@ namespace QLVT_DATHANG
             if (State == FormState.Adding)
             {
                 var res = bds_PhieuNhap.Contains(NewRow);
+ 
                 if (res) bds_PhieuNhap.Remove(NewRow);
                 bds_PhieuNhap.Position = RowIndex; 
             }
@@ -395,6 +426,7 @@ namespace QLVT_DATHANG
             // Reset UI & Constraints
             TurnOffEditingState();
             cbb_DDH.Enabled = true; // ?
+ 
         }
 
         private void btn_reload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -498,11 +530,13 @@ namespace QLVT_DATHANG
         {
             if (State == FormState.Adding)
             {
+ 
                 if (cbb_DDH.SelectedValue != null)
                 {
                     ((DataRowView)bds_PhieuNhap.Current)["MaSoDDH"] = cbb_DDH.SelectedValue.ToString();
                 } 
 
+ 
                 FillCTPNBasedOnCTDDH();
             }
         }
@@ -521,8 +555,8 @@ namespace QLVT_DATHANG
             gdv_CTPN.EndEdit();
 
             // BindingSource doesnot work! It just works when using DataGridView.EndEdit()
-            bds_CTPN.EndEdit();
-            bds_CTPN.ResetCurrentItem();
+            // bds_CTPN.EndEdit();
+            // bds_CTPN.ResetCurrentItem();
 
             tbla_CTPN.Connection.ConnectionString = Program.ConnectionString;
             tbla_CTPN.Update(DS.CTPN);
@@ -530,7 +564,9 @@ namespace QLVT_DATHANG
 
         private void ms_reload_Click(object sender, EventArgs e)
         {
-            tbla_CTPN.Fill(DS.CTPN);
+            // When Reading
+            bds_CTPN.CancelEdit();
+            gdv_CTPN.EndEdit();
         }
     }
 }

@@ -91,7 +91,12 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gdv_CTDDH = new System.Windows.Forms.DataGridView();
             this.colCTDDHMaSoDDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+ 
+            this.MaVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+ 
             this.cb_MaVT = new System.Windows.Forms.DataGridViewComboBoxColumn();
+ 
             this.colCTDDHSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCTDDHDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cms_CTDDH = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -99,6 +104,9 @@
             this.ms_save = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_delete = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_cancel = new System.Windows.Forms.ToolStripMenuItem();
+ 
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+ 
             ((System.ComponentModel.ISupportInitialize)(this.barmngr_employee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bds_DatHang)).BeginInit();
@@ -149,9 +157,10 @@
             this.btn_save,
             this.btn_undo,
             this.btn_reload,
-            this.btn_exit});
+            this.btn_exit,
+            this.barButtonItem1});
             this.barmngr_employee.MainMenu = this.bar3;
-            this.barmngr_employee.MaxItemId = 8;
+            this.barmngr_employee.MaxItemId = 9;
             // 
             // bar3
             // 
@@ -165,7 +174,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_save, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_undo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btn_reload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
             this.bar3.OptionsBar.MultiLine = true;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Main menu";
@@ -719,27 +729,42 @@
             // colCTDDHMaSoDDH
             // 
             this.colCTDDHMaSoDDH.DataPropertyName = "MaSoDDH";
-            this.colCTDDHMaSoDDH.HeaderText = "MaSoDDH";
+ 
+            this.colCTDDHMaSoDDH.HeaderText = "Mã số Đơn đặt hàng";
+ 
             this.colCTDDHMaSoDDH.MinimumWidth = 6;
             this.colCTDDHMaSoDDH.Name = "colCTDDHMaSoDDH";
             this.colCTDDHMaSoDDH.ReadOnly = true;
             this.colCTDDHMaSoDDH.Width = 125;
             // 
-            // cb_MaVT
+ 
+            // MaVT
             // 
-            this.cb_MaVT.DataPropertyName = "MaVT";
-            this.cb_MaVT.DataSource = this.bds_VatTu;
-            this.cb_MaVT.DisplayMember = "TenVT";
-            this.cb_MaVT.HeaderText = "Vật tư";
-            this.cb_MaVT.MinimumWidth = 6;
-            this.cb_MaVT.Name = "cb_MaVT";
-            this.cb_MaVT.ValueMember = "MaVT";
-            this.cb_MaVT.Width = 125;
+            this.MaVT.DataPropertyName = "MaVT";
+            this.MaVT.HeaderText = "Mã Vật tư";
+            this.MaVT.MinimumWidth = 6;
+            this.MaVT.Name = "MaVT";
+            this.MaVT.ReadOnly = true;
+            this.MaVT.Width = 125;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "MaVT";
+            this.dataGridViewComboBoxColumn1.DataSource = this.bds_VatTu;
+            this.dataGridViewComboBoxColumn1.DisplayMember = "TenVT";
+            this.dataGridViewComboBoxColumn1.HeaderText = "Vật tư";
+            this.dataGridViewComboBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.ValueMember = "MaVT";
+            this.dataGridViewComboBoxColumn1.Width = 125;
+ 
             // 
             // colCTDDHSoLuong
             // 
             this.colCTDDHSoLuong.DataPropertyName = "SoLuong";
-            this.colCTDDHSoLuong.HeaderText = "SoLuong";
+ 
+            this.colCTDDHSoLuong.HeaderText = "Số Lượng";
+ 
             this.colCTDDHSoLuong.MinimumWidth = 6;
             this.colCTDDHSoLuong.Name = "colCTDDHSoLuong";
             this.colCTDDHSoLuong.Width = 125;
@@ -747,7 +772,9 @@
             // colCTDDHDonGia
             // 
             this.colCTDDHDonGia.DataPropertyName = "DonGia";
-            this.colCTDDHDonGia.HeaderText = "DonGia";
+ 
+            this.colCTDDHDonGia.HeaderText = "Đơn Giá";
+ 
             this.colCTDDHDonGia.MinimumWidth = 6;
             this.colCTDDHDonGia.Name = "colCTDDHDonGia";
             this.colCTDDHDonGia.Width = 125;
@@ -793,6 +820,15 @@
             this.ms_cancel.Text = "Hoàn tác";
             this.ms_cancel.Click += new System.EventHandler(this.ms_cancel_Click);
             // 
+ 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Danh sách các đơn đặt hàng chưa có phiếu nhập";
+            this.barButtonItem1.Id = 8;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            // 
+ 
             // FormOrder
             // 
             this.Appearance.Options.UseFont = true;
@@ -926,5 +962,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn cb_MaVT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCTDDHDonGia;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

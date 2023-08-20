@@ -1,6 +1,8 @@
 ﻿using DevExpress.Utils.About;
 using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
+using DevExpress.XtraReports.UI;
+using QLVT_DATHANG.ReportForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,12 +34,12 @@ namespace QLVT_DATHANG
 
         private void SetUpUIConstraints()
         {
-            // Group Control
             this.AutoScaleMode = AutoScaleMode.None;
+            // Bar Manager
             txt_eeId.ReadOnly = true;
             txt_whsId.ReadOnly = true;
 
-            // Group Control format & type
+            // Group Control Infor
             gpc_info.Enabled = false;
             cbb_fullname.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_whsname.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -45,7 +47,9 @@ namespace QLVT_DATHANG
             dte_date.Properties.EditMask = "dd/MM/yyyy";
             dte_date.Properties.UseMaskAsDisplayFormat = true;
 
+ 
             // GridView Don Dat Hang
+ 
             colMaSoDDH.OptionsColumn.AllowEdit = false; colMaSoDDH.Caption = "Mã Đơn đặt hàng";
             colNgay.OptionsColumn.AllowEdit = false; colNgay.Caption = "Mã Ngày";
                 colNgay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -128,9 +132,11 @@ namespace QLVT_DATHANG
             RowDatHangIndex = bds_DatHang.Position;
             NewDDHRow = bds_DatHang.AddNew();
             CurrentState = FormState.Adding;
+ 
 
             txt_orderId.ReadOnly = false;
             //  Date Edit Now
+ 
             dte_date.Enabled = false;
             dte_date.EditValue = DateTime.Now.ToString();
             dte_date.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -143,7 +149,9 @@ namespace QLVT_DATHANG
             TurnOnEditingState();
         }
         private void btn_delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        { 
+        {
+            // 1. Check wheather this Employee can be deleted
+            // A row can not be deleted if it's referenced to another Table (it's a FK)
             string OrderId = "";
 
             var deleteConfirm = MessageBox.Show("Đơn đặt hàng sẽ bị xóa vĩnh viễn, bạn có muốn xóa?", "Xác nhận xóa", MessageBoxButtons.OKCancel);
@@ -220,7 +228,9 @@ namespace QLVT_DATHANG
                     MessageBox.Show("Số lượng trong Chi tiết đơn không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
                     return false;
                 }
+ 
                 if (item["DonGia"].ToString().Trim() == "")
+ 
                 {
                     MessageBox.Show("Đơn giá trong Chi tiết đơn không được để trống. Vui lòng kiểm tra lại", "Lỗi nhập liệu");
                     return false;
@@ -411,10 +421,21 @@ namespace QLVT_DATHANG
             tbla_CTDDH.Fill(DS.CTDDH);
         }
 
+ 
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Xrpt_OrderListDontHaveImports rpt = new Xrpt_OrderListDontHaveImports();
+            ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.FormClosed += new FormClosedEventHandler(rpt.FormClosedEventHandler);
+            print.ShowPreviewDialog();
+        }
         private void txt_orderId_Leave(object sender, EventArgs e)
         {
             bds_DatHang.EndEdit();
             bds_DatHang.ResetCurrentItem();
+ 
         }
+         
+         
     }
 }
