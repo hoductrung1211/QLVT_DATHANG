@@ -297,6 +297,7 @@ namespace QLVT_DATHANG
         }
         private bool AddPhieuNhap()
         {
+            MessageBox.Show("Add one and add another will cause an error related to Foreign KEY");
             // Have to check this PhieuNhap whether has any CTPNs?
             if (bds_CTPN.Count == 0)
             {
@@ -341,10 +342,10 @@ namespace QLVT_DATHANG
                 return false;
             }
 
-            tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap); 
-
+            tbla_DDH_Chua_Nhap.Fill(DS.DDH_Chua_Nhap);
+            string maPN = txt_importId.Text;
             tbla_PhieuNhap.Fill(DS.PhieuNhap); // Fix bug
-            bds_PhieuNhap.Position = RowIndex;
+            bds_PhieuNhap.Position = bds_PhieuNhap.Find("MaPN", maPN);
             tbla_CTPN.Fill(DS.CTPN);
 
             TurnOffEditingState();
